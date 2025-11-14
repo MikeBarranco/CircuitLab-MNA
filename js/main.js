@@ -333,12 +333,12 @@ const App = {
 
             // PASO 2: Validar TODOS los elementos
             console.log('Validando configuración completa...');
-            const validacionCompleta = Validator.validarTodo(
-                elementos,
-                this.numNodes,
-                this.groundNode,
-                this.frequency
-            );
+            const validacionCompleta = Validator.validarTodo({
+                elementos: elementos,
+                numNodes: this.numNodes,
+                groundNode: this.groundNode,
+                frequency: this.frequency
+            });
 
             if (!validacionCompleta.valido) {
                 // Mostrar TODOS los errores encontrados
