@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulador de circuitos eléctricos utilizando el método de Análisis Nodal Modificado (MNA)">
+    <meta name="keywords" content="circuitos, simulador, MNA, análisis nodal, electrónica">
+    <meta name="author" content="Barranco Ortega Miguel Angel, Linares Cortes Alexis, Matamoros Perez Demian, Escamilla Blanca Wendy Alejandra">
+    <title>CircuitLab MNA - Simulador de Circuitos</title>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Encabezado principal -->
+    <header>
+        <h1>CircuitLab MNA</h1>
+        <p class="subtitle">Simulador de Circuitos con Análisis Nodal Modificado</p>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main>
+        <!-- Sección de instrucciones de uso -->
+        <section id="instrucciones" class="section-instrucciones">
+            <h2>Instrucciones de Uso</h2>
+            <ol>
+                <li><strong>Configurar el circuito:</strong> Ingrese el número de nodos, seleccione el nodo de referencia y especifique la cantidad de elementos del circuito.</li>
+                <li><strong>Generar formulario:</strong> Haga clic en el botón "Generar Formulario de Elementos" para crear los campos de entrada de cada elemento.</li>
+                <li><strong>Ingresar elementos:</strong> Complete los datos de cada elemento (tipo, nodos, valor) según corresponda.</li>
+                <li><strong>Analizar:</strong> Presione el botón "Analizar Circuito" para obtener los resultados del análisis MNA.</li>
+            </ol>
+        </section>
+
+        <!-- Sección de configuración del circuito -->
+        <section id="configuracion" class="section-configuracion">
+            <h2>Configuración del Circuito</h2>
+            <form id="form-configuracion">
+                <!-- Número de nodos -->
+                <div class="form-group">
+                    <label for="num-nodos">Número de Nodos:</label>
+                    <input type="number" id="num-nodos" name="num-nodos" min="2" max="10" value="3" required>
+                    <span class="help-text">Ingrese un valor entre 2 y 10 nodos</span>
+                </div>
+
+                <!-- Nodo de referencia -->
+                <div class="form-group">
+                    <label for="nodo-referencia">Nodo de Referencia (GND):</label>
+                    <input type="number" id="nodo-referencia" name="nodo-referencia" min="0" value="0" required>
+                    <span class="help-text">Nodo que se tomará como referencia (tierra)</span>
+                </div>
+
+                <!-- Número de elementos -->
+                <div class="form-group">
+                    <label for="num-elementos">Número de Elementos:</label>
+                    <input type="number" id="num-elementos" name="num-elementos" min="1" max="20" value="3" required>
+                    <span class="help-text">Ingrese un valor entre 1 y 20 elementos</span>
+                </div>
+
+                <!-- Frecuencia para elementos reactivos -->
+                <div class="form-group">
+                    <label for="frecuencia">Frecuencia (Hz):</label>
+                    <input type="number" id="frecuencia" name="frecuencia" min="0" step="0.01" value="60" required>
+                    <span class="help-text">Frecuencia para el análisis de capacitores e inductores</span>
+                </div>
+
+                <!-- Botón para generar formulario de elementos -->
+                <button type="button" id="btn-generar-formulario" class="btn-primary">Generar Formulario de Elementos</button>
+            </form>
+        </section>
+
+        <!-- Sección de elementos del circuito (oculta inicialmente) -->
+        <section id="elementos" class="section-elementos" style="display: none;">
+            <h2>Elementos del Circuito</h2>
+            <p class="info-text">Complete los datos de cada elemento del circuito.</p>
+
+            <!-- Contenedor dinámico para formularios de elementos -->
+            <div id="contenedor-elementos">
+                <!-- Los formularios de elementos se generarán dinámicamente aquí -->
+            </div>
+
+            <!-- Botón para analizar el circuito -->
+            <button type="button" id="btn-analizar" class="btn-success">Analizar Circuito</button>
+        </section>
+
+        <!-- Sección de resultados (oculta inicialmente) -->
+        <section id="resultados" class="section-resultados" style="display: none;">
+            <h2>Resultados del Análisis</h2>
+
+            <!-- Subsección de voltajes nodales -->
+            <div class="resultado-grupo">
+                <h3>Voltajes Nodales</h3>
+                <div id="voltajes-nodales" class="resultado-contenido">
+                    <!-- Los voltajes se mostrarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Subsección de corrientes -->
+            <div class="resultado-grupo">
+                <h3>Corrientes de Fuentes de Voltaje</h3>
+                <div id="corrientes-fuentes" class="resultado-contenido">
+                    <!-- Las corrientes se mostrarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Subsección de matriz A (coeficientes) -->
+            <div class="resultado-grupo">
+                <h3>Matriz A (Coeficientes del Sistema)</h3>
+                <div id="matriz-a" class="resultado-contenido matriz">
+                    <!-- La matriz A se mostrará aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Subsección de vector x (incógnitas) -->
+            <div class="resultado-grupo">
+                <h3>Vector x (Incógnitas)</h3>
+                <div id="vector-x" class="resultado-contenido matriz">
+                    <!-- El vector x se mostrará aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Subsección de vector z (términos independientes) -->
+            <div class="resultado-grupo">
+                <h3>Vector z (Términos Independientes)</h3>
+                <div id="vector-z" class="resultado-contenido matriz">
+                    <!-- El vector z se mostrará aquí dinámicamente -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-contenido">
+            <h3>CircuitLab MNA</h3>
+            <p class="proyecto-info">Proyecto de simulación de circuitos eléctricos mediante Análisis Nodal Modificado</p>
+
+            <div class="autores">
+                <h4>Autores</h4>
+                <ul>
+                    <li>Barranco Ortega Miguel Angel</li>
+                    <li>Linares Cortes Alexis</li>
+                    <li>Matamoros Perez Demian</li>
+                    <li>Escamilla Blanca Wendy Alejandra</li>
+                </ul>
+            </div>
+
+            <p class="copyright">&copy; 2025 CircuitLab MNA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Biblioteca math.js para cálculos matemáticos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+
+    <!-- Scripts de la aplicación -->
+    <script src="js/validator.js"></script>
+    <script src="js/matrixBuilder.js"></script>
+    <script src="js/mnaCore.js"></script>
+    <script src="js/resultDisplay.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
