@@ -37,59 +37,59 @@
             <form id="form-configuracion">
                 <!-- Número de nodos -->
                 <div class="form-group">
-                    <label for="num-nodos">Número de Nodos:</label>
-                    <input type="number" id="num-nodos" name="num-nodos" min="2" max="10" value="3" required>
+                    <label for="numNodes">Número de Nodos:</label>
+                    <input type="number" id="numNodes" name="numNodes" min="2" max="10" value="3" required>
                     <span class="help-text">Ingrese un valor entre 2 y 10 nodos</span>
                 </div>
 
                 <!-- Nodo de referencia -->
                 <div class="form-group">
-                    <label for="nodo-referencia">Nodo de Referencia (GND):</label>
-                    <input type="number" id="nodo-referencia" name="nodo-referencia" min="0" value="0" required>
+                    <label for="groundNode">Nodo de Referencia (GND):</label>
+                    <input type="number" id="groundNode" name="groundNode" min="0" value="0" required>
                     <span class="help-text">Nodo que se tomará como referencia (tierra)</span>
                 </div>
 
                 <!-- Número de elementos -->
                 <div class="form-group">
-                    <label for="num-elementos">Número de Elementos:</label>
-                    <input type="number" id="num-elementos" name="num-elementos" min="1" max="20" value="3" required>
+                    <label for="numElements">Número de Elementos:</label>
+                    <input type="number" id="numElements" name="numElements" min="1" max="20" value="3" required>
                     <span class="help-text">Ingrese un valor entre 1 y 20 elementos</span>
                 </div>
 
                 <!-- Frecuencia para elementos reactivos -->
                 <div class="form-group">
-                    <label for="frecuencia">Frecuencia (Hz):</label>
-                    <input type="number" id="frecuencia" name="frecuencia" min="0" step="0.01" value="60" required>
+                    <label for="frequency">Frecuencia (Hz):</label>
+                    <input type="number" id="frequency" name="frequency" min="0" step="0.01" value="60" required>
                     <span class="help-text">Frecuencia para el análisis de capacitores e inductores</span>
                 </div>
 
                 <!-- Botón para generar formulario de elementos -->
-                <button type="button" id="btn-generar-formulario" class="btn-primary">Generar Formulario de Elementos</button>
+                <button type="button" id="btnGenerateForm" class="btn-primary">Generar Formulario de Elementos</button>
             </form>
         </section>
 
         <!-- Sección de elementos del circuito (oculta inicialmente) -->
-        <section id="elementos" class="section-elementos" style="display: none;">
+        <section id="elementsSection" class="section-elementos" style="display: none;">
             <h2>Elementos del Circuito</h2>
             <p class="info-text">Complete los datos de cada elemento del circuito.</p>
 
             <!-- Contenedor dinámico para formularios de elementos -->
-            <div id="contenedor-elementos">
+            <div id="elementsContainer">
                 <!-- Los formularios de elementos se generarán dinámicamente aquí -->
             </div>
 
             <!-- Botón para analizar el circuito -->
-            <button type="button" id="btn-analizar" class="btn-success">Analizar Circuito</button>
+            <button type="button" id="btnSolve" class="btn-success">Analizar Circuito</button>
         </section>
 
         <!-- Sección de resultados (oculta inicialmente) -->
-        <section id="resultados" class="section-resultados" style="display: none;">
+        <section id="resultsSection" class="section-resultados" style="display: none;">
             <h2>Resultados del Análisis</h2>
 
             <!-- Subsección de voltajes nodales -->
             <div class="resultado-grupo">
                 <h3>Voltajes Nodales</h3>
-                <div id="voltajes-nodales" class="resultado-contenido">
+                <div id="voltagesResult" class="resultado-contenido">
                     <!-- Los voltajes se mostrarán aquí dinámicamente -->
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <!-- Subsección de corrientes -->
             <div class="resultado-grupo">
                 <h3>Corrientes de Fuentes de Voltaje</h3>
-                <div id="corrientes-fuentes" class="resultado-contenido">
+                <div id="currentsResult" class="resultado-contenido">
                     <!-- Las corrientes se mostrarán aquí dinámicamente -->
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <!-- Subsección de matriz A (coeficientes) -->
             <div class="resultado-grupo">
                 <h3>Matriz A (Coeficientes del Sistema)</h3>
-                <div id="matriz-a" class="resultado-contenido matriz">
+                <div id="matrixA" class="resultado-contenido matriz">
                     <!-- La matriz A se mostrará aquí dinámicamente -->
                 </div>
             </div>
@@ -113,7 +113,7 @@
             <!-- Subsección de vector x (incógnitas) -->
             <div class="resultado-grupo">
                 <h3>Vector x (Incógnitas)</h3>
-                <div id="vector-x" class="resultado-contenido matriz">
+                <div id="vectorX" class="resultado-contenido matriz">
                     <!-- El vector x se mostrará aquí dinámicamente -->
                 </div>
             </div>
@@ -121,9 +121,15 @@
             <!-- Subsección de vector z (términos independientes) -->
             <div class="resultado-grupo">
                 <h3>Vector z (Términos Independientes)</h3>
-                <div id="vector-z" class="resultado-contenido matriz">
+                <div id="vectorZ" class="resultado-contenido matriz">
                     <!-- El vector z se mostrará aquí dinámicamente -->
                 </div>
+            </div>
+
+            <!-- Botones de acción para resultados -->
+            <div class="action-buttons">
+                <button type="button" id="btnReset" class="btn-secondary">Nuevo Circuito</button>
+                <button type="button" id="btnExport" class="btn-info">Exportar Resultados</button>
             </div>
         </section>
     </main>
