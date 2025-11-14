@@ -100,30 +100,29 @@ const MNACore = {
             }
 
             // Convertir nodos a índices en la matriz (excluyendo tierra)
-            const i1 = this.nodoAIndice(nodo1, groundNode);
-            const i2 = this.nodoAIndice(nodo2, groundNode);
+            // IMPORTANTE: retorna -1 si el nodo es groundNode
+            const i = this.nodoAIndice(nodo1, groundNode);
+            const j = this.nodoAIndice(nodo2, groundNode);
 
             // Aplicar estampilla (stamp) de conductancia en la matriz G
             // REGLA: La conductancia se suma en la diagonal y se resta off-diagonal
+            // CRÍTICO: Solo agregar a matriz si el índice >= 0 (NO es nodo de tierra)
 
-            if (i1 !== -1) {
-                // Nodo 1 no es tierra
-                G.subset(math.index(i1, i1), math.add(G.subset(math.index(i1, i1)), conductancia));
-
-                if (i2 !== -1) {
-                    // Nodo 2 tampoco es tierra
-                    G.subset(math.index(i1, i2), math.subtract(G.subset(math.index(i1, i2)), conductancia));
-                }
+            // Diagonal: G[i][i] += conductancia (solo si nodo1 NO es tierra)
+            if (i >= 0) {
+                MatrixBuilder.sumarElemento(G, i, i, conductancia);
             }
 
-            if (i2 !== -1) {
-                // Nodo 2 no es tierra
-                G.subset(math.index(i2, i2), math.add(G.subset(math.index(i2, i2)), conductancia));
+            // Diagonal: G[j][j] += conductancia (solo si nodo2 NO es tierra)
+            if (j >= 0) {
+                MatrixBuilder.sumarElemento(G, j, j, conductancia);
+            }
 
-                if (i1 !== -1) {
-                    // Nodo 1 tampoco es tierra
-                    G.subset(math.index(i2, i1), math.subtract(G.subset(math.index(i2, i1)), conductancia));
-                }
+            // Off-diagonal: G[i][j] -= conductancia y G[j][i] -= conductancia
+            // Solo si AMBOS nodos NO son tierra
+            if (i >= 0 && j >= 0) {
+                MatrixBuilder.sumarElemento(G, i, j, math.multiply(-1, conductancia));
+                MatrixBuilder.sumarElemento(G, j, i, math.multiply(-1, conductancia));
             }
         }
 
@@ -170,18 +169,21 @@ const MNACore = {
             const nodoNegativo = fuente.nodo2; // Terminal negativo
 
             // Convertir nodos a índices en la matriz
+            // IMPORTANTE: retorna -1 si el nodo es groundNode
             const iPosIndice = this.nodoAIndice(nodoPositivo, groundNode);
             const iNegIndice = this.nodoAIndice(nodoNegativo, groundNode);
 
             // Aplicar estampilla de fuente de voltaje
-            if (iPosIndice !== -1) {
-                // Terminal positivo no es tierra
-                B.subset(math.index(iPosIndice, j), 1);
+            // CRÍTICO: Solo establecer valor si el índice >= 0 (NO es nodo de tierra)
+
+            // Terminal positivo: B[i][j] = +1 (solo si NO es tierra)
+            if (iPosIndice >= 0) {
+                MatrixBuilder.establecerElemento(B, iPosIndice, j, 1);
             }
 
-            if (iNegIndice !== -1) {
-                // Terminal negativo no es tierra
-                B.subset(math.index(iNegIndice, j), -1);
+            // Terminal negativo: B[i][j] = -1 (solo si NO es tierra)
+            if (iNegIndice >= 0) {
+                MatrixBuilder.establecerElemento(B, iNegIndice, j, -1);
             }
         }
 
@@ -297,18 +299,21 @@ const MNACore = {
             const corriente = fuente.valor;
 
             // Convertir nodos a índices
+            // IMPORTANTE: retorna -1 si el nodo es groundNode
             const iPos = this.nodoAIndice(nodoPositivo, groundNode);
             const iNeg = this.nodoAIndice(nodoNegativo, groundNode);
 
             // Aplicar estampilla de fuente de corriente
-            // La corriente ENTRA por el terminal positivo (+)
-            if (iPos !== -1) {
-                i.subset(math.index(iPos, 0), math.add(i.subset(math.index(iPos, 0)), corriente));
+            // CRÍTICO: Solo sumar corriente si el índice >= 0 (NO es nodo de tierra)
+
+            // La corriente ENTRA por el terminal positivo: i[iPos] += corriente
+            if (iPos >= 0) {
+                MatrixBuilder.sumarElemento(i, iPos, 0, corriente);
             }
 
-            // La corriente SALE por el terminal negativo (-)
-            if (iNeg !== -1) {
-                i.subset(math.index(iNeg, 0), math.subtract(i.subset(math.index(iNeg, 0)), corriente));
+            // La corriente SALE por el terminal negativo: i[iNeg] -= corriente
+            if (iNeg >= 0) {
+                MatrixBuilder.sumarElemento(i, iNeg, 0, math.multiply(-1, corriente));
             }
         }
 
