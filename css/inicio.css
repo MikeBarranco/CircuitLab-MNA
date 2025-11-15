@@ -1,0 +1,69 @@
+/* css/inicio.css */
+#hero {
+    background-color: #f8fafc; /* Gris muy claro */
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+}
+#hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary-dark, #1e40af);
+    margin-bottom: 0.5rem;
+}
+#hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-light, #64748b);
+    margin-bottom: 1.5rem;
+}
+#hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+/* Estilo para el botón de acción principal */
+.btn-lg {
+    font-size: 1.15rem;
+    padding: 0.8rem 1.8rem;
+}
+
+/* Sección de Explicación MNA */
+#que-es-mna, #construccion {
+    margin-top: 2rem;
+}
+.ecuacion {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #1e293b;
+}
+.ecuacion .matriz { color: var(--color-primary-dark, #1e40af); }
+.ecuacion .vector { color: var(--color-secondary-dark, #059669); }
+
+.matrices-explicacion {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.matrices-explicacion div {
+    background: #fdfdfd;
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+.matrices-explicacion h3 {
+    color: #1e293b;
+    border-bottom: 2px solid var(--color-primary, #2563eb);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Media query para 2+ columnas en desktop */
+@media (min-width: 768px) {
+    .matrices-explicacion {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
