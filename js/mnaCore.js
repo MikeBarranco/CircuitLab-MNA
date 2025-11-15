@@ -46,7 +46,7 @@ const MNACore = {
      */
     construirMatrizG(elementos, numNodes, groundNode, frequency) {
         const n = numNodes - 1; // Número de nodos sin contar tierra
-        const G = math.zeros(n, n); // Matriz inicializada en ceros
+        let G = math.zeros(n, n); // Matriz inicializada en ceros
         const omega = 2 * Math.PI * frequency; // Frecuencia angular (rad/s)
 
         // Filtrar elementos pasivos (R, C, L)
@@ -160,7 +160,7 @@ const MNACore = {
             return math.zeros(n, 0);
         }
 
-        const B = math.zeros(n, m); // Matriz inicializada en ceros
+        let B = math.zeros(n, m); // Matriz inicializada en ceros
 
         // Procesar cada fuente de voltaje
         for (let j = 0; j < m; j++) {
@@ -287,7 +287,7 @@ const MNACore = {
      */
     construirVectorI(elementos, numNodes, groundNode) {
         const n = numNodes - 1; // Número de nodos sin tierra
-        const i = math.zeros(n, 1); // Vector columna inicializado en ceros
+        let i = math.zeros(n, 1); // Vector columna inicializado en ceros
 
         // Filtrar solo fuentes de corriente
         const fuentesCorriente = elementos.filter(e => e.tipo === 'I');
@@ -343,7 +343,7 @@ const MNACore = {
             return math.zeros(0, 1);
         }
 
-        const e = math.zeros(m, 1); // Vector columna
+        let e = math.zeros(m, 1); // Vector columna
 
         // Llenar el vector con los valores de las fuentes
         for (let j = 0; j < m; j++) {
