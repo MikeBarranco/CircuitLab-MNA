@@ -56,8 +56,8 @@ const MNACore = {
 
         // Procesar cada elemento pasivo
         for (const elemento of elementosPasivos) {
-            const nodo1 = elemento.nodo1;
-            const nodo2 = elemento.nodo2;
+            const nodo1 = elemento.nodoPositivo;
+            const nodo2 = elemento.nodoNegativo;
 
             // Calcular conductancia según el tipo de elemento
             let conductancia;
@@ -165,8 +165,8 @@ const MNACore = {
         // Procesar cada fuente de voltaje
         for (let j = 0; j < m; j++) {
             const fuente = fuentesVoltaje[j];
-            const nodoPositivo = fuente.nodo1; // Terminal positivo
-            const nodoNegativo = fuente.nodo2; // Terminal negativo
+            const nodoPositivo = fuente.nodoPositivo; // Terminal positivo
+            const nodoNegativo = fuente.nodoNegativo; // Terminal negativo
 
             // Convertir nodos a índices en la matriz
             // IMPORTANTE: retorna -1 si el nodo es groundNode
@@ -294,8 +294,8 @@ const MNACore = {
 
         // Procesar cada fuente de corriente
         for (const fuente of fuentesCorriente) {
-            const nodoPositivo = fuente.nodo1; // Terminal por donde entra la corriente
-            const nodoNegativo = fuente.nodo2; // Terminal por donde sale la corriente
+            const nodoPositivo = fuente.nodoPositivo; // Terminal por donde entra la corriente
+            const nodoNegativo = fuente.nodoNegativo; // Terminal por donde sale la corriente
             const corriente = fuente.valor;
 
             // Convertir nodos a índices
@@ -528,11 +528,11 @@ const MNACore = {
             while (cambio) {
                 cambio = false;
                 for (const elem of elementos) {
-                    if (nodosConectados.has(elem.nodo1) && !nodosConectados.has(elem.nodo2)) {
-                        nodosConectados.add(elem.nodo2);
+                    if (nodosConectados.has(elem.nodoPositivo) && !nodosConectados.has(elem.nodoNegativo)) {
+                        nodosConectados.add(elem.nodoNegativo);
                         cambio = true;
-                    } else if (nodosConectados.has(elem.nodo2) && !nodosConectados.has(elem.nodo1)) {
-                        nodosConectados.add(elem.nodo1);
+                    } else if (nodosConectados.has(elem.nodoNegativo) && !nodosConectados.has(elem.nodoPositivo)) {
+                        nodosConectados.add(elem.nodoPositivo);
                         cambio = true;
                     }
                 }
