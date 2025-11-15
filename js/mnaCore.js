@@ -547,33 +547,48 @@ const MNACore = {
             // Construir matriz G (conductancias)
             const G = this.construirMatrizG(elementos, numNodes, groundNode, frequency);
 
-            // Construir matriz B (incidencia de fuentes de voltaje)
-            const B = this.construirMatrizB(elementos, numNodes, groundNode);
-
-            // Construir matriz C (transpuesta de B)
-            const C = this.construirMatrizC(B);
-
-            // Construir matriz D (ceros para fuentes independientes)
-            const D = this.construirMatrizD(m);
-
-            // Ensamblar matriz A completa
-            const A = this.ensamblarMatrizA(G, B, C, D);
-
-            // ==================== PASO 3: CONSTRUCCIÓN DE VECTORES ====================
-
             // Construir vector i (corrientes conocidas)
             const i = this.construirVectorI(elementos, numNodes, groundNode);
 
-            // Construir vector e (voltajes conocidos)
-            const e = this.construirVectorE(elementos);
+            // Declarar variables del sistema
+            let A, z, x;
+            let B = null, C = null, D = null, e = null;
 
-            // Ensamblar vector z completo
-            const z = this.ensamblarVectorZ(i, e);
+            // ==================== PASO 3: CONSTRUCCIÓN CONDICIONAL SEGÚN FUENTES DE VOLTAJE ====================
 
-            // ==================== PASO 4: RESOLUCIÓN DEL SISTEMA ====================
+            if (m === 0) {
+                // CASO 1: SIN fuentes de voltaje (m = 0)
+                // Sistema simplificado: Gv = i (solo ecuaciones de nodos)
+                A = G;
+                z = i;
+                x = this.resolverSistema(A, z);
+            } else {
+                // CASO 2: CON fuentes de voltaje (m > 0)
+                // Sistema completo MNA con matrices ampliadas
 
-            // Resolver Ax = z
-            const x = this.resolverSistema(A, z);
+                // Construir matriz B (incidencia de fuentes de voltaje)
+                B = this.construirMatrizB(elementos, numNodes, groundNode);
+
+                // Construir matriz C (transpuesta de B)
+                C = this.construirMatrizC(B);
+
+                // Construir matriz D (ceros para fuentes independientes)
+                D = this.construirMatrizD(m);
+
+                // Ensamblar matriz A completa
+                A = this.ensamblarMatrizA(G, B, C, D);
+
+                // Construir vector e (voltajes conocidos)
+                e = this.construirVectorE(elementos);
+
+                // Ensamblar vector z completo
+                z = this.ensamblarVectorZ(i, e);
+
+                // ==================== PASO 4: RESOLUCIÓN DEL SISTEMA ====================
+
+                // Resolver Ax = z
+                x = this.resolverSistema(A, z);
+            }
 
             // ==================== PASO 5: EXTRACCIÓN DE RESULTADOS ====================
 
@@ -596,11 +611,13 @@ const MNACore = {
             // El nodo de tierra siempre tiene voltaje 0
             voltajes[groundNode] = 0;
 
-            // Extraer corrientes en fuentes de voltaje
-            for (let j = 0; j < m; j++) {
-                const fuente = fuentesVoltaje[j];
-                const corriente = x.get([n + j, 0]); // Usar .get() para extraer de matriz math.js
-                corrientes[fuente.nombre] = corriente;
+            // Extraer corrientes en fuentes de voltaje (solo si m > 0)
+            if (m > 0) {
+                for (let j = 0; j < m; j++) {
+                    const fuente = fuentesVoltaje[j];
+                    const corriente = x.get([n + j, 0]); // Usar .get() para extraer de matriz math.js
+                    corrientes[fuente.nombre] = corriente;
+                }
             }
 
             // ==================== PASO 6: RETORNAR RESULTADOS ====================
