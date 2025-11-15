@@ -576,8 +576,6 @@ button:disabled:hover,
     font-family: 'Courier New', monospace;
     font-size: 0.875rem;
     white-space: pre;
-    background: #1e293b;
-    color: #e2e8f0;
     padding: var(--spacing-lg);
     border-radius: var(--radius-md);
     line-height: 1.8;
