@@ -10,8 +10,21 @@
 
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nav.css">
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CircuitLab MNA</a>
+            <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="simulador.html" class="active">Simulador</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Encabezado principal -->
     <header>
         <h1>CircuitLab MNA</h1>
