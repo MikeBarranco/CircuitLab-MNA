@@ -589,7 +589,7 @@ const MNACore = {
                 const nodoReal = (i < groundNode) ? i : i + 1;
 
                 // Extraer valor (puede ser complejo en AC)
-                const voltaje = x[i][0]; // x es un array 2D de math.js
+                const voltaje = x[i]; // x es un array 1D de math.js
                 voltajes[nodoReal] = voltaje;
             }
 
@@ -599,7 +599,7 @@ const MNACore = {
             // Extraer corrientes en fuentes de voltaje
             for (let j = 0; j < m; j++) {
                 const fuente = fuentesVoltaje[j];
-                const corriente = x[n + j][0]; // Corrientes están después de los voltajes
+                const corriente = x[n + j]; // Corrientes están después de los voltajes
                 corrientes[fuente.nombre] = corriente;
             }
 
