@@ -62,6 +62,7 @@ const ResultDisplay = {
             // Mostrar la sección de resultados
             const resultsSection = document.getElementById('resultsSection');
             if (resultsSection) {
+                resultsSection.style.display = 'block';
                 resultsSection.classList.remove('hidden');
                 resultsSection.classList.add('fade-in');
             }
@@ -386,6 +387,7 @@ const ResultDisplay = {
         // Ocultar sección de resultados
         const resultsSection = document.getElementById('resultsSection');
         if (resultsSection) {
+            resultsSection.style.display = 'none';
             resultsSection.classList.add('hidden');
         }
 
