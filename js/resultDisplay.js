@@ -26,7 +26,7 @@ const ResultDisplay = {
 
         try {
             // Validar que tenemos los datos necesarios
-            if (!resultado || !resultado.solucion) {
+            if (!resultado || !resultado.exito) {
                 this.mostrarError('No hay resultados para mostrar');
                 return;
             }
