@@ -3,23 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CircuitLab MNA - Acerca de Nosotros</title>
-    <link rel="stylesheet" href="css/nav.css">
+    <title>CircuitLab MNA - Nosotros</title>
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/nosotros.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">CircuitLab MNA</a>
-            <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="simulador.html">Simulador</a></li>
-                <li><a href="nosotros.html" class="active">Nosotros</a></li>
-            </ul>
-        </div>
+
+    <nav class="navbar-global">
+        <a href="index.html" class="nav-brand">CircuitLab MNA</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li><a href="simulador.html" class="nav-link">Simulador</a></li>
+            <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
+        </ul>
     </nav>
 
-    <!-- Página Acerca de Nosotros - Por implementar -->
+    <main>
+        <section id="equipo">
+            <h2>Nuestro Equipo</h2>
+            <p class="subtitle">Estudiantes de Ingeniería en Ciencias de la Computación en la BUAP.</p>
+
+            <div class="team-grid">
+
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Foto de Miguel Angel">
+                    <h3>Barranco Ortega Miguel Angel</h3>
+                    <p class="matricula">202321882</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Foto de Alexis">
+                    <h3>Linares Cortes Alexis</h3>
+                    <p class="matricula">202232365</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Foto de Demian">
+                    <h3>Matamoros Perez Demian</h3>
+                    <p class="matricula">202347406</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="https://via.placeholder.com/120" alt="Foto de Wendy Alejandra">
+                    <h3>Escamilla Blanca Wendy Alejandra</h3>
+                    <p class="matricula">202329978</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="proyecto">
+            <h2>Sobre el Proyecto</h2>
+            <div class="about-project">
+                <p>Este simulador es el proyecto final para la asignatura de <strong>Circuitos Eléctricos (ICCS-007)</strong>, parte del plan de estudios de Ingeniería en Ciencias de la Computación de la Benemérita Universidad Autónoma de Puebla (BUAP).</p>
+                <p>El objetivo es aplicar los métodos de análisis de circuitos, específicamente el Análisis Nodal Modificado (MNA), en una herramienta de software funcional, robusta y educativa.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CircuitLab MNA. Proyecto de Circuitos Eléctricos, BUAP.</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+
 </body>
 </html>
