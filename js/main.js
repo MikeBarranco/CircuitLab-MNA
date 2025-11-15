@@ -385,10 +385,9 @@ const App = {
             ResultDisplay.mostrarResultados(resultado, this.frequency);
 
             // Mensaje de éxito
-            ResultDisplay.mostrarExito(
-                `¡Circuito resuelto exitosamente! ${resultado.voltajes.length} voltajes ` +
-                `y ${resultado.corrientes.length} corrientes calculadas.`
-            );
+            const numVoltajes = Object.keys(resultado.voltajes).length;
+            const numCorrientes = Object.keys(resultado.corrientes).length;
+            ResultDisplay.mostrarExito(`¡Circuito resuelto exitosamente! ${numVoltajes} voltajes y ${numCorrientes} corrientes calculadas.`);
 
             // PASO 7: Scroll suave a la sección de resultados
             setTimeout(() => {
