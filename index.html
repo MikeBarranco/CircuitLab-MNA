@@ -6,6 +6,7 @@
     <title>CircuitLab MNA - Inicio</title>
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <nav>
@@ -20,6 +21,70 @@
         </div>
     </nav>
 
-    <!-- Página de inicio - Por implementar -->
+    <main>
+        <section id="hero">
+            <h2>Bienvenido a CircuitLab MNA</h2>
+            <p class="subtitle">Tu herramienta educativa para el Análisis Nodal Modificado.</p>
+            <p>
+                Este proyecto te permite resolver circuitos eléctricos lineales usando el **Análisis Nodal Modificado (MNA)**,
+                un método poderoso y sistemático ideal para la solución por computadora.
+            </p>
+            <a href="simulador.html" class="btn-primary btn-lg">Ir al Simulador</a>
+        </section>
+
+        <section id="que-es-mna">
+            <h2>¿Qué es el Análisis Nodal Modificado (MNA)?</h2>
+            <p>
+                El MNA es un método formal que genera un sistema de ecuaciones para cualquier circuito. [cite_start]A diferencia del análisis nodal simple, el MNA maneja fácilmente fuentes de voltaje, lo que lo hace más robusto para los programas de simulación. [cite: 14, 15]
+            </p>
+            <p>
+                Todo el análisis se reduce a resolver una ecuación matricial fundamental:
+            </p>
+
+            <div class="ecuacion">
+                <span class="matriz">A</span><span class="vector">x</span> = <span class="vector">z</span>
+            </div>
+
+            <div class="matrices-explicacion">
+                <div>
+                    <h3>Matriz A (El Circuito)</h3>
+                    <p>Es la matriz de coeficientes. [cite_start]Contiene toda la información sobre cómo están conectados los componentes (resistencias, capacitores, etc.) y las fuentes de voltaje. [cite: 178, 569]</p>
+                </div>
+                <div>
+                    <h3>Vector x (Las Incógnitas)</h3>
+                    <p>Es el vector de incógnitas. [cite_start]Contiene los voltajes de cada nodo y las corrientes que fluyen a través de las fuentes de voltaje que queremos encontrar. [cite: 185, 499]</p>
+                </div>
+                <div>
+                    <h3>Vector z (Las Fuentes)</h3>
+                    <p>Es el vector de "fuentes conocidas". [cite_start]Contiene los valores de las fuentes de corriente y las fuentes de voltaje independientes que alimentan el circuito. [cite: 189, 503]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="caracteristicas">
+            <h2>Características del Simulador</h2>
+            <ul>
+                <li>
+                    <strong>Análisis DC y AC:</strong> Resuelve circuitos en corriente directa (f=0) y corriente alterna (f>0).
+                </li>
+                <li>
+                    <strong>Componentes Soportados:</strong>
+                    <ul>
+                        <li>Resistores (R)</li>
+                        <li>Fuentes de Voltaje (V)</li>
+                        <li>Fuentes de Corriente (I)</li>
+                        <li>Capacitores (C)</li>
+                        <li>Inductores (L)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Resultados Completos:</strong> Muestra voltajes nodales, corrientes de fuentes y las matrices (A, x, z) que tu profesora revisará.
+                </li>
+                <li>
+                    <strong>Lógica Robusta:</strong> El código maneja casos complejos, como circuitos sin fuentes de voltaje, gracias a su lógica condicional.
+                </li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>

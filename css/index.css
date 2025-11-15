@@ -1,0 +1,186 @@
+/* ===========================
+   ESTILOS PÁGINA DE INICIO
+   =========================== */
+
+/* Sección Hero */
+#hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+#hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#hero .subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-style: italic;
+}
+
+#hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Botones */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #ff6b6b;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-lg {
+    font-size: 1.2rem;
+    padding: 15px 40px;
+}
+
+/* Secciones generales */
+section {
+    margin-bottom: 50px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+section h3 {
+    color: #555;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Ecuación Matricial */
+.ecuacion {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.matriz {
+    color: #667eea;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.vector {
+    color: #764ba2;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Explicación de Matrices */
+.matrices-explicacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.matrices-explicacion > div {
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    transition: transform 0.3s ease;
+}
+
+.matrices-explicacion > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Características */
+#caracteristicas ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#caracteristicas > ul > li {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #ff6b6b;
+}
+
+#caracteristicas ul ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style: circle;
+}
+
+#caracteristicas ul ul li {
+    margin-bottom: 8px;
+    background-color: transparent;
+    border: none;
+    padding: 5px 0;
+}
+
+#caracteristicas strong {
+    color: #333;
+    font-size: 1.15rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    #hero h2 {
+        font-size: 2rem;
+    }
+
+    #hero .subtitle {
+        font-size: 1.1rem;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+    }
+
+    .ecuacion {
+        font-size: 1.8rem;
+    }
+
+    .matrices-explicacion {
+        grid-template-columns: 1fr;
+    }
+}
