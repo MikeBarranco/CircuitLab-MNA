@@ -1,0 +1,37 @@
+/* css/layout.css */
+
+/* Contenedor principal que da "aire" y centra el contenido */
+main {
+    width: 100%;
+    max-width: 1280px;  /* Evita que se estire demasiado en pantallas anchas */
+    margin: 0 auto;       /* Centra el contenedor */
+    padding: 1.5rem 1rem; /* Añade "aire" (espacio) arriba/abajo y a los lados */
+    flex: 1;              /* Asegura que el footer se quede abajo */
+}
+
+/* Reglas para que las secciones se vean bien en todas las pantallas */
+section {
+    width: 100%;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    background: #ffffff;
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem 0.5rem; /* Menos "aire" en móviles */
+    }
+    section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Arregla el desbordamiento de las tablas de matrices */
+    .matriz-container {
+        overflow-x: auto; /* Permite scroll horizontal en matrices */
+    }
+}
