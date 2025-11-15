@@ -478,7 +478,6 @@ button:disabled:hover,
    RESULTADOS
    ============================================ */
 #resultados {
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
 
 .resultado-card {

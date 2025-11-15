@@ -478,21 +478,35 @@ const ResultDisplay = {
      * @returns {string} Número formateado
      */
     formatearNumero(numero, decimales = 4) {
-        // Manejar valores muy pequeños como cero
         if (Math.abs(numero) < 1e-10) {
             return '0';
         }
 
-        // Formatear con decimales especificados
         const factor = Math.pow(10, decimales);
         const redondeado = Math.round(numero * factor) / factor;
 
-        // Usar notación exponencial para números muy grandes o muy pequeños
+        // Usar notación científica con superíndice
         if (Math.abs(redondeado) >= 1e6 || (Math.abs(redondeado) < 1e-3 && redondeado !== 0)) {
-            return redondeado.toExponential(decimales);
+            const exponente = Math.floor(Math.log10(Math.abs(redondeado)));
+            const mantisa = redondeado / Math.pow(10, exponente);
+
+            // Mapeo de superíndices
+            const superindices = {
+                '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+                '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻'
+            };
+
+            const exponenteStr = String(exponente).split('').map(char => superindices[char] || char).join('');
+
+            return `${mantisa.toFixed(2)} × 10${exponenteStr}`;
         }
 
-        return redondeado.toFixed(decimales).replace(/\.?0+$/, '');
+        // .toFixed() y eliminar ceros innecesarios al final
+        let numStr = redondeado.toFixed(decimales);
+        if (numStr.includes('.')) {
+            numStr = numStr.replace(/\.?0+$/, '');
+        }
+        return numStr;
     },
 
     /**
