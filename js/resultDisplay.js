@@ -607,59 +607,50 @@ const ResultDisplay = {
     exportarResultados(resultado, nombreArchivo = 'resultados_mna.txt') {
         try {
             let contenido = '';
-            contenido += '================================================\n';
-            contenido += '  RESULTADOS DEL ANÁLISIS MNA\n';
-            contenido += `  Fecha: ${new Date().toLocaleString()}\n`;
-            contenido += '================================================\n\n';
+            const fecha = new Date().toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
+
+            contenido += 'RESULTADOS DEL ANÁLISIS NODAL MODIFICADO (MNA)\n';
+            contenido += `Fecha de Análisis: ${fecha}\n\n`;
 
             // Voltajes de nodos
             if (resultado.voltajes) {
-                contenido += 'VOLTAJES DE NODOS:\n';
-                contenido += '-'.repeat(50) + '\n';
-                for (const nodo in resultado.voltajes) {
+                contenido += 'VOLTAJES DE NODOS\n';
+                const nodos = Object.keys(resultado.voltajes).sort((a, b) => a - b);
+                nodos.forEach(nodo => {
                     const voltaje = resultado.voltajes[nodo];
                     const valorStr = this.formatearComplejo(voltaje, 6);
-                    contenido += `  ${nodo}: ${valorStr} V\n`;
-                }
+                    const etiquetaNodo = (nodo == (resultado.info.groundNode || 0)) ? `Nodo ${nodo} (Tierra)` : `Nodo ${nodo}`;
+                    contenido += `  ${etiquetaNodo.padEnd(18)}: ${valorStr} V\n`;
+                });
                 contenido += '\n';
             }
 
             // Corrientes en fuentes
             if (resultado.corrientes && Object.keys(resultado.corrientes).length > 0) {
-                contenido += 'CORRIENTES EN FUENTES DE VOLTAJE:\n';
-                contenido += '-'.repeat(50) + '\n';
+                contenido += 'CORRIENTES EN FUENTES DE VOLTAJE\n';
                 for (const fuente in resultado.corrientes) {
                     const corriente = resultado.corrientes[fuente];
                     const valorStr = this.formatearComplejo(corriente, 6);
-                    contenido += `  ${fuente}: ${valorStr} A\n`;
+                    contenido += `  ${fuente.padEnd(18)}: ${valorStr} A\n`;
                 }
                 contenido += '\n';
             }
 
             // Matrices del sistema
             if (resultado.matrices) {
-                contenido += 'MATRICES DEL SISTEMA:\n';
-                contenido += '='.repeat(50) + '\n\n';
+                contenido += 'MATRICES DEL SISTEMA\n\n';
 
-                // Matriz A
                 if (resultado.matrices.A) {
-                    contenido += 'Matriz A (Conductancias):\n';
-                    contenido += this.matrizATexto(resultado.matrices.A);
-                    contenido += '\n';
+                    contenido += 'Matriz A (Sistema):\n';
+                    contenido += this.matrizATexto(resultado.matrices.A) + '\n';
                 }
-
-                // Vector x
                 if (resultado.matrices.x) {
                     contenido += 'Vector x (Incógnitas):\n';
-                    contenido += this.matrizATexto(resultado.matrices.x);
-                    contenido += '\n';
+                    contenido += this.matrizATexto(resultado.matrices.x) + '\n';
                 }
-
-                // Vector z
                 if (resultado.matrices.z) {
                     contenido += 'Vector z (Fuentes):\n';
-                    contenido += this.matrizATexto(resultado.matrices.z);
-                    contenido += '\n';
+                    contenido += this.matrizATexto(resultado.matrices.z) + '\n';
                 }
             }
 
