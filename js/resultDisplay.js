@@ -306,7 +306,7 @@ const ResultDisplay = {
                     const valorFormateado = this.formatearComplejo(valor, 6);
                     tablaHTML += `
                         <tr>
-                            <td class="text-muted text-sm">[${i}]</td>
+                            <td class="text-muted text-sm">Índice ${i}</td>
                             <td class="valor-numerico">${valorFormateado}</td>
                         </tr>
                     `;
@@ -322,13 +322,13 @@ const ResultDisplay = {
                 // Encabezados de columnas
                 tablaHTML += '<tr><th></th>';
                 for (let j = 0; j < cols; j++) {
-                    tablaHTML += `<th>[${j}]</th>`;
+                    tablaHTML += `<th>Columna ${j}</th>`;
                 }
                 tablaHTML += '</tr>';
 
                 // Filas de datos
                 for (let i = 0; i < filas; i++) {
-                    tablaHTML += `<tr><td class="text-muted text-sm font-semibold">[${i}]</td>`;
+                    tablaHTML += `<tr><td class="text-muted text-sm font-semibold">Fila ${i}</td>`;
                     for (let j = 0; j < cols; j++) {
                         const valor = matrizArray[i][j];
                         const valorFormateado = this.formatearComplejo(valor, 6);
@@ -446,43 +446,28 @@ const ResultDisplay = {
      * @returns {string} String formateado
      */
     formatearComplejo(numero, decimales = 4) {
-        // Si es undefined o null
-        if (numero === undefined || numero === null) {
-            return '0';
-        }
-
-        // Si es número real
+        if (numero === undefined || numero === null) { return '0'; }
         if (typeof numero === 'number') {
             return this.formatearNumero(numero, decimales);
         }
+        if (typeof numero === 'object' && (numero.re !== undefined || numero.im !== undefined)) {
+            const re = numero.re || 0;
+            const im = numero.im || 0;
 
-        // Si es objeto complejo de math.js
-        if (typeof numero === 'object') {
-            // Verificar si tiene parte real e imaginaria
-            if (numero.re !== undefined && numero.im !== undefined) {
-                const re = numero.re;
-                const im = numero.im;
-
-                // Si es prácticamente real (parte imaginaria despreciable)
-                if (Math.abs(im) < 1e-10) {
-                    return this.formatearNumero(re, decimales);
-                }
-
-                // Formato rectangular: a + bj
-                const reStr = this.formatearNumero(re, decimales);
-                const imStr = this.formatearNumero(Math.abs(im), decimales);
-                const signo = im >= 0 ? '+' : '-';
-
-                return `${reStr} ${signo} ${imStr}j`;
+            // Si es real (imaginaria despreciable)
+            if (Math.abs(im) < 1e-10) {
+                return this.formatearNumero(re, decimales);
             }
-
-            // Si es solo parte real
-            if (numero.re !== undefined) {
-                return this.formatearNumero(numero.re, decimales);
+            // Si es imaginario puro (real despreciable)
+            if (Math.abs(re) < 1e-10) {
+                return `${this.formatearNumero(im, decimales)}j`;
             }
+            // Complejo
+            const reStr = this.formatearNumero(re, decimales);
+            const imStr = this.formatearNumero(Math.abs(im), decimales);
+            const signo = im >= 0 ? '+' : '-';
+            return `${reStr} ${signo} ${imStr}j`;
         }
-
-        // Fallback
         return String(numero);
     },
 
