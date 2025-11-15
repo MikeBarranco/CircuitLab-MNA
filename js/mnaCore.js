@@ -110,19 +110,19 @@ const MNACore = {
 
             // Diagonal: G[i][i] += conductancia (solo si nodo1 NO es tierra)
             if (i >= 0) {
-                MatrixBuilder.sumarElemento(G, i, i, conductancia);
+                G = MatrixBuilder.sumarElemento(G, i, i, conductancia);
             }
 
             // Diagonal: G[j][j] += conductancia (solo si nodo2 NO es tierra)
             if (j >= 0) {
-                MatrixBuilder.sumarElemento(G, j, j, conductancia);
+                G = MatrixBuilder.sumarElemento(G, j, j, conductancia);
             }
 
             // Off-diagonal: G[i][j] -= conductancia y G[j][i] -= conductancia
             // Solo si AMBOS nodos NO son tierra
             if (i >= 0 && j >= 0) {
-                MatrixBuilder.sumarElemento(G, i, j, math.multiply(-1, conductancia));
-                MatrixBuilder.sumarElemento(G, j, i, math.multiply(-1, conductancia));
+                G = MatrixBuilder.sumarElemento(G, i, j, math.multiply(-1, conductancia));
+                G = MatrixBuilder.sumarElemento(G, j, i, math.multiply(-1, conductancia));
             }
         }
 
@@ -178,12 +178,12 @@ const MNACore = {
 
             // Terminal positivo: B[i][j] = +1 (solo si NO es tierra)
             if (iPosIndice >= 0) {
-                MatrixBuilder.establecerElemento(B, iPosIndice, j, 1);
+                B = MatrixBuilder.establecerElemento(B, iPosIndice, j, 1);
             }
 
             // Terminal negativo: B[i][j] = -1 (solo si NO es tierra)
             if (iNegIndice >= 0) {
-                MatrixBuilder.establecerElemento(B, iNegIndice, j, -1);
+                B = MatrixBuilder.establecerElemento(B, iNegIndice, j, -1);
             }
         }
 
@@ -308,12 +308,12 @@ const MNACore = {
 
             // La corriente ENTRA por el terminal positivo: i[iPos] += corriente
             if (iPos >= 0) {
-                MatrixBuilder.sumarElemento(i, iPos, 0, corriente);
+                i = MatrixBuilder.sumarElemento(i, iPos, 0, corriente);
             }
 
             // La corriente SALE por el terminal negativo: i[iNeg] -= corriente
             if (iNeg >= 0) {
-                MatrixBuilder.sumarElemento(i, iNeg, 0, math.multiply(-1, corriente));
+                i = MatrixBuilder.sumarElemento(i, iNeg, 0, math.multiply(-1, corriente));
             }
         }
 
@@ -347,7 +347,7 @@ const MNACore = {
 
         // Llenar el vector con los valores de las fuentes
         for (let j = 0; j < m; j++) {
-            e.subset(math.index(j, 0), fuentesVoltaje[j].valor);
+            e = e.subset(math.index(j, 0), fuentesVoltaje[j].valor);
         }
 
         return e;
