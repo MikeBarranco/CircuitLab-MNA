@@ -606,7 +606,7 @@ const ResultDisplay = {
      * @param {string} mensaje - Mensaje de error
      */
     mostrarError(mensaje) {
-        this.mostrarMensaje(mensaje, 'danger', '⚠');
+        this.mostrarMensaje(mensaje, 'danger', '!');
     },
 
     /**
@@ -614,7 +614,7 @@ const ResultDisplay = {
      * @param {string} mensaje - Mensaje de advertencia
      */
     mostrarAdvertencia(mensaje) {
-        this.mostrarMensaje(mensaje, 'warning', '⚠');
+        this.mostrarMensaje(mensaje, 'warning', '!');
     },
 
     /**
@@ -622,7 +622,7 @@ const ResultDisplay = {
      * @param {string} mensaje - Mensaje de éxito
      */
     mostrarExito(mensaje) {
-        this.mostrarMensaje(mensaje, 'success', '✓');
+        this.mostrarMensaje(mensaje, 'success', '*');
     },
 
     /**

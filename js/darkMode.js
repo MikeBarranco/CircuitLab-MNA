@@ -8,8 +8,8 @@
     // Constantes
     const DARK_MODE_CLASS = 'dark-mode';
     const STORAGE_KEY = 'circuitlab-dark-mode';
-    const MOON_ICON = '🌙';
-    const SUN_ICON = '☀️';
+    const MOON_ICON = '◐';
+    const SUN_ICON = '○';
 
     /**
      * Obtener preferencia guardada del usuario
