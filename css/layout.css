@@ -67,11 +67,6 @@ section {
     h2 { font-size: 1.5rem; }
     h3 { font-size: 1.125rem; }
     p, li, label { font-size: 0.9375rem; }
-
-    /* Arregla el desbordamiento de las tablas de matrices */
-    .matriz-container {
-        overflow-x: auto; /* Permite scroll horizontal en matrices */
-    }
 }
 
 /* Estilos del Footer Global */

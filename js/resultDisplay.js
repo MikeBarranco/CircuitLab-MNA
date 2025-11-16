@@ -320,46 +320,31 @@ const ResultDisplay = {
             const esVector = Array.isArray(matrizArray) &&
                            (matrizArray.length === 0 || !Array.isArray(matrizArray[0]));
 
-            // Crear explicación educativa según el contenedor (diseño compacto y coherente)
-            let explicacion = '';
-            if (contenedorId === 'matrixA') {
-                explicacion = `
-                    <div class="matriz-explicacion">
-                        <h4>¿Qué es la Matriz A?</h4>
-                        <p>Matriz de coeficientes del sistema MNA. Formada por 4 submatrices: <strong>G</strong> (conductancias), <strong>B</strong> (incidencia), <strong>C</strong> (transpuesta) y <strong>D</strong> (dependencias).</p>
-                        <p class="matriz-formula">A × x = z</p>
-                    </div>
-                `;
-            } else if (contenedorId === 'vectorX') {
-                explicacion = `
-                    <div class="matriz-explicacion">
-                        <h4>¿Qué es el Vector x?</h4>
-                        <p>Vector de incógnitas: contiene los <strong>voltajes nodales</strong> y las <strong>corrientes</strong> que buscamos. Estos son los resultados del sistema.</p>
-                    </div>
-                `;
-            } else if (contenedorId === 'vectorZ') {
-                explicacion = `
-                    <div class="matriz-explicacion">
-                        <h4>¿Qué es el Vector z?</h4>
-                        <p>Vector de fuentes conocidas: <strong>corrientes inyectadas</strong> y <strong>voltajes de fuentes</strong>. Estos son los datos de entrada del problema.</p>
-                    </div>
-                `;
-            }
-
-            // Generar tabla HTML
+            // Generar tabla HTML con notación matemática profesional
             let tablaHTML = '';
             if (esVector) {
                 tablaHTML = '<table class="resultado-table">';
-                tablaHTML += '<tr><th>Índice</th>';
+                tablaHTML += '<tr><th>Variable</th>';
                 const cabeceraCol = etiquetasColumnas[0] || 'Valor';
                 tablaHTML += `<th>${cabeceraCol}</th></tr>`;
 
                 for (let i = 0; i < matrizArray.length; i++) {
                     const valor = matrizArray[i];
                     const valorFormateado = this.formatearComplejo(valor, 6);
-                    const etiquetaFila = etiquetasFilas[i] || `Índice ${i}`;
+                    // Usar notación matemática en etiquetas
+                    let etiquetaFila = etiquetasFilas[i] || `x[${i}]`;
+
+                    // Convertir etiquetas a notación matemática
+                    if (etiquetaFila.startsWith('v_')) {
+                        const num = etiquetaFila.replace('v_', '');
+                        etiquetaFila = `<em>v</em><sub>${num}</sub>`;
+                    } else if (etiquetaFila.startsWith('i_')) {
+                        const fuente = etiquetaFila.replace('i_', '');
+                        etiquetaFila = `<em>i</em><sub>${fuente}</sub>`;
+                    }
+
                     tablaHTML += `<tr>
-                        <td class="text-muted text-sm font-semibold">${etiquetaFila}</td>
+                        <td>${etiquetaFila}</td>
                         <td class="valor-numerico">${valorFormateado}</td>
                     </tr>`;
                 }
@@ -370,18 +355,38 @@ const ResultDisplay = {
                 const cols = matrizArray[0] ? matrizArray[0].length : 0;
                 tablaHTML = '<table class="resultado-table">';
 
-                // Encabezados
+                // Encabezados con notación matemática
                 tablaHTML += '<tr><th></th>';
                 for (let j = 0; j < cols; j++) {
-                    const etiquetaCol = etiquetasColumnas[j] || `Col ${j}`;
+                    let etiquetaCol = etiquetasColumnas[j] || `x[${j}]`;
+
+                    // Convertir a notación matemática
+                    if (etiquetaCol.startsWith('v_')) {
+                        const num = etiquetaCol.replace('v_', '');
+                        etiquetaCol = `<em>v</em><sub>${num}</sub>`;
+                    } else if (etiquetaCol.startsWith('i_')) {
+                        const fuente = etiquetaCol.replace('i_', '');
+                        etiquetaCol = `<em>i</em><sub>${fuente}</sub>`;
+                    }
+
                     tablaHTML += `<th>${etiquetaCol}</th>`;
                 }
                 tablaHTML += '</tr>';
 
-                // Filas
+                // Filas con notación matemática
                 for (let i = 0; i < filas; i++) {
-                    const etiquetaFila = etiquetasFilas[i] || `Fila ${i}`;
-                    tablaHTML += `<tr><td class="text-muted text-sm font-semibold">${etiquetaFila}</td>`;
+                    let etiquetaFila = etiquetasFilas[i] || `x[${i}]`;
+
+                    // Convertir a notación matemática
+                    if (etiquetaFila.startsWith('v_')) {
+                        const num = etiquetaFila.replace('v_', '');
+                        etiquetaFila = `<em>v</em><sub>${num}</sub>`;
+                    } else if (etiquetaFila.startsWith('i_')) {
+                        const fuente = etiquetaFila.replace('i_', '');
+                        etiquetaFila = `<em>i</em><sub>${fuente}</sub>`;
+                    }
+
+                    tablaHTML += `<tr><td>${etiquetaFila}</td>`;
                     for (let j = 0; j < cols; j++) {
                         const valor = matrizArray[i][j];
                         const valorFormateado = this.formatearComplejo(valor, 6);
@@ -394,13 +399,8 @@ const ResultDisplay = {
                 tablaHTML += '</table>';
             }
 
-            // Insertar en el contenedor - Estructura simple y limpia
-            container.innerHTML = `
-                ${explicacion}
-                <div class="matriz-container">
-                    ${tablaHTML}
-                </div>
-            `;
+            // Insertar solo la tabla, sin cajas adicionales ni espacios
+            container.innerHTML = tablaHTML;
 
         } catch (error) {
             container.innerHTML = `
