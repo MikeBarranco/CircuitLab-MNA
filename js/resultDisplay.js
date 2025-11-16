@@ -144,9 +144,9 @@ const ResultDisplay = {
         // Insertar en el contenedor
         container.innerHTML = `
             <div class="resultado-card">
-                <h3>Voltajes de Nodos</h3>
                 <p class="text-muted text-sm mb-2">
-                    Voltajes medidos respecto al nodo de tierra (referencia 0V)
+                    Voltajes medidos respecto al nodo de tierra (0V).
+                    En análisis AC (f > 0), se muestra la Magnitud (el "cuánto") y la Fase (el "desfase" en grados).
                 </p>
                 ${tablaHTML}
             </div>
@@ -227,9 +227,8 @@ const ResultDisplay = {
         // Insertar en el contenedor
         container.innerHTML = `
             <div class="resultado-card">
-                <h3>Corrientes en Fuentes de Voltaje</h3>
                 <p class="text-muted text-sm mb-2">
-                    Corrientes que circulan por las fuentes de voltaje independientes
+                    Corrientes que fluyen a través de las fuentes de voltaje independientes (incógnitas 'j' del vector x).
                 </p>
                 ${tablaHTML}
             </div>
@@ -241,37 +240,53 @@ const ResultDisplay = {
      * @param {Object} matrices - Objeto con matrices {A, x, z}
      */
     mostrarMatrices(matrices) {
-        if (!matrices) return;
+        if (!matrices || !matrices.A) return;
 
-        // Mostrar matriz A (conductancias)
-        if (matrices.A) {
-            this.mostrarMatrizConNombre(
-                matrices.A,
-                'matrixA',
-                'Matriz A (Conductancias)',
-                'Matriz de coeficientes del sistema que incluye conductancias, estampas de fuentes de voltaje y componentes reactivos'
-            );
+        // Crear etiquetas para las columnas de A y x
+        const n = matrices.G.shape[0]; // num nodos
+        const m = matrices.B.shape[1]; // num fuentes V
+
+        let etiquetasColumnasA = [];
+        let etiquetasFilasX = [];
+
+        // Etiquetas para Nodos
+        for (let i = 0; i < n; i++) {
+            // Asumiendo que groundNode es 0, los nodos son 1...n
+            // (Esto debe mejorarse si groundNode no es 0)
+            const nodoReal = i + 1;
+            etiquetasColumnasA.push(`v_${nodoReal}`);
+            etiquetasFilasX.push(`v_${nodoReal}`);
         }
 
-        // Mostrar vector x (incógnitas)
-        if (matrices.x) {
-            this.mostrarMatrizConNombre(
-                matrices.x,
-                'vectorX',
-                'Vector x (Incógnitas)',
-                'Vector de incógnitas que contiene voltajes de nodos y corrientes en fuentes de voltaje'
-            );
+        // Etiquetas para Corrientes
+        // Necesitamos los nombres de las fuentes de V, que no están aquí.
+        // Usaremos etiquetas genéricas por ahora.
+        for (let j = 0; j < m; j++) {
+            etiquetasColumnasA.push(`i_V${j+1}`);
+            etiquetasFilasX.push(`i_V${j+1}`);
         }
 
-        // Mostrar vector z (fuentes)
-        if (matrices.z) {
-            this.mostrarMatrizConNombre(
-                matrices.z,
-                'vectorZ',
-                'Vector z (Fuentes)',
-                'Vector de términos independientes que contiene corrientes inyectadas y voltajes de fuentes'
-            );
-        }
+        // Etiquetas para filas de A y z
+        let etiquetasFilasA_Z = [...etiquetasFilasX]; // Coinciden
+
+        // Mostrar Matriz A
+        this.mostrarMatrizConNombre(
+            matrices.A, 'matrixA', 'Matriz A (Sistema)',
+            'Matriz de coeficientes del sistema [A]x = z.',
+            etiquetasFilasA_Z, etiquetasColumnasA
+        );
+        // Mostrar Vector x
+        this.mostrarMatrizConNombre(
+            matrices.x, 'vectorX', 'Vector x (Incógnitas)',
+            'Vector de incógnitas (Voltajes nodales y Corrientes de fuentes V).',
+            etiquetasFilasX, ['Valor']
+        );
+        // Mostrar Vector z
+        this.mostrarMatrizConNombre(
+            matrices.z, 'vectorZ', 'Vector z (Fuentes)',
+            'Vector de fuentes conocidas (Fuentes de Corriente y Voltaje).',
+            etiquetasFilasA_Z, ['Valor']
+        );
     },
 
     /**
@@ -280,8 +295,10 @@ const ResultDisplay = {
      * @param {string} contenedorId - ID del contenedor HTML
      * @param {string} nombre - Nombre de la matriz
      * @param {string} descripcion - Descripción de la matriz
+     * @param {Array} etiquetasFilas - Etiquetas para las filas
+     * @param {Array} etiquetasColumnas - Etiquetas para las columnas
      */
-    mostrarMatrizConNombre(matriz, contenedorId, nombre, descripcion) {
+    mostrarMatrizConNombre(matriz, contenedorId, nombre, descripcion, etiquetasFilas = [], etiquetasColumnas = []) {
         const container = document.getElementById(contenedorId);
         if (!container || !matriz) return;
 
@@ -296,58 +313,60 @@ const ResultDisplay = {
             const esVector = Array.isArray(matrizArray) &&
                            (matrizArray.length === 0 || !Array.isArray(matrizArray[0]));
 
+            // --- Inicio del reemplazo de tablaHTML ---
             let tablaHTML = '';
-
             if (esVector) {
-                // Renderizar como vector vertical
                 tablaHTML = '<table class="resultado-table">';
+                // Cabecera del Vector
+                tablaHTML += '<tr><th>Índice</th>';
+                const cabeceraCol = etiquetasColumnas[0] || 'Valor';
+                tablaHTML += `<th>${cabeceraCol}</th></tr>`;
+
+                // Filas del Vector
                 for (let i = 0; i < matrizArray.length; i++) {
                     const valor = matrizArray[i];
                     const valorFormateado = this.formatearComplejo(valor, 6);
-                    tablaHTML += `
-                        <tr>
-                            <td class="text-muted text-sm">Índice ${i}</td>
-                            <td class="valor-numerico">${valorFormateado}</td>
-                        </tr>
-                    `;
+                    const etiquetaFila = etiquetasFilas[i] || `Índice ${i}`;
+                    tablaHTML += `<tr>
+                        <td class="text-muted text-sm font-semibold">${etiquetaFila}</td>
+                        <td class="valor-numerico">${valorFormateado}</td>
+                    </tr>`;
                 }
                 tablaHTML += '</table>';
             } else {
-                // Renderizar como matriz
+                // Matriz
                 const filas = matrizArray.length;
                 const cols = matrizArray[0] ? matrizArray[0].length : 0;
-
                 tablaHTML = '<table class="resultado-table">';
 
-                // Encabezados de columnas
-                tablaHTML += '<tr><th></th>';
+                // Encabezados de Columnas
+                tablaHTML += '<tr><th></th>'; // Celda vacía para la esquina
                 for (let j = 0; j < cols; j++) {
-                    tablaHTML += `<th>Columna ${j}</th>`;
+                    const etiquetaCol = etiquetasColumnas[j] || `Col ${j}`;
+                    tablaHTML += `<th>${etiquetaCol}</th>`;
                 }
                 tablaHTML += '</tr>';
 
                 // Filas de datos
                 for (let i = 0; i < filas; i++) {
-                    tablaHTML += `<tr><td class="text-muted text-sm font-semibold">Fila ${i}</td>`;
+                    const etiquetaFila = etiquetasFilas[i] || `Fila ${i}`;
+                    tablaHTML += `<tr><td class="text-muted text-sm font-semibold">${etiquetaFila}</td>`;
                     for (let j = 0; j < cols; j++) {
                         const valor = matrizArray[i][j];
                         const valorFormateado = this.formatearComplejo(valor, 6);
-
-                        // Resaltar diagonal principal
                         const esDiagonal = i === j;
                         const clase = esDiagonal ? 'valor-numerico font-bold' : 'valor-numerico';
-
                         tablaHTML += `<td class="${clase}">${valorFormateado}</td>`;
                     }
                     tablaHTML += '</tr>';
                 }
                 tablaHTML += '</table>';
             }
+            // --- Fin del reemplazo de tablaHTML ---
 
             // Insertar en el contenedor
             container.innerHTML = `
                 <div class="resultado-card">
-                    <h3>${nombre}</h3>
                     <p class="text-muted text-sm mb-3">${descripcion}</p>
                     <div class="matriz-container">
                         ${tablaHTML}

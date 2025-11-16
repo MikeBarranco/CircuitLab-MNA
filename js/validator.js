@@ -464,49 +464,25 @@ const Validator = {
      */
     validarNombresUnicos(elementos) {
         const errores = [];
-
-        // Verificar que elementos es un array válido
         if (!Array.isArray(elementos)) {
             errores.push('Los elementos deben ser un array.');
             return { valido: false, errores: errores };
         }
+        const nombresVistos = new Set();
 
-        if (elementos.length === 0) {
-            // Array vacío es técnicamente válido (no hay duplicados)
-            return { valido: true, errores: [] };
+        for (const elem of elementos) {
+            if (!elem || typeof elem.nombre !== 'string' || elem.nombre.trim() === '') {
+                // Este error ya se reporta en validarElemento, pero lo chequeamos por si acaso.
+                continue;
+            }
+            const nombreNormalizado = elem.nombre.trim().toUpperCase();
+
+            if (nombresVistos.has(nombreNormalizado)) {
+                errores.push(`El nombre "${elem.nombre}" está duplicado. Todos los nombres de elementos deben ser únicos.`);
+            } else {
+                nombresVistos.add(nombreNormalizado);
+            }
         }
-
-        // Mapa para contar apariciones de cada nombre
-        const conteoNombres = new Map();
-
-        elementos.forEach((elem, index) => {
-            if (!elem || typeof elem !== 'object') {
-                return; // Saltar elementos inválidos
-            }
-
-            const nombre = elem.nombre;
-
-            if (!nombre) {
-                errores.push(`El elemento en la posición ${index + 1} no tiene nombre.`);
-                return;
-            }
-
-            // Normalizar el nombre (convertir a mayúsculas para comparación)
-            const nombreNormalizado = nombre.toUpperCase();
-
-            if (!conteoNombres.has(nombreNormalizado)) {
-                conteoNombres.set(nombreNormalizado, []);
-            }
-            conteoNombres.get(nombreNormalizado).push(nombre);
-        });
-
-        // Verificar duplicados
-        conteoNombres.forEach((apariciones, nombreNormalizado) => {
-            if (apariciones.length > 1) {
-                errores.push(`El nombre "${apariciones[0]}" está duplicado ${apariciones.length} veces. Cada elemento debe tener un nombre único.`);
-            }
-        });
-
         return {
             valido: errores.length === 0,
             errores: errores

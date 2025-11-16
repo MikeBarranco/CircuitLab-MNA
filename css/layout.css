@@ -1,5 +1,14 @@
 /* css/layout.css */
 
+/* --- REGLAS GLOBALES DE TIPOGRAFÍA Y "AIRE" --- */
+body { font-family: system-ui, -apple-system, sans-serif; color: #334155; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; color: #1e293b; margin-bottom: 1rem; line-height: 1.3; }
+h1 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.8rem; color: var(--color-primary, #2563eb); padding-bottom: 0.5rem; border-bottom: 2px solid var(--color-border, #e2e8f0); }
+h3 { font-size: 1.3rem; }
+p, li, label { font-size: 1rem; line-height: 1.7; color: #334155; margin-bottom: 1.25rem; }
+/* --- FIN DE REGLAS GLOBALES --- */
+
 /* Contenedor principal que da "aire" y centra el contenido */
 main {
     width: 100%;

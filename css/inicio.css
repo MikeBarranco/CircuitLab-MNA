@@ -33,6 +33,7 @@
 }
 .content-section ul, .content-section ol {
     padding-left: 2rem;
+    list-style-position: inside;
 }
 .content-section strong {
     color: #1e293b;

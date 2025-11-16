@@ -4,33 +4,6 @@
    ============================================ */
 
 /* ============================================
-   RESET CSS Y CONFIGURACIÓN BASE
-   ============================================ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                 Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: #1e293b;
-    background-color: #f8fafc;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ============================================
    VARIABLES CSS (Paleta de colores)
    ============================================ */
 :root {
@@ -89,105 +62,6 @@ body {
     --transition-fast: 150ms ease-in-out;
     --transition-normal: 250ms ease-in-out;
     --transition-slow: 350ms ease-in-out;
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-header {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    color: white;
-    padding: var(--spacing-xl) var(--spacing-md);
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    position: relative;
-    overflow: hidden;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.05) 50%,
-        transparent 70%);
-    pointer-events: none;
-}
-
-header h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-xs);
-    position: relative;
-    z-index: 1;
-}
-
-header p {
-    font-size: 1rem;
-    opacity: 0.95;
-    font-weight: 300;
-    position: relative;
-    z-index: 1;
-}
-
-/* ============================================
-   CONTENEDOR PRINCIPAL
-   ============================================ */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: var(--spacing-lg) var(--spacing-md);
-    flex: 1;
-}
-
-main {
-    flex: 1;
-}
-
-/* ============================================
-   SECCIONES Y CARDS
-   ============================================ */
-section {
-    background: var(--color-card);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--color-border);
-    transition: box-shadow var(--transition-normal);
-}
-
-section:hover {
-    box-shadow: var(--shadow-lg);
-}
-
-section h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: 2px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-section h2::before {
-    content: '▸';
-    color: var(--color-accent);
-    font-weight: bold;
-}
-
-section h3 {
-    font-size: 1.25rem;
-    color: var(--color-text);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-    font-weight: 600;
 }
 
 /* ============================================
@@ -570,6 +444,7 @@ button:disabled:hover,
     margin-top: var(--spacing-md);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
+    overflow-x: auto;
 }
 
 .matriz {
@@ -618,265 +493,22 @@ button:disabled:hover,
 }
 
 /* ============================================
-   FOOTER
+   CLASES DE UTILIDAD ESPECÍFICAS DEL SIMULADOR
    ============================================ */
-footer {
-    background-color: #e2e8f0;
-    color: var(--color-text-light);
-    text-align: center;
-    padding: var(--spacing-lg) var(--spacing-md);
-    margin-top: var(--spacing-2xl);
-    font-size: 0.875rem;
-    border-top: 1px solid var(--color-border);
-}
-
-footer p {
-    margin: 0;
-}
-
-footer a {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color var(--transition-fast);
-}
-
-footer a:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
-}
-
-/* ============================================
-   GRID Y LAYOUTS RESPONSIVOS
-   ============================================ */
-.grid {
-    display: grid;
-    gap: var(--spacing-lg);
-}
-
-.grid-2 {
-    grid-template-columns: 1fr;
-}
-
-.grid-3 {
-    grid-template-columns: 1fr;
-}
-
-.grid-4 {
-    grid-template-columns: 1fr;
-}
-
-.flex {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.flex-column {
-    flex-direction: column;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.align-center {
-    align-items: center;
-}
-
-/* ============================================
-   CLASES DE UTILIDAD
-   ============================================ */
-
-/* Espaciado */
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--spacing-xs); }
-.mt-2 { margin-top: var(--spacing-sm); }
-.mt-3 { margin-top: var(--spacing-md); }
-.mt-4 { margin-top: var(--spacing-lg); }
-.mt-5 { margin-top: var(--spacing-xl); }
-
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--spacing-xs); }
-.mb-2 { margin-bottom: var(--spacing-sm); }
-.mb-3 { margin-bottom: var(--spacing-md); }
-.mb-4 { margin-bottom: var(--spacing-lg); }
-.mb-5 { margin-bottom: var(--spacing-xl); }
-
-.p-0 { padding: 0; }
-.p-1 { padding: var(--spacing-xs); }
-.p-2 { padding: var(--spacing-sm); }
-.p-3 { padding: var(--spacing-md); }
-.p-4 { padding: var(--spacing-lg); }
-.p-5 { padding: var(--spacing-xl); }
-
-/* Texto */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
 .text-sm { font-size: 0.875rem; }
-.text-base { font-size: 1rem; }
-.text-lg { font-size: 1.125rem; }
-.text-xl { font-size: 1.25rem; }
-.text-2xl { font-size: 1.5rem; }
-
+.text-muted { color: var(--color-text-light); }
 .font-bold { font-weight: 700; }
 .font-semibold { font-weight: 600; }
-.font-medium { font-weight: 500; }
-.font-normal { font-weight: 400; }
-.font-light { font-weight: 300; }
-
-.text-primary { color: var(--color-primary); }
-.text-secondary { color: var(--color-secondary); }
-.text-accent { color: var(--color-accent); }
-.text-danger { color: var(--color-danger); }
-.text-muted { color: var(--color-text-light); }
-
-/* Visibilidad */
-.hidden {
-    display: none !important;
-}
-
-.visible {
-    display: block !important;
-}
-
-.invisible {
-    visibility: hidden;
-}
-
-/* Bordes */
-.border {
-    border: 1px solid var(--color-border);
-}
-
-.border-2 {
-    border: 2px solid var(--color-border);
-}
-
-.rounded {
-    border-radius: var(--radius-md);
-}
-
-.rounded-lg {
-    border-radius: var(--radius-lg);
-}
-
-.rounded-full {
-    border-radius: 9999px;
-}
-
-/* Sombras */
-.shadow-sm {
-    box-shadow: var(--shadow-sm);
-}
-
-.shadow-md {
-    box-shadow: var(--shadow-md);
-}
-
-.shadow-lg {
-    box-shadow: var(--shadow-lg);
-}
-
-/* Anchos */
-.w-full {
-    width: 100%;
-}
-
-.max-w-full {
-    max-width: 100%;
+.valor-numerico {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    font-size: 1.125rem;
 }
 
 /* ============================================
    DISEÑO RESPONSIVO - MOBILE FIRST
    ============================================ */
-
-/* Tablets y superiores (768px+) */
-@media (min-width: 768px) {
-    header h1 {
-        font-size: 2.25rem;
-    }
-
-    header p {
-        font-size: 1.125rem;
-    }
-
-    .container {
-        padding: var(--spacing-xl) var(--spacing-lg);
-    }
-
-    section {
-        padding: var(--spacing-2xl);
-    }
-
-    section h2 {
-        font-size: 1.875rem;
-    }
-
-    .grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .button-group {
-        justify-content: flex-start;
-    }
-
-    .resultado-table {
-        font-size: 1rem;
-    }
-}
-
-/* Desktop y superiores (1024px+) */
-@media (min-width: 1024px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-4 {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    section:hover {
-        transform: translateY(-2px);
-    }
-
-    .elemento-item {
-        font-size: 1rem;
-    }
-}
-
-/* Pantallas grandes (1280px+) */
-@media (min-width: 1280px) {
-    .container {
-        padding: var(--spacing-2xl) var(--spacing-xl);
-    }
-}
-
-/* ============================================
-   IMÁGENES Y MEDIOS RESPONSIVOS
-   ============================================ */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-table {
-    max-width: 100%;
-}
 
 /* ============================================
    ANIMACIONES Y TRANSICIONES
@@ -934,62 +566,6 @@ table {
 :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-}
-
-/* Reducir movimiento para usuarios que lo prefieran */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* ============================================
-   MODO OSCURO (preparado para futura implementación)
-   ============================================ */
-@media (prefers-color-scheme: dark) {
-    /* Descomentar para habilitar modo oscuro automático
-    :root {
-        --color-background: #0f172a;
-        --color-text: #e2e8f0;
-        --color-text-light: #94a3b8;
-        --color-border: #334155;
-        --color-card: #1e293b;
-    }
-
-    .matriz {
-        background: #0f172a;
-        color: #e2e8f0;
-    }
-    */
-}
-
-/* ============================================
-   IMPRESIÓN
-   ============================================ */
-@media print {
-    header {
-        background: white;
-        color: black;
-        box-shadow: none;
-    }
-
-    section {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        page-break-inside: avoid;
-    }
-
-    button,
-    .btn {
-        display: none;
-    }
-
-    footer {
-        position: fixed;
-        bottom: 0;
-    }
 }
 
 /* ============================================
