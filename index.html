@@ -11,16 +11,14 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">CircuitLab MNA</a>
-            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
-            <ul>
-                <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="simulador.html">Simulador</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-            </ul>
-        </div>
+    <nav class="navbar-global">
+        <a href="index.html" class="nav-brand">CircuitLab MNA</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link active">Inicio</a></li>
+            <li><a href="simulador.html" class="nav-link">Simulador</a></li>
+            <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        </ul>
     </nav>
 
     <main>
@@ -28,7 +26,7 @@
         <section id="hero">
             <h1>Bienvenido a CircuitLab MNA</h1>
             <p class="subtitle">Tu herramienta educativa para el Análisis Nodal Modificado.</p>
-            <p>
+            <p class="explicacion-texto">
                 Este proyecto te permite resolver circuitos eléctricos lineales usando el <strong>Análisis Nodal Modificado (MNA)</strong>,
                 un método poderoso y sistemático ideal para la solución por computadora.
             </p>
@@ -40,11 +38,11 @@
 
         <section id="que-es-mna">
             <h2>¿Qué es el Análisis Nodal Modificado (MNA)?</h2>
-            <p>
+            <p class="explicacion-texto">
                 El MNA es un método formal que genera un sistema de ecuaciones para cualquier circuito. A diferencia del análisis nodal simple, el MNA maneja fácilmente fuentes de voltaje, lo que lo hace más robusto para los programas de simulación.
             </p>
-            <p>
-                Todo el análisis se reduce a resolver una ecuación matricial fundamental:
+            <p class="explicacion-texto">
+                Todo el análisis se reduce a construir y resolver una única ecuación matricial:
             </p>
 
             <div class="ecuacion">
@@ -58,31 +56,46 @@
                 </div>
                 <div>
                     <h3><span class="vector">x</span> (El Vector de Incógnitas)</h3>
-                    <p>Contiene los valores que queremos encontrar: los voltajes de cada nodo y las corrientes que fluyen a través de las fuentes de voltaje.</p>
+                    <p>Contiene los valores que queremos encontrar: los voltajes de cada nodo y las corrientes de las fuentes de voltaje.</p>
                 </div>
                 <div>
                     <h3><span class="vector">z</span> (El Vector de Fuentes)</h3>
-                    <p>Contiene los valores conocidos que "alimentan" el circuito: los valores de las fuentes de corriente y las fuentes de voltaje.</p>
+                    <p>Contiene los valores conocidos que "alimentan" el circuito: los valores de las fuentes de corriente y de voltaje.</p>
                 </div>
             </div>
         </section>
 
         <section id="construccion">
-            <h2>¿Cómo se Construyen las Matrices?</h2>
-            <p>
-                La magia del MNA es que sigue reglas sistemáticas. La gran matriz <span class="matriz">A</span> se construye a partir de 4 sub-matrices más pequeñas: G, B, C y D.
+            <h2>¿Cómo se Construyen las Matrices? (El Algoritmo)</h2>
+            <p class="explicacion-texto">
+                La magia del MNA es que sigue reglas sistemáticas (un algoritmo) para llenar las matrices A y z. La gran matriz <span class="matriz">A</span> se construye a partir de 4 sub-matrices más pequeñas:
             </p>
 
-            <p><em>[Espacio reservado para la imagen de la construcción de la matriz A, como en los PDFs]</em></p>
+            <div class="img-container">
+                <img src="https://lpsa.swarthmore.edu/Systems/Electrical/mna/MNA3.html" alt="Diagrama de construcción de la Matriz A = [G, B; C, D]">
+                <small>Imagen conceptual de la construcción de la matriz A.</small>
+            </div>
 
-            <ul>
-                <li><strong>Matriz G (Conductancias):</strong> Se llena con los valores de las resistencias (y la impedancia de capacitores/inductores). Es la parte principal del análisis nodal.</li>
-                <li><strong>Matriz B (Incidencia):</strong> Se llena con `+1` y `-1` para marcar dónde están conectadas las fuentes de voltaje.</li>
+            <ul class="reglas-mna">
+                <li>
+                    <strong>Matriz G (Conductancias):</strong> Se llena con las resistencias e impedancias.
+                    <ul>
+                        <li><strong>Diagonales (G[k,k]):</strong> Suma de todas las conductancias (1/R) conectadas al nodo 'k'.</li>
+                        <li><strong>Off-diagonales (G[k,j]):</strong> Negativo de la conductancia ( -1/R ) entre el nodo 'k' y el nodo 'j'.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Matriz B (Incidencia de Fuentes V):</strong> Se llena con `+1` y `-1`.
+                    <ul>
+                        <li>Si el terminal positivo de `V1` se conecta al nodo `k`, `B[k,1]` es `+1`.</li>
+                        <li>Si el terminal negativo de `V1` se conecta al nodo `j`, `B[j,1]` es `-1`.</li>
+                    </ul>
+                </li>
                 <li><strong>Matriz C (Transpuesta):</strong> Es simplemente la matriz B "volteada" (transpuesta).</li>
                 <li><strong>Matriz D (Ceros):</strong> Es una matriz de ceros (ya que solo usamos fuentes independientes).</li>
             </ul>
-            <p>
-                Nuestro simulador construye estas cuatro matrices "detrás de cámaras" y las ensambla en la matriz <span class="matriz">A</span> para resolver el circuito.
+            <p class="explicacion-texto">
+                Nuestro simulador construye estas cuatro matrices "detrás de cámaras", las ensambla en la matriz <span class="matriz">A</span> y resuelve el sistema `Ax=z` para encontrar los voltajes y corrientes.
             </p>
         </section>
 

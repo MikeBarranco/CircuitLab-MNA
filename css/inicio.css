@@ -8,12 +8,12 @@
 }
 #hero h1 {
     font-size: 2.5rem;
-    color: var(--color-primary-dark, #1e40af);
+    color: var(--color-primary-dark, #1e40af); /* Azul oscuro de tu paleta */
     margin-bottom: 0.5rem;
 }
 #hero .subtitle {
     font-size: 1.25rem;
-    color: var(--color-text-light, #64748b);
+    color: var(--color-text-light, #64748b); /* Gris de tu paleta */
     margin-bottom: 1.5rem;
 }
 #hero p {
@@ -21,47 +21,77 @@
     line-height: 1.7;
     margin-bottom: 2rem;
 }
-/* Estilo para el botón de acción principal */
 .btn-lg {
     font-size: 1.15rem;
     padding: 0.8rem 1.8rem;
 }
-
-/* Sección de Explicación MNA */
 #que-es-mna, #construccion {
     margin-top: 2rem;
 }
+#que-es-mna h2, #construccion h2 {
+    font-size: 2rem;
+    color: var(--color-primary, #2563eb);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border, #e2e8f0);
+}
+.explicacion-texto {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
 .ecuacion {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     color: #1e293b;
 }
 .ecuacion .matriz { color: var(--color-primary-dark, #1e40af); }
 .ecuacion .vector { color: var(--color-secondary-dark, #059669); }
-
 .matrices-explicacion {
     display: grid;
     grid-template-columns: 1fr; /* 1 columna en móvil */
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 .matrices-explicacion div {
-    background: #fdfdfd;
+    background: #ffffff;
     border: 1px solid #e2e8f0;
     padding: 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 .matrices-explicacion h3 {
+    font-size: 1.25rem;
     color: #1e293b;
     border-bottom: 2px solid var(--color-primary, #2563eb);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
-
-/* Media query para 2+ columnas en desktop */
+.img-container {
+    width: 100%;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+.img-container img {
+    max-width: 100%;
+    height: auto;
+}
+.reglas-mna {
+    margin-top: 1.5rem;
+    padding-left: 20px;
+    font-size: 1.05rem;
+}
+.reglas-mna li {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
 @media (min-width: 768px) {
     .matrices-explicacion {
         grid-template-columns: repeat(3, 1fr);
