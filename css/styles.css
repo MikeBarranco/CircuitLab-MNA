@@ -586,3 +586,138 @@ button:disabled:hover,
     margin-top: 0.25rem;
     display: inline-block;
 }
+
+/* ============================================
+   ESTILOS PARA VALIDACIÓN DE CAMPOS
+   ============================================ */
+input.input-error,
+select.input-error {
+    border-color: var(--color-danger) !important;
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+input.input-success,
+select.input-success {
+    border-color: var(--color-secondary) !important;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+input.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+input.input-success:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.error-mensaje-campo {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVIDAD MEJORADA PARA MÓVILES
+   ============================================ */
+@media (max-width: 768px) {
+    .resultado-table {
+        font-size: 0.8rem;
+    }
+
+    .resultado-table th,
+    .resultado-table td {
+        padding: 0.5rem 0.375rem;
+    }
+
+    .valor-numerico {
+        font-size: 0.95rem;
+    }
+
+    /* Hacer que las tablas sean scrolleables horizontalmente */
+    .resultado-card {
+        overflow-x: auto;
+    }
+
+    /* Formularios de elementos más compactos */
+    .element-form .form-row {
+        flex-direction: column;
+    }
+
+    .element-form .form-row .form-group {
+        width: 100%;
+        min-width: auto;
+    }
+
+    /* Botones más pequeños en móvil */
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button,
+    .button-group .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .resultado-table {
+        font-size: 0.75rem;
+    }
+
+    .resultado-table th,
+    .resultado-table td {
+        padding: 0.4rem 0.25rem;
+    }
+
+    .valor-numerico {
+        font-size: 0.875rem;
+    }
+}
+
+/* ============================================
+   EXPLICACIONES EDUCATIVAS DE MATRICES
+   ============================================ */
+.matriz-explicacion {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid var(--color-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+}
+
+.matriz-explicacion h4 {
+    color: var(--color-primary-dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.matriz-explicacion p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.matriz-explicacion ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.matriz-explicacion li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.matriz-formula {
+    background: rgba(37, 99, 235, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 1rem;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}

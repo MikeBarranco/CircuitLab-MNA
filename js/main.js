@@ -240,6 +240,13 @@ const App = {
         const selectTipo = div.querySelector(`#tipo_${indice}`);
         selectTipo.addEventListener('change', () => {
             this.actualizarLabelsElemento(indice);
+            this.validarValorElemento(indice); // Revalidar con el nuevo tipo
+        });
+
+        // Validación en tiempo real para el valor
+        const inputValor = div.querySelector(`#valor_${indice}`);
+        inputValor.addEventListener('input', () => {
+            this.validarValorElemento(indice);
         });
 
         // Validación en tiempo real para nodos
@@ -548,6 +555,101 @@ const App = {
         input.classList.remove('input-error');
         input.title = '';
         return true;
+    },
+
+    /**
+     * Validar valor de elemento en tiempo real
+     * Muestra errores visuales inmediatos
+     */
+    validarValorElemento(indice) {
+        const tipo = document.getElementById(`tipo_${indice}`).value;
+        const valorInput = document.getElementById(`valor_${indice}`);
+        const valor = parseFloat(valorInput.value);
+
+        // Limpiar estado previo
+        valorInput.classList.remove('input-error', 'input-success');
+
+        // Si está vacío, no validar aún
+        if (valorInput.value === '') {
+            return;
+        }
+
+        // Validar según el tipo
+        let esValido = true;
+        let mensajeError = '';
+
+        if (isNaN(valor) || !isFinite(valor)) {
+            esValido = false;
+            mensajeError = 'Debe ser un número válido';
+        } else {
+            switch(tipo) {
+                case 'R': // Resistencia
+                    if (valor <= 0) {
+                        esValido = false;
+                        mensajeError = 'La resistencia debe ser mayor a 0Ω';
+                    }
+                    break;
+                case 'C': // Capacitor
+                    if (valor <= 0) {
+                        esValido = false;
+                        mensajeError = 'La capacitancia debe ser mayor a 0F';
+                    }
+                    break;
+                case 'L': // Inductor
+                    if (valor <= 0) {
+                        esValido = false;
+                        mensajeError = 'La inductancia debe ser mayor a 0H';
+                    }
+                    break;
+                // V e I pueden ser cualquier valor (positivo, negativo o cero)
+            }
+        }
+
+        // Aplicar estado visual
+        if (esValido) {
+            valorInput.classList.add('input-success');
+            valorInput.title = '✓ Valor válido';
+        } else {
+            valorInput.classList.add('input-error');
+            valorInput.title = '⚠ ' + mensajeError;
+
+            // Mostrar mensaje de error temporal
+            this.mostrarMensajeErrorCampo(valorInput, mensajeError);
+        }
+    },
+
+    /**
+     * Mostrar mensaje de error temporal junto al campo
+     */
+    mostrarMensajeErrorCampo(input, mensaje) {
+        // Remover mensaje anterior si existe
+        const mensajeAnterior = input.parentElement.querySelector('.error-mensaje-campo');
+        if (mensajeAnterior) {
+            mensajeAnterior.remove();
+        }
+
+        // Crear nuevo mensaje
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-mensaje-campo';
+        errorDiv.textContent = mensaje;
+        errorDiv.style.cssText = `
+            color: var(--color-danger, #ef4444);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        `;
+
+        input.parentElement.appendChild(errorDiv);
+
+        // Auto-eliminar después de 3 segundos
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.style.opacity = '0';
+                errorDiv.style.transition = 'opacity 0.3s';
+                setTimeout(() => errorDiv.remove(), 300);
+            }
+        }, 3000);
     }
 };
 
