@@ -316,16 +316,56 @@ const ResultDisplay = {
             const esVector = Array.isArray(matrizArray) &&
                            (matrizArray.length === 0 || !Array.isArray(matrizArray[0]));
 
-            // --- Inicio del reemplazo de tablaHTML ---
+            // Crear explicación educativa según el contenedor
+            let explicacion = '';
+            if (contenedorId === 'matrixA') {
+                explicacion = `
+                    <div class="matriz-explicacion">
+                        <h4>🔍 ¿Qué es la Matriz A?</h4>
+                        <p>La matriz A del sistema MNA representa todas las relaciones entre voltajes y corrientes. Está formada por 4 submatrices:</p>
+                        <ul>
+                            <li><strong>G (Conductancias):</strong> Relaciona voltajes de nodos con corrientes por resistencias</li>
+                            <li><strong>B (Incidencia):</strong> Indica cómo las fuentes de voltaje se conectan a los nodos</li>
+                            <li><strong>C (Transpuesta):</strong> Asegura la conservación de corriente en las fuentes</li>
+                            <li><strong>D (Dependencias):</strong> Para fuentes dependientes (ceros en este caso)</li>
+                        </ul>
+                        <p class="matriz-formula"><strong>Ecuación fundamental:</strong> A × x = z</p>
+                    </div>
+                `;
+            } else if (contenedorId === 'vectorX') {
+                explicacion = `
+                    <div class="matriz-explicacion">
+                        <h4>🎯 ¿Qué es el Vector x?</h4>
+                        <p>Este vector contiene las <strong>incógnitas</strong> que estamos buscando:</p>
+                        <ul>
+                            <li><strong>Voltajes nodales (v):</strong> El potencial eléctrico en cada nodo respecto a tierra</li>
+                            <li><strong>Corrientes (i):</strong> Las corrientes que fluyen por las fuentes de voltaje</li>
+                        </ul>
+                        <p>Los valores que ves aquí son las <strong>soluciones del sistema</strong> después de resolver A × x = z</p>
+                    </div>
+                `;
+            } else if (contenedorId === 'vectorZ') {
+                explicacion = `
+                    <div class="matriz-explicacion">
+                        <h4>⚡ ¿Qué es el Vector z?</h4>
+                        <p>Este vector representa las <strong>fuentes conocidas</strong> del circuito:</p>
+                        <ul>
+                            <li><strong>Corrientes de entrada (i):</strong> Corrientes inyectadas por fuentes de corriente en cada nodo</li>
+                            <li><strong>Voltajes conocidos (e):</strong> Los valores de las fuentes de voltaje del circuito</li>
+                        </ul>
+                        <p>Estos son los datos de entrada que ya conocemos del problema.</p>
+                    </div>
+                `;
+            }
+
+            // Generar tabla HTML
             let tablaHTML = '';
             if (esVector) {
                 tablaHTML = '<table class="resultado-table">';
-                // Cabecera del Vector
                 tablaHTML += '<tr><th>Índice</th>';
                 const cabeceraCol = etiquetasColumnas[0] || 'Valor';
                 tablaHTML += `<th>${cabeceraCol}</th></tr>`;
 
-                // Filas del Vector
                 for (let i = 0; i < matrizArray.length; i++) {
                     const valor = matrizArray[i];
                     const valorFormateado = this.formatearComplejo(valor, 6);
@@ -342,15 +382,15 @@ const ResultDisplay = {
                 const cols = matrizArray[0] ? matrizArray[0].length : 0;
                 tablaHTML = '<table class="resultado-table">';
 
-                // Encabezados de Columnas
-                tablaHTML += '<tr><th></th>'; // Celda vacía para la esquina
+                // Encabezados
+                tablaHTML += '<tr><th></th>';
                 for (let j = 0; j < cols; j++) {
                     const etiquetaCol = etiquetasColumnas[j] || `Col ${j}`;
                     tablaHTML += `<th>${etiquetaCol}</th>`;
                 }
                 tablaHTML += '</tr>';
 
-                // Filas de datos
+                // Filas
                 for (let i = 0; i < filas; i++) {
                     const etiquetaFila = etiquetasFilas[i] || `Fila ${i}`;
                     tablaHTML += `<tr><td class="text-muted text-sm font-semibold">${etiquetaFila}</td>`;
@@ -365,12 +405,12 @@ const ResultDisplay = {
                 }
                 tablaHTML += '</table>';
             }
-            // --- Fin del reemplazo de tablaHTML ---
 
-            // Insertar en el contenedor
+            // Insertar en el contenedor con explicación
             container.innerHTML = `
                 <div class="resultado-card">
-                    <p class="text-muted text-sm mb-3">${descripcion}</p>
+                    ${explicacion}
+                    <p class="text-muted text-sm mb-3"><strong>Descripción técnica:</strong> ${descripcion}</p>
                     <div class="matriz-container">
                         ${tablaHTML}
                     </div>

@@ -677,3 +677,47 @@ input.input-success:focus {
         font-size: 0.875rem;
     }
 }
+
+/* ============================================
+   EXPLICACIONES EDUCATIVAS DE MATRICES
+   ============================================ */
+.matriz-explicacion {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid var(--color-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+}
+
+.matriz-explicacion h4 {
+    color: var(--color-primary-dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.matriz-explicacion p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.matriz-explicacion ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.matriz-explicacion li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.matriz-formula {
+    background: rgba(37, 99, 235, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 1rem;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
