@@ -611,12 +611,17 @@ const MNACore = {
             // El nodo de tierra siempre tiene voltaje 0
             voltajes[groundNode] = 0;
 
-            // Extraer corrientes en fuentes de voltaje (solo si m > 0)
+            // Extraer corrientes de fuentes de voltaje
+            // NOTA: Invertimos el signo porque en MNA la corriente positiva es la que SALE de la fuente
+            // pero queremos mostrar la corriente que la fuente SUMINISTRA al circuito
             if (m > 0) {
                 for (let j = 0; j < m; j++) {
                     const fuente = fuentesVoltaje[j];
-                    const corriente = x.get([n + j, 0]); // Usar .get() para extraer de matriz math.js
-                    corrientes[fuente.nombre] = corriente;
+                    const corrienteRaw = x.get([n + j, 0]);
+                    // Invertir signo: corriente positiva = fuente suministra corriente
+                    corrientes[fuente.nombre] = typeof corrienteRaw === 'number'
+                        ? -corrienteRaw
+                        : math.multiply(corrienteRaw, -1);
                 }
             }
 

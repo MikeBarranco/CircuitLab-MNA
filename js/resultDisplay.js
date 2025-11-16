@@ -117,20 +117,17 @@ const ResultDisplay = {
 
                 const valorFormateado = this.formatearNumero(valor, 4);
 
-                // Convertir n0, n1, n2 a v₀, v₁, v₂
-                let nodoFormateado = nodo;
-                if (!esNodoTierra) {
+                // Formatear nodo con notación matemática: n1 → v₁
+                let nodoFormateado;
+                if (esNodoTierra) {
                     const numeroNodo = nodo.replace('n', '');
-                    nodoFormateado = `v${this.convertirASubindice(numeroNodo)}`;
+                    nodoFormateado = `<em>v</em><sub>${this.convertirASubindice(numeroNodo)}</sub> (Tierra)`;
                 } else {
                     const numeroNodo = nodo.replace('n', '');
-                    nodoFormateado = `v${this.convertirASubindice(numeroNodo)} (Tierra)`;
+                    nodoFormateado = `<em>v</em><sub>${this.convertirASubindice(numeroNodo)}</sub>`;
                 }
 
-                fila = [
-                    nodoFormateado,
-                    valorFormateado
-                ];
+                fila = [nodoFormateado, valorFormateado];
                 claseFila = esNodoTierra ? ['text-accent', 'valor-numerico'] : ['', 'valor-numerico'];
             } else {
                 // AC: magnitud y fase
@@ -212,10 +209,8 @@ const ResultDisplay = {
                     ? 'Entra por terminal +'
                     : 'Sale por terminal +';
 
-                // Formatear nombre de fuente (V1 -> i_V₁)
-                const nombreFormateado = `i_${fuente.replace(/(\d+)/, (match) => {
-                    return this.convertirASubindice(match);
-                })}`;
+                // Formatear nombre con notación matemática: V1 → i<sub>V₁</sub>
+                const nombreFormateado = this.formatearNombreCorriente(fuente);
 
                 fila = [nombreFormateado, valorFormateado, direccion];
                 claseFila = ['', 'valor-numerico', 'text-sm'];
@@ -422,14 +417,12 @@ const ResultDisplay = {
                 tablaHTML += '</table>';
             }
 
-            // Insertar en el contenedor con explicación
+            // Insertar en el contenedor - SIN caja adicional para evitar anidamiento
             container.innerHTML = `
-                <div class="resultado-card">
-                    ${explicacion}
-                    <p class="text-muted text-sm mb-3"><strong>Descripción técnica:</strong> ${descripcion}</p>
-                    <div class="matriz-container">
-                        ${tablaHTML}
-                    </div>
+                ${explicacion}
+                <p class="text-muted text-sm mb-3" style="margin-top: 1rem;"><strong>Descripción técnica:</strong> ${descripcion}</p>
+                <div class="matriz-container">
+                    ${tablaHTML}
                 </div>
             `;
 
@@ -821,6 +814,30 @@ const ResultDisplay = {
             '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
         };
         return numero.split('').map(char => subindices[char] || char).join('');
+    },
+
+    /**
+     * Formatear nombre de corriente con notación matemática profesional
+     * Convierte "V1" en "i<sub>V₁</sub>" (iᵥ₁ con subíndice)
+     * @param {string} nombreFuente - Nombre de la fuente (ej: "V1", "V2")
+     * @returns {string} HTML con notación matemática
+     */
+    formatearNombreCorriente(nombreFuente) {
+        // Extraer el tipo y número (ej: V1 → tipo="V", numero="1")
+        const match = nombreFuente.match(/^([A-Z]+)(\d+)$/);
+
+        if (!match) {
+            return `<em>i</em><sub>${nombreFuente}</sub>`;
+        }
+
+        const tipo = match[1];
+        const numero = match[2];
+
+        // Convertir número a subíndice Unicode
+        const numeroSubindice = this.convertirASubindice(numero);
+
+        // Retornar con formato HTML: i<sub>V₁</sub>
+        return `<em>i</em><sub>${tipo}${numeroSubindice}</sub>`;
     }
 };
 
