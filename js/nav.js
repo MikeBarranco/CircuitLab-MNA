@@ -1,11 +1,11 @@
 /* js/nav.js */
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const navMenu = document.querySelector('nav ul');
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            navMenu.classList.toggle('show');
         });
     }
 });
