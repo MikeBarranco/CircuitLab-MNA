@@ -991,3 +991,22 @@ table {
         bottom: 0;
     }
 }
+
+/* ============================================
+   ESTILOS PARA PREFIJOS DE UNIDADES
+   ============================================ */
+.element-form .form-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que se apile en móviles */
+    gap: 1rem;
+}
+.element-form .form-row .form-group {
+    flex: 1 1 0; /* Permite que los campos crezcan */
+    min-width: 150px; /* Ancho mínimo antes de apilarse */
+}
+.unidad-text {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-top: 0.25rem;
+    display: inline-block;
+}
