@@ -19,19 +19,13 @@
 }
 
 /* Contenedor interno con max-width */
-.navbar-global::before {
-    content: '';
-    display: table;
-}
-
-.navbar-global {
+.navbar-global-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1280px;
     margin: 0 auto;
     padding: 1rem 1.5rem;
-    position: relative;
 }
 
 /* Logo/Brand */
@@ -113,7 +107,7 @@
    ======================================== */
 
 @media (max-width: 768px) {
-    .navbar-global {
+    .navbar-global-inner {
         flex-wrap: wrap;
         padding: 1rem 1rem;
     }
@@ -171,7 +165,7 @@
    ======================================== */
 
 @media (max-width: 480px) {
-    .navbar-global {
+    .navbar-global-inner {
         padding: 0.75rem 0.75rem;
     }
 
