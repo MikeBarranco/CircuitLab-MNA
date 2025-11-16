@@ -155,13 +155,13 @@ Resultados: Voltajes con magnitud y fase
 
 ## 🔧 Elementos Soportados
 
-| Elemento | Símbolo | Unidad | Prefijos Soportados |
-|----------|---------|--------|---------------------|
-| Resistor | R | Ω (ohm) | G, M, k, m, µ, n, p |
-| Capacitor | C | F (farad) | G, M, k, m, µ, n, p |
-| Inductor | L | H (henry) | G, M, k, m, µ, n, p |
-| Fuente de Voltaje | V | V (volt) | G, M, k, m, µ, n, p |
-| Fuente de Corriente | I | A (ampere) | G, M, k, m, µ, n, p |
+| Elemento            | Símbolo | Unidad     | Prefijos Soportados |
+|----------           |---------|--------    |---------------------|
+| Resistor            | R       | Ω (ohm)    | G, M, k, m, µ, n, p |
+| Capacitor           | C       | F (farad)  | G, M, k, m, µ, n, p |
+| Inductor            | L       | H (henry)  | G, M, k, m, µ, n, p |
+| Fuente de Voltaje   | V       | V (volt)   | G, M, k, m, µ, n, p |
+| Fuente de Corriente | I       | A (ampere) | G, M, k, m, µ, n, p |
 
 ## 🌐 Estructura del Proyecto
 
