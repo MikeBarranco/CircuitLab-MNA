@@ -181,13 +181,16 @@ const App = {
      */
     crearFormularioElemento(indice) {
         const div = document.createElement('div');
-        div.className = 'element-form';
+        div.className = 'element-card';
         div.id = `element_${indice}`;
 
         div.innerHTML = `
-            <h4>Elemento ${indice + 1}</h4>
-            <div class="form-row">
-                <div class="form-group">
+            <div class="element-header">
+                <h3>Elemento ${indice + 1}</h3>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group form-group-full">
                     <label for="tipo_${indice}">Tipo:</label>
                     <select id="tipo_${indice}" required>
                         <option value="">Seleccionar...</option>
@@ -198,28 +201,29 @@ const App = {
                         <option value="I">Fuente de Corriente (I)</option>
                     </select>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group form-group-full">
                     <label for="nombre_${indice}">Nombre:</label>
                     <input type="text" id="nombre_${indice}" placeholder="Ej: R1, V1" required>
                     <small class="text-muted">Debe ser único</small>
                 </div>
-            </div>
-            <div class="form-row">
+
                 <div class="form-group">
                     <label for="nodoPos_${indice}">Nodo Positivo:</label>
                     <input type="number" id="nodoPos_${indice}" min="0" required>
                 </div>
+
                 <div class="form-group">
                     <label for="nodoNeg_${indice}">Nodo Negativo:</label>
                     <input type="number" id="nodoNeg_${indice}" min="0" required>
                 </div>
-            </div>
-            <div class="form-row">
+
                 <div class="form-group">
                     <label id="label_valor_${indice}" for="valor_${indice}">Valor:</label>
                     <input type="number" id="valor_${indice}" step="any" required>
                     <small id="unidad_${indice}" class="unidad-text"></small>
                 </div>
+
                 <div class="form-group">
                     <label for="prefijo_${indice}">Prefijo:</label>
                     <select id="prefijo_${indice}">
