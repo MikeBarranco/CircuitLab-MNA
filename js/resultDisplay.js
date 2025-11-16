@@ -149,15 +149,13 @@ const ResultDisplay = {
         // Crear tabla HTML
         const tablaHTML = this.crearTablaHTML(headers, filas, clases);
 
-        // Insertar en el contenedor
+        // Insertar en el contenedor (SIN caja adicional - el resultado-grupo ya proporciona estructura)
         container.innerHTML = `
-            <div class="resultado-card">
-                <p class="text-muted text-sm mb-2">
-                    Voltajes medidos respecto al nodo de tierra (0V).
-                    En análisis AC (f > 0), se muestra la Magnitud (el "cuánto") y la Fase (el "desfase" en grados).
-                </p>
-                ${tablaHTML}
-            </div>
+            <p class="text-muted text-sm" style="margin-bottom: 1rem;">
+                Voltajes medidos respecto al nodo de tierra (0V).
+                En análisis AC (f > 0), se muestra la Magnitud (el "cuánto") y la Fase (el "desfase" en grados).
+            </p>
+            ${tablaHTML}
         `;
     },
 
@@ -175,12 +173,9 @@ const ResultDisplay = {
         // Verificar si hay corrientes para mostrar
         if (Object.keys(corrientes).length === 0) {
             container.innerHTML = `
-                <div class="resultado-card">
-                    <h3>Corrientes en Fuentes de Voltaje</h3>
-                    <p class="text-muted text-sm">
-                        No hay fuentes de voltaje independientes en el circuito
-                    </p>
-                </div>
+                <p class="text-muted text-sm">
+                    No hay fuentes de voltaje independientes en el circuito
+                </p>
             `;
             return;
         }
@@ -235,14 +230,12 @@ const ResultDisplay = {
         // Crear tabla HTML
         const tablaHTML = this.crearTablaHTML(headers, filas, clases);
 
-        // Insertar en el contenedor
+        // Insertar en el contenedor (SIN caja adicional)
         container.innerHTML = `
-            <div class="resultado-card">
-                <p class="text-muted text-sm mb-2">
-                    Corrientes que fluyen a través de las fuentes de voltaje independientes (incógnitas 'j' del vector x).
-                </p>
-                ${tablaHTML}
-            </div>
+            <p class="text-muted text-sm" style="margin-bottom: 1rem;">
+                Corrientes que fluyen a través de las fuentes de voltaje independientes (incógnitas 'j' del vector x).
+            </p>
+            ${tablaHTML}
         `;
     },
 
@@ -428,10 +421,9 @@ const ResultDisplay = {
 
         } catch (error) {
             container.innerHTML = `
-                <div class="resultado-card">
-                    <h3>${nombre}</h3>
-                    <p class="text-danger">Error al renderizar matriz: ${error.message}</p>
-                </div>
+                <p class="text-muted text-sm" style="color: var(--color-danger);">
+                    <strong>Error al renderizar matriz:</strong> ${error.message}
+                </p>
             `;
         }
     },

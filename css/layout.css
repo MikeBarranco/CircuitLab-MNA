@@ -21,12 +21,14 @@ main {
 /* Reglas para que las secciones se vean bien en todas las pantallas */
 section {
     width: 100%;
+    max-width: 100%;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave */
     border: 1px solid #e2e8f0;
     border-radius: 0.75rem;
     background: #ffffff;
+    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
 }
 
 /* Media query para pantallas pequeñas (móviles) */

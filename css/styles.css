@@ -3,6 +3,11 @@
    Diseño profesional y responsivo
    ============================================ */
 
+/* Reset de box-sizing para mejor control de layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* ============================================
    VARIABLES CSS (Paleta de colores)
    ============================================ */
@@ -67,9 +72,7 @@
 /* ============================================
    FORMULARIOS
    ============================================ */
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
+/* Eliminada definición duplicada - ver línea 159 para la definición consolidada */
 
 label {
     display: block;
@@ -154,12 +157,15 @@ select.success {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.875rem;
+    align-items: start;
 }
 
+/* Definición consolidada de form-group */
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
+    min-width: 0; /* Previene desbordamiento en grid */
 }
 
 .form-group label {
@@ -178,6 +184,7 @@ select.success {
     background: white;
     transition: border-color 0.2s ease;
     width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no desborde */
 }
 
 .form-group input:focus,
@@ -197,6 +204,14 @@ select.success {
     color: #64748b;
 }
 
+/* Textos informativos y de ayuda */
+.info-text {
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
 /* Asegurar que element-card tenga buen espaciado */
 .element-card {
     background: white;
@@ -205,6 +220,8 @@ select.success {
     padding: 1.25rem;
     margin-bottom: 1.25rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .element-header {
@@ -220,10 +237,39 @@ select.success {
     font-weight: 600;
 }
 
-/* Responsive */
+/* Responsive - Diseño móvil primero */
+/* Tablets pequeñas y móviles grandes (600px - 768px) */
 @media (max-width: 768px) {
     .form-row {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .element-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .element-header {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.625rem;
+    }
+}
+
+/* Móviles pequeños (menos de 480px) */
+@media (max-width: 480px) {
+    .element-card {
+        padding: 0.875rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 0.5rem 0.625rem;
+        font-size: 0.875rem;
+    }
+
+    .form-group label {
+        font-size: 0.8125rem;
     }
 }
 
@@ -368,11 +414,41 @@ button:disabled:hover,
 }
 
 /* Grupo de botones */
-.button-group {
+.button-group,
+.action-buttons {
     display: flex;
     gap: var(--spacing-md);
     flex-wrap: wrap;
     margin-top: var(--spacing-lg);
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   SECCIONES DEL SIMULADOR
+   ============================================ */
+.section-instrucciones ol {
+    line-height: 1.8;
+    padding-left: 1.5rem;
+}
+
+.section-instrucciones li {
+    margin-bottom: 0.75rem;
+}
+
+.section-configuracion #form-configuracion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.section-elementos {
+    /* Los formularios de elementos se generan dinámicamente */
+}
+
+/* Contenedor de elementos dinámicos */
+#elementsContainer {
+    margin-bottom: 1.5rem;
 }
 
 /* ============================================
@@ -435,34 +511,43 @@ button:disabled:hover,
 /* ============================================
    RESULTADOS
    ============================================ */
-#resultados {
-}
-
-.resultado-card {
+/* Grupo de resultados - contenedor principal para cada sección */
+.resultado-grupo {
     background: white;
-    padding: 2rem;
-    border-radius: var(--radius-md);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     margin-bottom: 1.5rem;
     border: 1px solid #e2e8f0;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.resultado-card:hover {
-    box-shadow: var(--shadow-md);
+.resultado-grupo:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-color: var(--color-primary-light);
 }
 
-.resultado-card h3 {
+.resultado-grupo h3 {
     color: var(--color-primary);
-    margin-top: 0;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
 }
 
-.resultado-card h3::before {
+.resultado-grupo h3::before {
     content: '●';
     color: var(--color-secondary);
+    font-size: 0.875rem;
+}
+
+/* Contenedor de contenido dentro de resultado-grupo */
+.resultado-contenido {
+    /* El contenido irá directamente aquí sin cajas adicionales */
 }
 
 /* Tabla de resultados */
@@ -697,9 +782,69 @@ input.input-success:focus {
 /* ============================================
    RESPONSIVIDAD MEJORADA PARA MÓVILES
    ============================================ */
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .resultado-grupo {
+        padding: 1.25rem;
+    }
+}
+
+/* Tablets pequeñas y móviles grandes (600px - 768px) */
 @media (max-width: 768px) {
+    .resultado-grupo {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .resultado-grupo h3 {
+        font-size: 1.125rem;
+    }
+
     .resultado-table {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
+    }
+
+    .resultado-table th,
+    .resultado-table td {
+        padding: 0.625rem 0.5rem;
+    }
+
+    .valor-numerico {
+        font-size: 1rem;
+    }
+
+    /* Hacer que las tablas sean scrolleables horizontalmente */
+    .resultado-contenido {
+        overflow-x: auto;
+    }
+
+    /* Botones más pequeños en móvil */
+    .button-group,
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .button-group button,
+    .button-group .btn,
+    .action-buttons button,
+    .action-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Móviles pequeños (menos de 480px) */
+@media (max-width: 480px) {
+    .resultado-grupo {
+        padding: 0.875rem;
+    }
+
+    .resultado-grupo h3 {
+        font-size: 1rem;
+    }
+
+    .resultado-table {
+        font-size: 0.75rem;
     }
 
     .resultado-table th,
@@ -708,38 +853,12 @@ input.input-success:focus {
     }
 
     .valor-numerico {
-        font-size: 0.95rem;
-    }
-
-    /* Hacer que las tablas sean scrolleables horizontalmente */
-    .resultado-card {
-        overflow-x: auto;
-    }
-
-
-    /* Botones más pequeños en móvil */
-    .button-group {
-        flex-direction: column;
-    }
-
-    .button-group button,
-    .button-group .btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .resultado-table {
-        font-size: 0.75rem;
-    }
-
-    .resultado-table th,
-    .resultado-table td {
-        padding: 0.4rem 0.25rem;
-    }
-
-    .valor-numerico {
         font-size: 0.875rem;
+    }
+
+    .matriz {
+        font-size: 0.75rem;
+        padding: var(--spacing-md);
     }
 }
 
