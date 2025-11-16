@@ -873,3 +873,60 @@ sup {
     font-size: 0.75em;
     vertical-align: super;
 }
+
+/* ============================================
+   DARK MODE ESPECÍFICO PARA PÁGINA DE INICIO
+   ============================================ */
+body.dark-mode .content-section {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .ecuacion-fundamental {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-color: #3b82f6;
+}
+
+body.dark-mode .ecuacion-display,
+body.dark-mode .ecuacion-parte,
+body.dark-mode .formula-box,
+body.dark-mode .matriz-resultado,
+body.dark-mode .sistema-ecuaciones,
+body.dark-mode .matriz-ensamblaje {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+body.dark-mode .bloque-info,
+body.dark-mode .vector-info {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+body.dark-mode .paso-card,
+body.dark-mode .caracteristica-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .ejemplo-completo,
+body.dark-mode .ejemplo-circuito,
+body.dark-mode .solucion-paso {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .calculo-detallado {
+    background: #0f172a;
+}
+
+body.dark-mode .solucion-final {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+    border-color: #059669;
+}
+
+body.dark-mode .nota-importante {
+    background: #422006;
+    border-left-color: #f59e0b;
+    color: #fef3c7;
+}

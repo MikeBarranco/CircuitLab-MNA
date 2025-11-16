@@ -33,7 +33,7 @@
     --color-info: #06b6d4;
     --color-info-dark: #0891b2;
 
-    /* Grises */
+    /* Grises - Light Mode */
     --color-background: #f8fafc;
     --color-text: #1e293b;
     --color-text-light: #64748b;
@@ -67,6 +67,35 @@
     --transition-fast: 150ms ease-in-out;
     --transition-normal: 250ms ease-in-out;
     --transition-slow: 350ms ease-in-out;
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+body.dark-mode {
+    --color-background: #0f172a;
+    --color-text: #e2e8f0;
+    --color-text-light: #94a3b8;
+    --color-border: #334155;
+    --color-card: #1e293b;
+
+    --color-primary: #60a5fa;
+    --color-primary-dark: #3b82f6;
+    --color-primary-light: #93c5fd;
+
+    --color-secondary: #34d399;
+    --color-secondary-dark: #10b981;
+    --color-secondary-light: #6ee7b7;
+
+    --color-accent: #fbbf24;
+    --color-accent-dark: #f59e0b;
+    --color-accent-light: #fcd34d;
+}
+
+body.dark-mode {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* ============================================
