@@ -1,99 +1,80 @@
-/* css/inicio.css */
+/* css/inicio.css - Estilos para la página de inicio educativa */
 #hero {
-    background-color: #f8fafc; /* Gris muy claro */
+    background-color: #f8fafc;
     padding: 3rem 1.5rem;
     text-align: center;
     border-radius: 0.75rem;
     border: 1px solid #e2e8f0;
 }
-#hero h1 {
-    font-size: 2.5rem;
-    color: var(--color-primary-dark, #1e40af); /* Azul oscuro de tu paleta */
-    margin-bottom: 0.5rem;
-}
-#hero .subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-light, #64748b); /* Gris de tu paleta */
-    margin-bottom: 1.5rem;
-}
-#hero p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-}
-.btn-lg {
-    font-size: 1.15rem;
-    padding: 0.8rem 1.8rem;
-}
-#que-es-mna, #construccion {
-    margin-top: 2rem;
-}
-#que-es-mna h2, #construccion h2 {
+#hero h1 { font-size: 2.5rem; color: var(--color-primary-dark, #1e40af); margin-bottom: 0.5rem; }
+#hero p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+.btn-lg { font-size: 1.15rem; padding: 0.8rem 1.8rem; }
+
+.content-section { margin-top: 2.5rem; }
+.content-section h2 {
     font-size: 2rem;
     color: var(--color-primary, #2563eb);
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--color-border, #e2e8f0);
 }
-.explicacion-texto {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
+.content-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
+.content-section p, .content-section li {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+.content-section ul, .content-section ol {
+    padding-left: 2rem;
+}
+.content-section strong {
+    color: #1e293b;
+}
+.content-section .dato-curioso {
+    background: #fdfdea; /* Fondo amarillo pálido */
+    border: 1px solid #f59e0b;
+    border-left: 5px solid #f59e0b;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+}
+.content-section code {
+    font-family: monospace;
+    background-color: #e2e8f0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+}
+
 .ecuacion {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     color: #1e293b;
 }
 .ecuacion .matriz { color: var(--color-primary-dark, #1e40af); }
 .ecuacion .vector { color: var(--color-secondary-dark, #059669); }
-.matrices-explicacion {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 columna en móvil */
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-.matrices-explicacion div {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-.matrices-explicacion h3 {
-    font-size: 1.25rem;
-    color: #1e293b;
-    border-bottom: 2px solid var(--color-primary, #2563eb);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-.img-container {
+
+.img-placeholder {
     width: 100%;
-    padding: 1rem;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    height: 250px;
+    background-color: #f8fafc;
+    border: 2px dashed #cbd5e1;
     border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    color: #64748b;
+    font-style: italic;
     margin: 1.5rem 0;
-}
-.img-container img {
-    max-width: 100%;
-    height: auto;
-}
-.reglas-mna {
-    margin-top: 1.5rem;
-    padding-left: 20px;
-    font-size: 1.05rem;
-}
-.reglas-mna li {
-    margin-bottom: 1rem;
-    line-height: 1.7;
-}
-@media (min-width: 768px) {
-    .matrices-explicacion {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }

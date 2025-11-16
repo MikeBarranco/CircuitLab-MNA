@@ -22,83 +22,77 @@
     </nav>
 
     <main>
-
         <section id="hero">
-            <h1>Bienvenido a CircuitLab MNA</h1>
-            <p class="subtitle">Tu herramienta educativa para el Análisis Nodal Modificado.</p>
-            <p class="explicacion-texto">
-                Este proyecto te permite resolver circuitos eléctricos lineales usando el <strong>Análisis Nodal Modificado (MNA)</strong>,
-                un método poderoso y sistemático ideal para la solución por computadora.
-            </p>
-            <p>
-                Aprende la teoría aquí, o ve directamente a la acción.
-            </p>
+            <h1>Análisis de Circuitos: Nodal y MNA</h1>
+            <p class="subtitle">Una guía educativa para el proyecto final de Circuitos Eléctricos.</p>
             <a href="simulador.html" class="btn btn-primary btn-lg">Ir al Simulador</a>
         </section>
 
-        <section id="que-es-mna">
-            <h2>¿Qué es el Análisis Nodal Modificado (MNA)?</h2>
-            <p class="explicacion-texto">
-                El MNA es un método formal que genera un sistema de ecuaciones para cualquier circuito. A diferencia del análisis nodal simple, el MNA maneja fácilmente fuentes de voltaje, lo que lo hace más robusto para los programas de simulación.
-            </p>
-            <p class="explicacion-texto">
-                Todo el análisis se reduce a construir y resolver una única ecuación matricial:
-            </p>
+        <section class="content-section">
+            <h2>¿Qué es Exactamente el Análisis de Nodos?</h2>
+            <p>El Análisis de Nodos, o método de voltajes nodales, es una técnica de análisis de circuitos que se centra en encontrar los voltajes en los puntos de unión clave de un circuito. Se basa en la <strong>Ley de Corriente de Kirchhoff (LCK)</strong>, que establece que la suma algebraica de todas las corrientes que entran y salen de un nodo debe ser igual a cero.</p>
+            <p>La estrategia consiste en identificar todos los nodos de un circuito, elegir uno como <strong>nodo de referencia</strong> (comúnmente llamado tierra o "ground", con un potencial de 0 voltios), y luego calcular el voltaje en todos los demás nodos con respecto a ese punto de referencia.</p>
 
+            <h3>Nodo Principal vs. Nodo de Referencia</h3>
+            <ul>
+                <li>Un <strong>Nodo Principal</strong> (o esencial) es un punto en el circuito donde se unen tres o más componentes.</li>
+                <li>El <strong>Nodo de Referencia</strong> es el punto que elegimos como nuestra referencia de "cero voltios" (0V).</li>
+            </ul>
+
+            <div class="dato-curioso">
+                <strong>Dato Curioso:</strong> El Análisis de Nodos es especialmente eficiente en circuitos con muchas fuentes de corriente. Por otro lado, el Análisis de Mallas suele ser más rápido para circuitos con muchas fuentes de voltaje. Saber cuándo usar cada uno te convierte en un analista de circuitos mucho más eficiente. ⚡
+            </div>
+
+            <h3>El Fundamento Teórico: La Ley de Corriente de Kirchhoff (LCK)</h3>
+            <p>La LCK es el corazón del Análisis de Nodos. Su principio es la conservación de la carga. La ecuación general que aplicaremos en cada nodo es:</p>
+            <p style="text-align:center; font-style:italic;"><strong>Suma de corrientes que salen = Suma de corrientes que entran</strong></p>
+            <p>Para expresar las corrientes que pasan por las resistencias, usamos la Ley de Ohm. Si estamos en el nodo <code>V_A</code> y queremos calcular la corriente que va hacia el nodo <code>V_B</code> a través de una resistencia <code>R</code>, la corriente es: <code>I = (V_A - V_B) / R</code>.</p>
+
+            <h2>Cómo Aplicar el Análisis de Nodos: Paso a Paso</h2>
+            <ol>
+                <li><strong>Identificar Nodos y Elegir Referencia:</strong> Identifica todos los nodos principales. Elige uno como el nodo de referencia (0V).</li>
+                <li><strong>Asignar Voltajes Nodales:</strong> Asigna una variable de voltaje a cada nodo principal restante (<code>V1</code>, <code>V2</code>, ...).</li>
+                <li><strong>Aplicar la LCK a cada Nodo Principal:</strong> Escribe una ecuación de LCK para cada nodo, usando la Ley de Ohm para expresar las corrientes.</li>
+                <li><strong>Resolver el Sistema de Ecuaciones:</strong> Resuelve el sistema de ecuaciones para encontrar los voltajes nodales.</li>
+                <li><strong>Calcular Resultados:</strong> Usa los voltajes nodales para encontrar cualquier corriente o voltaje deseado.</li>
+            </ol>
+
+            <h3>Problema 1: Ejemplo Resuelto (Nodos Simples)</h3>
+            <div class="img-placeholder">
+                <p><strong>[IMAGEN PENDIENTE]</strong><br>Insertar aquí una imagen del circuito del "Problema 1" (Fuente 2A, R1=2Ω, R2=4Ω, R3=1Ω, Fuente 4A).</p>
+            </div>
+            <p><strong>Paso 3 (Ecuaciones):</strong></p>
+            <ul>
+                <li><strong>Nodo 1 (V1):</strong> (Corrientes que salen = 0) <code>-2 + (V1/2) + (V1-V2)/4 = 0</code>. Simplificando: <code>3*V1 - V2 = 8</code>.</li>
+                <li><strong>Nodo 2 (V2):</strong> (Corrientes que salen = 0) <code>(V2-V1)/4 + (V2/1) - 4 = 0</code>. Simplificando: <code>-V1 + 5*V2 = 16</code>.</li>
+            </ul>
+            <p><strong>Paso 4 (Solución):</strong> Resolviendo el sistema, encontramos que <strong><code>V1 = 4V</code></strong> y <strong><code>V2 = 4V</code></strong>. 🎉</p>
+
+            <h3>Caso Especial: El Supernodo</h3>
+            <p>Cuando una fuente de voltaje está entre dos nodos principales (ninguno es tierra), no podemos conocer la corriente que la atraviesa. La solución es crear un <strong>Supernodo</strong>: tratamos a ambos nodos y a la fuente como una sola "burbuja" y aplicamos la LCK a esa burbuja.</p>
+
+            <h3>Problema 3: Ejemplo con Supernodo</h3>
+            <div class="img-placeholder">
+                <p><strong>[IMAGEN PENDIENTE]</strong><br>Insertar aquí una imagen del circuito del "Problema 3" (Fuente 2A, R=8Ω, Supernodo con V1, V2 y fuente de 2V, R=2Ω, Fuente 7A).</p>
+            </div>
+            <p><strong>Paso 3 (Ecuaciones):</strong></p>
+            <ul>
+                <li><strong>Ecuación de Restricción (de la fuente):</strong> <code>V1 - V2 = 2</code></li>
+                <li><strong>Ecuación del Supernodo (LCK):</strong> <code>-2 + (V1/8) + (V2/2) + 7 = 0</code>. Simplificando: <code>V1 + 4*V2 = -40</code>.</li>
+            </ul>
+            <p><strong>Paso 4 (Solución):</strong> Resolviendo este sistema, encontramos que <strong><code>V1 = -6.4V</code></strong> y <strong><code>V2 = -8.4V</code></strong>.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Introducción al Análisis MODIFICADO de Nodos (MNA)</h2>
+            <p>El MNA es la evolución del método nodal. Es el método que usa este simulador porque es <strong>altamente sistemático</strong> y perfecto para computadoras. Elimina el problema de los "supernodos".</p>
+            <p><strong>Modificación Clave:</strong> El MNA añade las corrientes de las fuentes de voltaje como incógnitas adicionales. Esto crea un sistema de ecuaciones más grande pero mucho más fácil de construir algorítmicamente.</p>
+            <p>El MNA siempre genera el sistema matricial:</p>
             <div class="ecuacion">
                 <span class="matriz">A</span><span class="vector">x</span> = <span class="vector">z</span>
             </div>
-
-            <div class="matrices-explicacion">
-                <div>
-                    <h3><span class="matriz">A</span> (La Matriz del Circuito)</h3>
-                    <p>Contiene toda la información sobre CÓMO están conectados los componentes (conductancias) y las fuentes de voltaje.</p>
-                </div>
-                <div>
-                    <h3><span class="vector">x</span> (El Vector de Incógnitas)</h3>
-                    <p>Contiene los valores que queremos encontrar: los voltajes de cada nodo y las corrientes de las fuentes de voltaje.</p>
-                </div>
-                <div>
-                    <h3><span class="vector">z</span> (El Vector de Fuentes)</h3>
-                    <p>Contiene los valores conocidos que "alimentan" el circuito: los valores de las fuentes de corriente y de voltaje.</p>
-                </div>
-            </div>
+            <p>Donde las matrices (A, x, z) se construyen con reglas fijas (G, B, C, D), que es exactamente lo que hace nuestro simulador.</p>
         </section>
-
-        <section id="construccion">
-            <h2>¿Cómo se Construyen las Matrices? (El Algoritmo)</h2>
-            <p class="explicacion-texto">
-                La magia del MNA es que sigue reglas sistemáticas (un algoritmo) para llenar las matrices A y z. La gran matriz <span class="matriz">A</span> se construye a partir de 4 sub-matrices más pequeñas:
-            </p>
-
-            <div class="img-container">
-                <img src="https://lpsa.swarthmore.edu/Systems/Electrical/mna/MNA3.html" alt="Diagrama de construcción de la Matriz A = [G, B; C, D]">
-                <small>Imagen conceptual de la construcción de la matriz A.</small>
-            </div>
-
-            <ul class="reglas-mna">
-                <li>
-                    <strong>Matriz G (Conductancias):</strong> Se llena con las resistencias e impedancias.
-                    <ul>
-                        <li><strong>Diagonales (G[k,k]):</strong> Suma de todas las conductancias (1/R) conectadas al nodo 'k'.</li>
-                        <li><strong>Off-diagonales (G[k,j]):</strong> Negativo de la conductancia ( -1/R ) entre el nodo 'k' y el nodo 'j'.</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Matriz B (Incidencia de Fuentes V):</strong> Se llena con `+1` y `-1`.
-                    <ul>
-                        <li>Si el terminal positivo de `V1` se conecta al nodo `k`, `B[k,1]` es `+1`.</li>
-                        <li>Si el terminal negativo de `V1` se conecta al nodo `j`, `B[j,1]` es `-1`.</li>
-                    </ul>
-                </li>
-                <li><strong>Matriz C (Transpuesta):</strong> Es simplemente la matriz B "volteada" (transpuesta).</li>
-                <li><strong>Matriz D (Ceros):</strong> Es una matriz de ceros (ya que solo usamos fuentes independientes).</li>
-            </ul>
-            <p class="explicacion-texto">
-                Nuestro simulador construye estas cuatro matrices "detrás de cámaras", las ensambla en la matriz <span class="matriz">A</span> y resuelve el sistema `Ax=z` para encontrar los voltajes y corrientes.
-            </p>
-        </section>
-
     </main>
 
     <footer class="footer-global">
