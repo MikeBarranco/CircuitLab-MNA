@@ -213,13 +213,13 @@ const App = {
                     <input type="number" id="nodoNeg_${indice}" min="0" max="${this.numNodes - 1}" required>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group" style="flex: 2;">
+            <div class="form-row form-row-inline">
+                <div class="form-group form-group-valor">
                     <label id="label_valor_${indice}" for="valor_${indice}">Valor:</label>
                     <input type="number" id="valor_${indice}" step="any" required>
                     <small id="unidad_${indice}" class="unidad-text"></small>
                 </div>
-                <div class="form-group" style="flex: 1;">
+                <div class="form-group form-group-prefijo">
                     <label for="prefijo_${indice}">Prefijo:</label>
                     <select id="prefijo_${indice}">
                         <option value="1">--- (ninguno)</option>

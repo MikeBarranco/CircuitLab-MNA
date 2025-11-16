@@ -116,8 +116,19 @@ const ResultDisplay = {
                     : (typeof voltaje === 'number' ? voltaje : 0);
 
                 const valorFormateado = this.formatearNumero(valor, 4);
+
+                // Convertir n0, n1, n2 a v₀, v₁, v₂
+                let nodoFormateado = nodo;
+                if (!esNodoTierra) {
+                    const numeroNodo = nodo.replace('n', '');
+                    nodoFormateado = `v${this.convertirASubindice(numeroNodo)}`;
+                } else {
+                    const numeroNodo = nodo.replace('n', '');
+                    nodoFormateado = `v${this.convertirASubindice(numeroNodo)} (Tierra)`;
+                }
+
                 fila = [
-                    esNodoTierra ? `${nodo} (Tierra)` : nodo,
+                    nodoFormateado,
                     valorFormateado
                 ];
                 claseFila = esNodoTierra ? ['text-accent', 'valor-numerico'] : ['', 'valor-numerico'];
@@ -201,7 +212,12 @@ const ResultDisplay = {
                     ? 'Entra por terminal +'
                     : 'Sale por terminal +';
 
-                fila = [fuente, valorFormateado, direccion];
+                // Formatear nombre de fuente (V1 -> i_V₁)
+                const nombreFormateado = `i_${fuente.replace(/(\d+)/, (match) => {
+                    return this.convertirASubindice(match);
+                })}`;
+
+                fila = [nombreFormateado, valorFormateado, direccion];
                 claseFila = ['', 'valor-numerico', 'text-sm'];
             } else {
                 // AC: magnitud y fase
@@ -792,6 +808,19 @@ const ResultDisplay = {
         }
 
         return texto;
+    },
+
+    /**
+     * Convertir número a subíndice Unicode
+     * @param {string} numero - Número como string
+     * @returns {string} Número con subíndices Unicode
+     */
+    convertirASubindice(numero) {
+        const subindices = {
+            '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+            '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
+        };
+        return numero.split('').map(char => subindices[char] || char).join('');
     }
 };
 

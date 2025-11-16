@@ -650,10 +650,11 @@
 
 .solucion-final {
     background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-    padding: 1.5rem;
-    border-radius: 8px;
+    padding: 2rem;
+    border-radius: 12px;
     margin-top: 1rem;
-    border: 2px solid #10b981;
+    border: 1px solid #86efac;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
 }
 
 .resultado-destacado {
