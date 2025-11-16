@@ -320,44 +320,28 @@ const ResultDisplay = {
             const esVector = Array.isArray(matrizArray) &&
                            (matrizArray.length === 0 || !Array.isArray(matrizArray[0]));
 
-            // Crear explicación educativa según el contenedor
+            // Crear explicación educativa según el contenedor (diseño compacto y coherente)
             let explicacion = '';
             if (contenedorId === 'matrixA') {
                 explicacion = `
                     <div class="matriz-explicacion">
-                        <h4>🔍 ¿Qué es la Matriz A?</h4>
-                        <p>La matriz A del sistema MNA representa todas las relaciones entre voltajes y corrientes. Está formada por 4 submatrices:</p>
-                        <ul>
-                            <li><strong>G (Conductancias):</strong> Relaciona voltajes de nodos con corrientes por resistencias</li>
-                            <li><strong>B (Incidencia):</strong> Indica cómo las fuentes de voltaje se conectan a los nodos</li>
-                            <li><strong>C (Transpuesta):</strong> Asegura la conservación de corriente en las fuentes</li>
-                            <li><strong>D (Dependencias):</strong> Para fuentes dependientes (ceros en este caso)</li>
-                        </ul>
-                        <p class="matriz-formula"><strong>Ecuación fundamental:</strong> A × x = z</p>
+                        <h4>¿Qué es la Matriz A?</h4>
+                        <p>Matriz de coeficientes del sistema MNA. Formada por 4 submatrices: <strong>G</strong> (conductancias), <strong>B</strong> (incidencia), <strong>C</strong> (transpuesta) y <strong>D</strong> (dependencias).</p>
+                        <p class="matriz-formula">A × x = z</p>
                     </div>
                 `;
             } else if (contenedorId === 'vectorX') {
                 explicacion = `
                     <div class="matriz-explicacion">
-                        <h4>🎯 ¿Qué es el Vector x?</h4>
-                        <p>Este vector contiene las <strong>incógnitas</strong> que estamos buscando:</p>
-                        <ul>
-                            <li><strong>Voltajes nodales (v):</strong> El potencial eléctrico en cada nodo respecto a tierra</li>
-                            <li><strong>Corrientes (i):</strong> Las corrientes que fluyen por las fuentes de voltaje</li>
-                        </ul>
-                        <p>Los valores que ves aquí son las <strong>soluciones del sistema</strong> después de resolver A × x = z</p>
+                        <h4>¿Qué es el Vector x?</h4>
+                        <p>Vector de incógnitas: contiene los <strong>voltajes nodales</strong> y las <strong>corrientes</strong> que buscamos. Estos son los resultados del sistema.</p>
                     </div>
                 `;
             } else if (contenedorId === 'vectorZ') {
                 explicacion = `
                     <div class="matriz-explicacion">
-                        <h4>⚡ ¿Qué es el Vector z?</h4>
-                        <p>Este vector representa las <strong>fuentes conocidas</strong> del circuito:</p>
-                        <ul>
-                            <li><strong>Corrientes de entrada (i):</strong> Corrientes inyectadas por fuentes de corriente en cada nodo</li>
-                            <li><strong>Voltajes conocidos (e):</strong> Los valores de las fuentes de voltaje del circuito</li>
-                        </ul>
-                        <p>Estos son los datos de entrada que ya conocemos del problema.</p>
+                        <h4>¿Qué es el Vector z?</h4>
+                        <p>Vector de fuentes conocidas: <strong>corrientes inyectadas</strong> y <strong>voltajes de fuentes</strong>. Estos son los datos de entrada del problema.</p>
                     </div>
                 `;
             }
@@ -410,10 +394,9 @@ const ResultDisplay = {
                 tablaHTML += '</table>';
             }
 
-            // Insertar en el contenedor - SIN caja adicional para evitar anidamiento
+            // Insertar en el contenedor - Estructura simple y limpia
             container.innerHTML = `
                 ${explicacion}
-                <p class="text-muted text-sm mb-3" style="margin-top: 1rem;"><strong>Descripción técnica:</strong> ${descripcion}</p>
                 <div class="matriz-container">
                     ${tablaHTML}
                 </div>
