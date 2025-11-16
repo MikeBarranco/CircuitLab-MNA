@@ -409,8 +409,11 @@ const ResultDisplay = {
                 explicacion = `<p class="matriz-descripcion">El vector <em>z</em> representa las fuentes conocidas del circuito: corrientes inyectadas por fuentes de corriente en cada nodo, y valores de voltaje de las fuentes independientes. Son los datos de entrada del problema.</p>`;
             }
 
+            // Envolver tabla en contenedor con scroll horizontal
+            const tablaContenedor = `<div class="resultado-table-container">${tablaHTML}</div>`;
+
             // Insertar explicación + tabla
-            container.innerHTML = explicacion + tablaHTML;
+            container.innerHTML = explicacion + tablaContenedor;
 
         } catch (error) {
             container.innerHTML = `

@@ -639,6 +639,10 @@ button:disabled:hover,
     margin-bottom: 1.5rem;
     border: 1px solid #e2e8f0;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .resultado-grupo:hover {
@@ -667,6 +671,20 @@ button:disabled:hover,
 /* Contenedor de contenido dentro de resultado-grupo */
 .resultado-contenido {
     /* El contenido irá directamente aquí sin cajas adicionales */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Contenedor con scroll horizontal solo para tablas */
+.resultado-table-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 1rem;
 }
 
 /* Tabla de resultados - diseño limpio y profesional */
@@ -734,10 +752,14 @@ button:disabled:hover,
     background: rgba(59, 130, 246, 0.03);
     border-left: 3px solid var(--color-primary);
     border-radius: var(--radius-sm);
+    width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    white-space: normal;
     hyphens: auto;
+    display: block;
 }
 
 .matriz-descripcion em {
@@ -968,9 +990,15 @@ input.input-success:focus {
     }
 
     /* Hacer que las tablas sean scrolleables horizontalmente */
-    .resultado-contenido {
+    .resultado-table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .resultado-contenido {
+        overflow-x: visible;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
     }
 
     /* Botones más pequeños en móvil */
