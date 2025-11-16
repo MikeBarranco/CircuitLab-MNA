@@ -243,8 +243,11 @@ const ResultDisplay = {
         if (!matrices || !matrices.A) return;
 
         // Crear etiquetas para las columnas de A y x
-        const n = matrices.G.shape[0]; // num nodos
-        const m = matrices.B.shape[1]; // num fuentes V
+        const sizeG = math.size(matrices.G);
+        const n = sizeG._data ? sizeG._data[0] : sizeG[0];
+
+        const sizeB = math.size(matrices.B);
+        const m = sizeB._data ? sizeB._data[1] : (sizeB[1] || 0);
 
         let etiquetasColumnasA = [];
         let etiquetasFilasX = [];
