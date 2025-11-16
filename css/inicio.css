@@ -232,32 +232,41 @@
 
 .ecuacion-display {
     font-family: 'Times New Roman', serif;
-    font-size: 3rem;
+    font-size: 1rem;
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    line-height: 1;
 }
 
 .ecuacion-display .matriz {
     color: #2563eb;
     font-weight: bold;
     font-style: italic;
+    font-size: 3.5rem;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .ecuacion-display .vector {
     color: #059669;
     font-weight: bold;
     font-style: italic;
+    font-size: 3.5rem;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .ecuacion-display .operador {
     color: #1e293b;
     font-weight: normal;
-    margin: 0 0.5rem;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.75rem;
 }
 
 .ecuacion-explicacion {
