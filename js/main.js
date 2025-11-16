@@ -213,10 +213,26 @@ const App = {
                     <input type="number" id="nodoNeg_${indice}" min="0" max="${this.numNodes - 1}" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label id="label_valor_${indice}" for="valor_${indice}">Valor:</label>
-                <input type="number" id="valor_${indice}" step="any" required>
-                <small id="unidad_${indice}" class="unidad-text"></small>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label id="label_valor_${indice}" for="valor_${indice}">Valor:</label>
+                    <input type="number" id="valor_${indice}" step="any" required>
+                    <small id="unidad_${indice}" class="unidad-text"></small>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label for="prefijo_${indice}">Prefijo:</label>
+                    <select id="prefijo_${indice}">
+                        <option value="1">--- (ninguno)</option>
+                        <option value="1e12">Tera (T)</option>
+                        <option value="1e9">Giga (G)</option>
+                        <option value="1e6">Mega (M)</option>
+                        <option value="1e3">kilo (k)</option>
+                        <option value="1e-3">mili (m)</option>
+                        <option value="1e-6">micro (µ)</option>
+                        <option value="1e-9">nano (n)</option>
+                        <option value="1e-12">pico (p)</option>
+                    </select>
+                </div>
             </div>
         `;
 
@@ -289,6 +305,11 @@ const App = {
         this.elementos = [];
 
         for (let i = 0; i < this.numElements; i++) {
+            // --- Inicio del bloque de reemplazo ---
+            const valorBase = parseFloat(document.getElementById(`valor_${i}`).value);
+            const prefijo = parseFloat(document.getElementById(`prefijo_${i}`).value);
+            const valorFinal = valorBase * prefijo;
+
             const elemento = {
                 tipo: document.getElementById(`tipo_${i}`).value,
                 nombre: Validator.sanitizarEntrada(
@@ -296,8 +317,9 @@ const App = {
                 ),
                 nodoPositivo: parseInt(document.getElementById(`nodoPos_${i}`).value),
                 nodoNegativo: parseInt(document.getElementById(`nodoNeg_${i}`).value),
-                valor: parseFloat(document.getElementById(`valor_${i}`).value)
+                valor: valorFinal // Usamos el valor final multiplicado
             };
+            // --- Fin del bloque de reemplazo ---
 
             this.elementos.push(elemento);
         }
