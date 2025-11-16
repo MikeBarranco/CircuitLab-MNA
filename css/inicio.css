@@ -1,81 +1,755 @@
-/* css/inicio.css - Estilos para la página de inicio educativa */
+/* ===================================================================
+   ESTILOS PÁGINA DE INICIO - DISEÑO EDUCATIVO PROFESIONAL
+   =================================================================== */
+
+/* --- HERO SECTION --- */
 #hero {
-    background-color: #f8fafc;
-    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
     text-align: center;
-    border-radius: 0.75rem;
-    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    margin-bottom: 3rem;
 }
-#hero h1 { font-size: 2.5rem; color: var(--color-primary-dark, #1e40af); margin-bottom: 0.5rem; }
-#hero p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
 
-.btn-lg { font-size: 1.15rem; padding: 0.8rem 1.8rem; }
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" fill-opacity="0.1"/></svg>');
+    opacity: 0.3;
+    animation: float 20s linear infinite;
+}
 
-.content-section { margin-top: 2.5rem; }
-.content-section h2 {
-    font-size: 2rem;
-    color: var(--color-primary, #2563eb);
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
     margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-border, #e2e8f0);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeInDown 0.6s ease;
 }
+
+#hero h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+#hero .subtitle {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+    opacity: 0.95;
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+#hero .hero-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.hero-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+.hero-features {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeInUp 0.6s ease 0.5s both;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+}
+
+.feature-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- SECCIONES DE CONTENIDO --- */
+.content-section {
+    background: white;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.content-section h2 {
+    font-size: 2.25rem;
+    color: #2563eb;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #e0f2fe;
+}
+
 .content-section h3 {
     font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-.content-section p, .content-section li {
-    font-size: 1.05rem;
-    line-height: 1.8;
+    color: #1e40af;
+    margin-top: 2.5rem;
     margin-bottom: 1.25rem;
 }
-.content-section ul, .content-section ol {
-    padding-left: 2rem;
-    list-style-position: inside;
-}
-.content-section strong {
+
+.content-section h4 {
+    font-size: 1.25rem;
     color: #1e293b;
-}
-.content-section .dato-curioso {
-    background: #fdfdea; /* Fondo amarillo pálido */
-    border: 1px solid #f59e0b;
-    border-left: 5px solid #f59e0b;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    margin: 1.5rem 0;
-}
-.content-section code {
-    font-family: monospace;
-    background-color: #e2e8f0;
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.ecuacion {
-    font-family: 'Times New Roman', Times, serif;
+.intro-block,
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 2rem;
+}
+
+.intro-block p {
+    margin-bottom: 1rem;
+}
+
+/* --- ECUACIÓN FUNDAMENTAL --- */
+.ecuacion-fundamental {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin: 2.5rem 0;
+    border: 2px solid #3b82f6;
+}
+
+.ecuacion-fundamental h3 {
+    margin-top: 0;
+    color: #1e40af;
+}
+
+.ecuacion-display {
+    font-family: 'Times New Roman', serif;
+    font-size: 3rem;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ecuacion-display .matriz {
+    color: #2563eb;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.ecuacion-display .vector {
+    color: #059669;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.ecuacion-explicacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.ecuacion-parte {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.ecuacion-parte:hover {
+    border-color: #3b82f6;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+.ecuacion-parte span {
     font-size: 2rem;
     font-weight: bold;
-    text-align: center;
-    margin: 1.5rem 0;
-    color: #1e293b;
+    display: block;
+    margin-bottom: 1rem;
 }
-.ecuacion .matriz { color: var(--color-primary-dark, #1e40af); }
-.ecuacion .vector { color: var(--color-secondary-dark, #059669); }
 
-.img-placeholder {
-    width: 100%;
-    height: 250px;
-    background-color: #f8fafc;
-    border: 2px dashed #cbd5e1;
-    border-radius: 0.5rem;
+.ecuacion-parte p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.nota-importante {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+/* --- ESTRUCTURA DE MATRICES --- */
+.matriz-estructura,
+.vector-estructura {
+    margin: 2.5rem 0;
+}
+
+.matriz-bloques {
+    margin-top: 2rem;
+}
+
+.bloque-display {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.matriz-visual {
+    display: inline-block;
+    border: 3px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.matriz-row {
+    display: flex;
+}
+
+.matriz-cell {
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.g-block {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.b-block {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.c-block {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.d-block {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.bloques-explicacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.bloque-info {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #cbd5e1;
+}
+
+.bloque-titulo {
+    margin-top: 0 !important;
+    font-size: 1.25rem !important;
+}
+
+.g-titulo {
+    color: #2563eb !important;
+    border-left-color: #2563eb !important;
+}
+
+.b-titulo {
+    color: #059669 !important;
+}
+
+.c-titulo {
+    color: #d97706 !important;
+}
+
+.d-titulo {
+    color: #7c3aed !important;
+}
+
+.bloque-info ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.bloque-info li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.formula-box {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.formula-box p {
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+}
+
+/* --- VECTORES --- */
+.vectores-lado-a-lado {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.vector-info {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+}
+
+.vector-info h4 {
+    margin-top: 0;
+    color: #1e40af;
     text-align: center;
-    color: #64748b;
-    font-style: italic;
+}
+
+.vector-visual {
+    display: flex;
+    justify-content: center;
     margin: 1.5rem 0;
+}
+
+.vector-elementos {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 3px solid #1e293b;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.vector-seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+}
+
+.voltajes {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.corrientes {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.corrientes-fuente {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.voltajes-fuente {
+    background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+}
+
+.vector-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.vector-divider {
+    height: 2px;
+    background: #cbd5e1;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.vector-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+/* --- ALGORITMO PASO A PASO --- */
+.algoritmo-pasos {
+    margin-top: 2rem;
+}
+
+.paso-card {
+    display: flex;
+    gap: 1.5rem;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.paso-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+    transform: translateX(5px);
+}
+
+.paso-numero {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.paso-contenido {
+    flex: 1;
+}
+
+.paso-contenido h3 {
+    margin-top: 0;
+    color: #1e40af;
+}
+
+.paso-contenido ul,
+.paso-contenido ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.paso-contenido li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.paso-contenido li ul {
+    margin-top: 0.5rem;
+}
+
+/* --- EJEMPLO PRÁCTICO --- */
+.ejemplo-section {
+    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+    border: 2px solid #fbbf24;
+}
+
+.ejemplo-intro {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.ejemplo-circuito {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    border: 2px solid #fbbf24;
+}
+
+.circuito-descripcion ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.circuito-descripcion li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.circuito-descripcion li::before {
+    content: '⚡';
+    position: absolute;
+    left: 0;
+}
+
+.ejemplo-solucion {
+    margin-top: 2rem;
+}
+
+.solucion-paso {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #3b82f6;
+}
+
+.calculo-detallado {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.calculo-detallado p {
+    margin: 0.5rem 0;
+    line-height: 1.8;
+}
+
+.matriz-resultado,
+.sistema-ecuaciones,
+.matriz-ensamblaje {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border: 2px solid #e2e8f0;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    line-height: 2;
+}
+
+.solucion-final {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 2px solid #10b981;
+}
+
+.resultado-destacado {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #059669;
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* --- CARACTERÍSTICAS --- */
+.caracteristicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.caracteristica-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.caracteristica-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+    transform: translateY(-5px);
+}
+
+.caracteristica-icono {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.caracteristica-card h3 {
+    margin: 1rem 0;
+    color: #1e40af;
+}
+
+.caracteristica-card p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* --- CTA SECTION --- */
+.cta-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 12px;
+    margin: 3rem 0;
+}
+
+.cta-content h2 {
+    color: white;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.cta-section .btn {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    #hero {
+        padding: 3rem 1.5rem;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .content-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .ecuacion-display {
+        font-size: 2rem;
+    }
+
+    .matriz-cell {
+        width: 80px;
+        height: 80px;
+        font-size: 1.75rem;
+    }
+
+    .paso-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .paso-numero {
+        margin-bottom: 1rem;
+    }
+
+    .bloques-explicacion,
+    .vectores-lado-a-lado,
+    .caracteristicas-grid {
+        grid-template-columns: 1fr;
+    }
 }

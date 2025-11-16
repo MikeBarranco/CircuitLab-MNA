@@ -22,78 +22,472 @@
     </nav>
 
     <main>
-        <section id="hero">
-            <h1>Análisis de Circuitos: Nodal y MNA</h1>
-            <p class="subtitle">Una guía educativa para el proyecto final de Circuitos Eléctricos.</p>
-            <a href="simulador.html" class="btn btn-primary btn-lg">Ir al Simulador</a>
-        </section>
-
-        <section class="content-section">
-            <h2>¿Qué es Exactamente el Análisis de Nodos?</h2>
-            <p>El Análisis de Nodos, o método de voltajes nodales, es una técnica de análisis de circuitos que se centra en encontrar los voltajes en los puntos de unión clave de un circuito. Se basa en la <strong>Ley de Corriente de Kirchhoff (LCK)</strong>, que establece que la suma algebraica de todas las corrientes que entran y salen de un nodo debe ser igual a cero.</p>
-            <p>La estrategia consiste en identificar todos los nodos de un circuito, elegir uno como <strong>nodo de referencia</strong> (comúnmente llamado tierra o "ground", con un potencial de 0 voltios), y luego calcular el voltaje en todos los demás nodos con respecto a ese punto de referencia.</p>
-
-            <h3>Nodo Principal vs. Nodo de Referencia</h3>
-            <ul>
-                <li>Un <strong>Nodo Principal</strong> (o esencial) es un punto en el circuito donde se unen tres o más componentes.</li>
-                <li>El <strong>Nodo de Referencia</strong> es el punto que elegimos como nuestra referencia de "cero voltios" (0V).</li>
-            </ul>
-
-            <div class="dato-curioso">
-                <strong>Dato Curioso:</strong> El Análisis de Nodos es especialmente eficiente en circuitos con muchas fuentes de corriente. Por otro lado, el Análisis de Mallas suele ser más rápido para circuitos con muchas fuentes de voltaje. Saber cuándo usar cada uno te convierte en un analista de circuitos mucho más eficiente. ⚡
+    <!-- Hero Section Mejorado -->
+    <section id="hero">
+        <div class="hero-content">
+            <span class="hero-badge">📚 Proyecto Educativo - BUAP</span>
+            <h1>Simulador de Análisis Nodal Modificado (MNA)</h1>
+            <p class="subtitle">Herramienta educativa para el análisis sistemático de circuitos eléctricos lineales</p>
+            <p class="hero-description">
+                El <strong>Análisis Nodal Modificado (MNA)</strong> es el método más eficiente y sistemático
+                para analizar circuitos eléctricos lineales. Este simulador implementa el algoritmo completo
+                del MNA, permitiéndote resolver circuitos con resistores, capacitores, inductores y fuentes
+                independientes en análisis DC y AC.
+            </p>
+            <div class="hero-buttons">
+                <a href="simulador.html" class="btn btn-primary btn-lg">
+                    <span>⚡</span> Ir al Simulador
+                </a>
+                <a href="#fundamentos-mna" class="btn btn-outline btn-lg">
+                    <span>📖</span> Aprender MNA
+                </a>
             </div>
 
-            <h3>El Fundamento Teórico: La Ley de Corriente de Kirchhoff (LCK)</h3>
-            <p>La LCK es el corazón del Análisis de Nodos. Su principio es la conservación de la carga. La ecuación general que aplicaremos en cada nodo es:</p>
-            <p style="text-align:center; font-style:italic;"><strong>Suma de corrientes que salen = Suma de corrientes que entran</strong></p>
-            <p>Para expresar las corrientes que pasan por las resistencias, usamos la Ley de Ohm. Si estamos en el nodo <code>V_A</code> y queremos calcular la corriente que va hacia el nodo <code>V_B</code> a través de una resistencia <code>R</code>, la corriente es: <code>I = (V_A - V_B) / R</code>.</p>
-
-            <h2>Cómo Aplicar el Análisis de Nodos: Paso a Paso</h2>
-            <ol>
-                <li><strong>Identificar Nodos y Elegir Referencia:</strong> Identifica todos los nodos principales. Elige uno como el nodo de referencia (0V).</li>
-                <li><strong>Asignar Voltajes Nodales:</strong> Asigna una variable de voltaje a cada nodo principal restante (<code>V1</code>, <code>V2</code>, ...).</li>
-                <li><strong>Aplicar la LCK a cada Nodo Principal:</strong> Escribe una ecuación de LCK para cada nodo, usando la Ley de Ohm para expresar las corrientes.</li>
-                <li><strong>Resolver el Sistema de Ecuaciones:</strong> Resuelve el sistema de ecuaciones para encontrar los voltajes nodales.</li>
-                <li><strong>Calcular Resultados:</strong> Usa los voltajes nodales para encontrar cualquier corriente o voltaje deseado.</li>
-            </ol>
-
-            <h3>Problema 1: Ejemplo Resuelto (Nodos Simples)</h3>
-            <div class="img-placeholder">
-                <p><strong>[IMAGEN PENDIENTE]</strong><br>Insertar aquí una imagen del circuito del "Problema 1" (Fuente 2A, R1=2Ω, R2=4Ω, R3=1Ω, Fuente 4A).</p>
+            <div class="hero-features">
+                <div class="feature-item">
+                    <span class="feature-icon">🔌</span>
+                    <span class="feature-text">Análisis DC y AC</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔢</span>
+                    <span class="feature-text">Algoritmo MNA Completo</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <span class="feature-text">Validación Exhaustiva</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span class="feature-text">Matrices Explicadas</span>
+                </div>
             </div>
-            <p><strong>Paso 3 (Ecuaciones):</strong></p>
-            <ul>
-                <li><strong>Nodo 1 (V1):</strong> (Corrientes que salen = 0) <code>-2 + (V1/2) + (V1-V2)/4 = 0</code>. Simplificando: <code>3*V1 - V2 = 8</code>.</li>
-                <li><strong>Nodo 2 (V2):</strong> (Corrientes que salen = 0) <code>(V2-V1)/4 + (V2/1) - 4 = 0</code>. Simplificando: <code>-V1 + 5*V2 = 16</code>.</li>
-            </ul>
-            <p><strong>Paso 4 (Solución):</strong> Resolviendo el sistema, encontramos que <strong><code>V1 = 4V</code></strong> y <strong><code>V2 = 4V</code></strong>. 🎉</p>
+        </div>
+    </section>
 
-            <h3>Caso Especial: El Supernodo</h3>
-            <p>Cuando una fuente de voltaje está entre dos nodos principales (ninguno es tierra), no podemos conocer la corriente que la atraviesa. La solución es crear un <strong>Supernodo</strong>: tratamos a ambos nodos y a la fuente como una sola "burbuja" y aplicamos la LCK a esa burbuja.</p>
+    <!-- Sección: Fundamentos del MNA -->
+    <section id="fundamentos-mna" class="content-section">
+        <h2>¿Qué es el Análisis Nodal Modificado (MNA)?</h2>
 
-            <h3>Problema 3: Ejemplo con Supernodo</h3>
-            <div class="img-placeholder">
-                <p><strong>[IMAGEN PENDIENTE]</strong><br>Insertar aquí una imagen del circuito del "Problema 3" (Fuente 2A, R=8Ω, Supernodo con V1, V2 y fuente de 2V, R=2Ω, Fuente 7A).</p>
+        <div class="intro-block">
+            <p>
+                El <strong>Modified Nodal Analysis</strong> es una técnica sistemática para analizar circuitos
+                eléctricos que resulta en un sistema de ecuaciones lineales algebraicas. A diferencia del análisis
+                nodal clásico, el MNA puede manejar directamente fuentes de voltaje sin necesidad de crear supernodos.
+            </p>
+            <p>
+                El método es especialmente valioso porque es <strong>algorítmico y predecible</strong>, lo que lo
+                hace ideal para la implementación computacional en simuladores de circuitos profesionales como SPICE.
+            </p>
+        </div>
+
+        <div class="ecuacion-fundamental">
+            <h3>Ecuación Fundamental del MNA</h3>
+            <p>Todo circuito analizado con MNA se reduce a resolver el sistema:</p>
+            <div class="ecuacion-display">
+                <span class="matriz">A</span> · <span class="vector">x</span> = <span class="vector">z</span>
             </div>
-            <p><strong>Paso 3 (Ecuaciones):</strong></p>
-            <ul>
-                <li><strong>Ecuación de Restricción (de la fuente):</strong> <code>V1 - V2 = 2</code></li>
-                <li><strong>Ecuación del Supernodo (LCK):</strong> <code>-2 + (V1/8) + (V2/2) + 7 = 0</code>. Simplificando: <code>V1 + 4*V2 = -40</code>.</li>
-            </ul>
-            <p><strong>Paso 4 (Solución):</strong> Resolviendo este sistema, encontramos que <strong><code>V1 = -6.4V</code></strong> y <strong><code>V2 = -8.4V</code></strong>.</p>
-        </section>
-
-        <section class="content-section">
-            <h2>Introducción al Análisis MODIFICADO de Nodos (MNA)</h2>
-            <p>El MNA es la evolución del método nodal. Es el método que usa este simulador porque es <strong>altamente sistemático</strong> y perfecto para computadoras. Elimina el problema de los "supernodos".</p>
-            <p><strong>Modificación Clave:</strong> El MNA añade las corrientes de las fuentes de voltaje como incógnitas adicionales. Esto crea un sistema de ecuaciones más grande pero mucho más fácil de construir algorítmicamente.</p>
-            <p>El MNA siempre genera el sistema matricial:</p>
-            <div class="ecuacion">
-                <span class="matriz">A</span><span class="vector">x</span> = <span class="vector">z</span>
+            <div class="ecuacion-explicacion">
+                <div class="ecuacion-parte">
+                    <span class="matriz">A</span>
+                    <p>Matriz de coeficientes (n+m)×(n+m) que contiene información sobre la topología y elementos del circuito</p>
+                </div>
+                <div class="ecuacion-parte">
+                    <span class="vector">x</span>
+                    <p>Vector de incógnitas (n+m)×1 con voltajes nodales y corrientes en fuentes de voltaje</p>
+                </div>
+                <div class="ecuacion-parte">
+                    <span class="vector">z</span>
+                    <p>Vector de términos conocidos (n+m)×1 con valores de fuentes de corriente y voltaje</p>
+                </div>
             </div>
-            <p>Donde las matrices (A, x, z) se construyen con reglas fijas (G, B, C, D), que es exactamente lo que hace nuestro simulador.</p>
-        </section>
-    </main>
+            <p class="nota-importante">
+                Donde <strong>n</strong> = número de nodos (excluyendo el nodo de referencia o tierra),
+                y <strong>m</strong> = número de fuentes de voltaje independientes.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sección: Estructura de las Matrices -->
+    <section class="content-section">
+        <h2>Estructura de las Matrices del MNA</h2>
+
+        <p class="intro-text">
+            La matriz <strong>A</strong> y el vector <strong>z</strong> tienen una estructura específica
+            que se construye siguiendo reglas algorítmicas precisas:
+        </p>
+
+        <div class="matriz-estructura">
+            <h3>Matriz A - Estructura por Bloques</h3>
+            <div class="matriz-bloques">
+                <div class="bloque-display">
+                    <div class="matriz-visual">
+                        <div class="matriz-row">
+                            <div class="matriz-cell g-block">G</div>
+                            <div class="matriz-cell b-block">B</div>
+                        </div>
+                        <div class="matriz-row">
+                            <div class="matriz-cell c-block">C</div>
+                            <div class="matriz-cell d-block">D</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bloques-explicacion">
+                    <div class="bloque-info">
+                        <h4 class="bloque-titulo g-titulo">Matriz G (Conductancias)</h4>
+                        <p><strong>Dimensión:</strong> n × n</p>
+                        <p><strong>Contenido:</strong> Conductancias de elementos pasivos (R, C, L)</p>
+                        <ul>
+                            <li><strong>Diagonal:</strong> G[i][i] = suma de conductancias conectadas al nodo i</li>
+                            <li><strong>Off-diagonal:</strong> G[i][j] = -g si hay conductancia g entre nodos i y j</li>
+                        </ul>
+                        <div class="formula-box">
+                            <p><strong>Fórmulas de conductancia:</strong></p>
+                            <p>• Resistor: g = 1/R</p>
+                            <p>• Capacitor (AC): g = jωC</p>
+                            <p>• Inductor (AC): g = 1/(jωL)</p>
+                        </div>
+                    </div>
+
+                    <div class="bloque-info">
+                        <h4 class="bloque-titulo b-titulo">Matriz B (Incidencia de Fuentes V)</h4>
+                        <p><strong>Dimensión:</strong> n × m</p>
+                        <p><strong>Contenido:</strong> Conexión de fuentes de voltaje a nodos</p>
+                        <ul>
+                            <li>B[i][j] = +1 si el terminal positivo de la fuente j está en el nodo i</li>
+                            <li>B[i][j] = -1 si el terminal negativo de la fuente j está en el nodo i</li>
+                            <li>B[i][j] = 0 en cualquier otro caso</li>
+                        </ul>
+                    </div>
+
+                    <div class="bloque-info">
+                        <h4 class="bloque-titulo c-titulo">Matriz C (Transpuesta)</h4>
+                        <p><strong>Dimensión:</strong> m × n</p>
+                        <p><strong>Contenido:</strong> C = B<sup>T</sup> (transpuesta de B)</p>
+                        <p>Esta matriz asegura la conservación de corriente (Ley de Kirchhoff) en las fuentes de voltaje.</p>
+                    </div>
+
+                    <div class="bloque-info">
+                        <h4 class="bloque-titulo d-titulo">Matriz D (Fuentes Dependientes)</h4>
+                        <p><strong>Dimensión:</strong> m × m</p>
+                        <p><strong>Contenido:</strong> Matriz de ceros para fuentes independientes</p>
+                        <p>En circuitos con solo fuentes independientes, D es una matriz de ceros m×m.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vector-estructura">
+            <h3>Vectores x y z</h3>
+            <div class="vectores-lado-a-lado">
+                <div class="vector-info">
+                    <h4>Vector x (Incógnitas)</h4>
+                    <div class="vector-visual">
+                        <div class="vector-elementos">
+                            <div class="vector-seccion voltajes">
+                                <span class="vector-label">v₁</span>
+                                <span class="vector-label">v₂</span>
+                                <span class="vector-label">⋮</span>
+                                <span class="vector-label">vₙ</span>
+                            </div>
+                            <div class="vector-divider"></div>
+                            <div class="vector-seccion corrientes">
+                                <span class="vector-label">i_V₁</span>
+                                <span class="vector-label">i_V₂</span>
+                                <span class="vector-label">⋮</span>
+                                <span class="vector-label">i_Vₘ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="vector-desc">
+                        <strong>Primera parte (n elementos):</strong> Voltajes de nodos v₁, v₂, ..., vₙ
+                        medidos respecto al nodo de referencia (tierra)
+                    </p>
+                    <p class="vector-desc">
+                        <strong>Segunda parte (m elementos):</strong> Corrientes que fluyen a través
+                        de las fuentes de voltaje i_V₁, i_V₂, ..., i_Vₘ
+                    </p>
+                </div>
+
+                <div class="vector-info">
+                    <h4>Vector z (Términos Conocidos)</h4>
+                    <div class="vector-visual">
+                        <div class="vector-elementos">
+                            <div class="vector-seccion corrientes-fuente">
+                                <span class="vector-label">i₁</span>
+                                <span class="vector-label">i₂</span>
+                                <span class="vector-label">⋮</span>
+                                <span class="vector-label">iₙ</span>
+                            </div>
+                            <div class="vector-divider"></div>
+                            <div class="vector-seccion voltajes-fuente">
+                                <span class="vector-label">e₁</span>
+                                <span class="vector-label">e₂</span>
+                                <span class="vector-label">⋮</span>
+                                <span class="vector-label">eₘ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="vector-desc">
+                        <strong>Primera parte (n elementos):</strong> Corrientes inyectadas por
+                        fuentes de corriente en cada nodo
+                    </p>
+                    <p class="vector-desc">
+                        <strong>Segunda parte (m elementos):</strong> Valores de voltaje de
+                        las fuentes de voltaje e₁, e₂, ..., eₘ
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Algoritmo Paso a Paso -->
+    <section class="content-section">
+        <h2>Algoritmo MNA Paso a Paso</h2>
+
+        <p class="intro-text">
+            El algoritmo del Análisis Nodal Modificado se ejecuta en <strong>5 pasos sistemáticos</strong>.
+            Cada paso construye una parte específica del sistema de ecuaciones:
+        </p>
+
+        <div class="algoritmo-pasos">
+            <div class="paso-card">
+                <div class="paso-numero">1</div>
+                <div class="paso-contenido">
+                    <h3>Identificar Nodos y Elementos</h3>
+                    <ul>
+                        <li>Numerar todos los nodos del circuito (0, 1, 2, ..., N-1)</li>
+                        <li>Designar un nodo como <strong>nodo de referencia</strong> (tierra, V = 0)</li>
+                        <li>Contar: n = nodos totales - 1 (sin contar tierra)</li>
+                        <li>Contar: m = número de fuentes de voltaje independientes</li>
+                        <li>Listar todos los elementos con sus nodos de conexión y valores</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-numero">2</div>
+                <div class="paso-contenido">
+                    <h3>Construir Matriz G (Conductancias)</h3>
+                    <p><strong>Inicializar:</strong> Matriz G de tamaño n×n con todos los elementos en 0</p>
+                    <p><strong>Para cada elemento pasivo</strong> (R, C, L) entre nodos i y j:</p>
+                    <ol>
+                        <li>Calcular su conductancia g:
+                            <ul>
+                                <li>Resistor: g = 1/R</li>
+                                <li>Capacitor (AC): g = jωC donde ω = 2πf</li>
+                                <li>Inductor (AC): g = 1/(jωL)</li>
+                            </ul>
+                        </li>
+                        <li>Sumar g a G[i][i] (si i ≠ tierra)</li>
+                        <li>Sumar g a G[j][j] (si j ≠ tierra)</li>
+                        <li>Restar g de G[i][j] y G[j][i] (si ambos ≠ tierra)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-numero">3</div>
+                <div class="paso-contenido">
+                    <h3>Construir Matrices B, C y D</h3>
+                    <p><strong>Matriz B</strong> (n×m):</p>
+                    <ul>
+                        <li>Para cada fuente de voltaje j conectada entre nodos i+ y i-:</li>
+                        <li>B[i+][j] = +1 (si i+ ≠ tierra)</li>
+                        <li>B[i-][j] = -1 (si i- ≠ tierra)</li>
+                    </ul>
+                    <p><strong>Matriz C</strong> (m×n): C = B<sup>T</sup> (transpuesta de B)</p>
+                    <p><strong>Matriz D</strong> (m×m): D = matriz de ceros (para fuentes independientes)</p>
+                </div>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-numero">4</div>
+                <div class="paso-contenido">
+                    <h3>Construir Vector z</h3>
+                    <p><strong>Vector i</strong> (n×1) - Corrientes de fuentes de corriente:</p>
+                    <ul>
+                        <li>Para cada nodo k: i[k] = suma de corrientes inyectadas</li>
+                        <li>Positivo si la corriente entra por el terminal + de la fuente</li>
+                        <li>Negativo si la corriente sale por ese nodo</li>
+                    </ul>
+                    <p><strong>Vector e</strong> (m×1) - Voltajes de fuentes de voltaje:</p>
+                    <ul>
+                        <li>e[j] = valor de la fuente de voltaje j</li>
+                    </ul>
+                    <p><strong>Concatenar:</strong> z = [i; e] (vector de tamaño (n+m)×1)</p>
+                </div>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-numero">5</div>
+                <div class="paso-contenido">
+                    <h3>Resolver el Sistema A·x = z</h3>
+                    <p><strong>Ensamblar matriz A:</strong></p>
+                    <div class="matriz-ensamblaje">
+                        A = [G  B]<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;[C  D]
+                    </div>
+                    <p><strong>Resolver:</strong> Usar eliminación gaussiana, factorización LU, o método matricial</p>
+                    <p><strong>Resultado:</strong> El vector x contiene:</p>
+                    <ul>
+                        <li>Primeros n elementos: voltajes de nodos v₁, v₂, ..., vₙ</li>
+                        <li>Últimos m elementos: corrientes en fuentes de voltaje i_V₁, ..., i_Vₘ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Ejemplo Resuelto -->
+    <section class="content-section ejemplo-section">
+        <h2>Ejemplo Práctico: Circuito Simple</h2>
+
+        <div class="ejemplo-intro">
+            <p>
+                Analicemos un circuito sencillo para ver el MNA en acción. Este ejemplo muestra todos
+                los pasos del algoritmo aplicados a un circuito real.
+            </p>
+        </div>
+
+        <div class="ejemplo-circuito">
+            <h3>Circuito de Ejemplo</h3>
+            <div class="circuito-descripcion">
+                <p><strong>Elementos del circuito:</strong></p>
+                <ul>
+                    <li>Fuente de corriente I_s = 2A (del nodo 0 al nodo 1)</li>
+                    <li>Resistor R₁ = 2Ω (del nodo 1 al nodo 0)</li>
+                    <li>Resistor R₂ = 4Ω (del nodo 1 al nodo 2)</li>
+                    <li>Resistor R₃ = 1Ω (del nodo 2 al nodo 0)</li>
+                    <li>Fuente de corriente I_s2 = 4A (del nodo 0 al nodo 2)</li>
+                </ul>
+                <p><strong>Nodo de referencia:</strong> Nodo 0 (tierra)</p>
+                <p><strong>Incógnitas:</strong> v₁ y v₂ (voltajes de los nodos 1 y 2)</p>
+            </div>
+        </div>
+
+        <div class="ejemplo-solucion">
+            <h3>Solución Paso a Paso</h3>
+
+            <div class="solucion-paso">
+                <h4>Paso 1: Identificación</h4>
+                <p>n = 2 nodos (sin contar tierra: nodos 1 y 2)</p>
+                <p>m = 0 fuentes de voltaje</p>
+                <p>Sistema resultante: 2 ecuaciones con 2 incógnitas</p>
+            </div>
+
+            <div class="solucion-paso">
+                <h4>Paso 2: Matriz G (2×2)</h4>
+                <div class="calculo-detallado">
+                    <p><strong>Conductancias:</strong></p>
+                    <p>g₁ = 1/R₁ = 1/2 = 0.5 S</p>
+                    <p>g₂ = 1/R₂ = 1/4 = 0.25 S</p>
+                    <p>g₃ = 1/R₃ = 1/1 = 1.0 S</p>
+
+                    <p><strong>Construcción de G:</strong></p>
+                    <p>G[1][1] = g₁ + g₂ = 0.5 + 0.25 = 0.75</p>
+                    <p>G[2][2] = g₂ + g₃ = 0.25 + 1.0 = 1.25</p>
+                    <p>G[1][2] = G[2][1] = -g₂ = -0.25</p>
+
+                    <div class="matriz-resultado">
+                        G = [0.75  -0.25]<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;[-0.25  1.25]
+                    </div>
+                </div>
+            </div>
+
+            <div class="solucion-paso">
+                <h4>Paso 3: No hay fuentes de voltaje</h4>
+                <p>Como m = 0, no hay matrices B, C ni D</p>
+                <p>El sistema se simplifica a: <strong>G·v = i</strong></p>
+            </div>
+
+            <div class="solucion-paso">
+                <h4>Paso 4: Vector i (2×1)</h4>
+                <div class="calculo-detallado">
+                    <p>i[1] = corriente inyectada en nodo 1 = 2A</p>
+                    <p>i[2] = corriente inyectada en nodo 2 = 4A</p>
+
+                    <div class="matriz-resultado">
+                        i = [2]<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;[4]
+                    </div>
+                </div>
+            </div>
+
+            <div class="solucion-paso">
+                <h4>Paso 5: Resolver el Sistema</h4>
+                <div class="calculo-detallado">
+                    <p><strong>Sistema de ecuaciones:</strong></p>
+                    <div class="sistema-ecuaciones">
+                        0.75·v₁ - 0.25·v₂ = 2<br>
+                        -0.25·v₁ + 1.25·v₂ = 4
+                    </div>
+
+                    <p><strong>Solución:</strong></p>
+                    <div class="solucion-final">
+                        <p class="resultado-destacado">v₁ = 4.0 V</p>
+                        <p class="resultado-destacado">v₂ = 4.0 V</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Características del Simulador -->
+    <section class="content-section caracteristicas-section">
+        <h2>Características del Simulador</h2>
+
+        <div class="caracteristicas-grid">
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">🔌</div>
+                <h3>Análisis DC y AC</h3>
+                <p>Soporta análisis en corriente directa (DC) y corriente alterna (AC) con frecuencia configurable</p>
+            </div>
+
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">🧩</div>
+                <h3>Elementos Soportados</h3>
+                <p>Resistores, capacitores, inductores, fuentes de voltaje y corriente independientes</p>
+            </div>
+
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">✅</div>
+                <h3>Validación Exhaustiva</h3>
+                <p>Validación en tiempo real de todos los valores con detección de errores comunes</p>
+            </div>
+
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">📊</div>
+                <h3>Visualización de Matrices</h3>
+                <p>Muestra las matrices A, x y z con explicaciones educativas detalladas</p>
+            </div>
+
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">🎯</div>
+                <h3>Resultados Precisos</h3>
+                <p>Usa math.js para cálculos de alta precisión con números complejos</p>
+            </div>
+
+            <div class="caracteristica-card">
+                <div class="caracteristica-icono">💾</div>
+                <h3>Exportación</h3>
+                <p>Exporta resultados completos en formato de texto para documentación</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>¿Listo para Analizar Circuitos?</h2>
+            <p>Usa el simulador para resolver circuitos reales aplicando el método MNA</p>
+            <a href="simulador.html" class="btn btn-primary btn-lg">
+                Comenzar a Simular
+            </a>
+        </div>
+    </section>
+</main>
 
     <footer class="footer-global">
         <div class="footer-contenido">
