@@ -20,8 +20,8 @@
         if (saved !== null) {
             return saved === 'true';
         }
-        // Si no hay preferencia guardada, usar la preferencia del sistema
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Si no hay preferencia guardada, usar modo claro por defecto
+        return false;
     }
 
     /**

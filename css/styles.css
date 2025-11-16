@@ -265,7 +265,7 @@ select.success {
 
 .form-group label {
     font-weight: 600;
-    color: #1e293b;
+    color: var(--color-text);
     font-size: 0.875rem;
     margin-bottom: 0.125rem;
 }
@@ -273,10 +273,11 @@ select.success {
 .form-group input,
 .form-group select {
     padding: 0.625rem 0.75rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 0.9375rem;
-    background: white;
+    background: var(--color-card);
+    color: var(--color-text);
     transition: border-color 0.2s ease;
     width: 100%;
     box-sizing: border-box; /* Asegura que el padding no desborde */
@@ -324,8 +325,8 @@ select.success {
 
 /* Asegurar que element-card tenga buen espaciado */
 .element-card {
-    background: white;
-    border: 1px solid #e2e8f0;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 1.25rem;
@@ -337,12 +338,12 @@ select.success {
 .element-header {
     margin-bottom: 1rem;
     padding-bottom: 0.875rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .element-header h3 {
     margin: 0;
-    color: #2563eb;
+    color: var(--color-primary);
     font-size: 1.125rem;
     font-weight: 600;
 }
@@ -632,12 +633,12 @@ button:disabled:hover,
    ============================================ */
 /* Grupo de resultados - contenedor principal para cada sección */
 .resultado-grupo {
-    background: white;
+    background: var(--color-card);
     padding: 1.5rem;
     border-radius: var(--radius-lg);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     margin-bottom: 1.5rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-border);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     width: 100%;
     max-width: 100%;
@@ -668,6 +669,20 @@ button:disabled:hover,
     font-size: 0.875rem;
 }
 
+/* Dark mode - estilos adicionales para element-card */
+body.dark-mode .element-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .element-header {
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .element-header h3 {
+    color: #60a5fa;
+}
+
 /* Contenedor de contenido dentro de resultado-grupo */
 .resultado-contenido {
     /* El contenido irá directamente aquí sin cajas adicionales */
@@ -691,7 +706,7 @@ button:disabled:hover,
 .resultado-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     overflow: hidden;

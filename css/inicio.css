@@ -175,7 +175,7 @@
 
 /* --- SECCIONES DE CONTENIDO --- */
 .content-section {
-    background: white;
+    background: var(--color-card);
     padding: 3rem 2rem;
     margin-bottom: 2rem;
     border-radius: 12px;
@@ -192,14 +192,14 @@
 
 .content-section h3 {
     font-size: 1.5rem;
-    color: #1e40af;
+    color: var(--color-primary);
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
 }
 
 .content-section h4 {
     font-size: 1.25rem;
-    color: #1e293b;
+    color: var(--color-text);
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -208,7 +208,7 @@
 .intro-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #475569;
+    color: var(--color-text);
     margin-bottom: 2rem;
 }
 
@@ -236,7 +236,7 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
-    background: white;
+    background: var(--color-card);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     line-height: 1;
@@ -261,7 +261,7 @@
 }
 
 .ecuacion-display .operador {
-    color: #1e293b;
+    color: var(--color-text);
     font-weight: normal;
     font-size: 3rem;
     display: inline-block;
@@ -277,11 +277,11 @@
 }
 
 .ecuacion-parte {
-    background: white;
+    background: var(--color-card);
     padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--color-border);
     transition: all 0.3s ease;
 }
 
@@ -311,6 +311,7 @@
     border-radius: 4px;
     margin-top: 1.5rem;
     font-style: italic;
+    color: #78350f;
 }
 
 /* --- ESTRUCTURA DE MATRICES --- */
@@ -375,10 +376,10 @@
 }
 
 .bloque-info {
-    background: #f8fafc;
+    background: var(--color-background);
     padding: 1.5rem;
     border-radius: 8px;
-    border-left: 4px solid #cbd5e1;
+    border-left: 4px solid var(--color-border);
 }
 
 .bloque-titulo {
@@ -414,11 +415,11 @@
 }
 
 .formula-box {
-    background: white;
+    background: var(--color-card);
     padding: 1rem;
     border-radius: 6px;
     margin-top: 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-border);
 }
 
 .formula-box p {
@@ -436,15 +437,15 @@
 }
 
 .vector-info {
-    background: #f8fafc;
+    background: var(--color-background);
     padding: 2rem;
     border-radius: 12px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--color-border);
 }
 
 .vector-info h4 {
     margin-top: 0;
-    color: #1e40af;
+    color: var(--color-primary);
     text-align: center;
 }
 
@@ -457,8 +458,8 @@
 .vector-elementos {
     display: flex;
     flex-direction: column;
-    background: white;
-    border: 3px solid #1e293b;
+    background: var(--color-card);
+    border: 3px solid var(--color-text);
     border-radius: 8px;
     padding: 1rem;
 }
@@ -492,7 +493,7 @@
     font-size: 1.25rem;
     font-style: italic;
     font-weight: bold;
-    color: #1e293b;
+    color: var(--color-text);
 }
 
 .vector-divider {
@@ -516,8 +517,8 @@
 .paso-card {
     display: flex;
     gap: 1.5rem;
-    background: white;
-    border: 2px solid #e2e8f0;
+    background: var(--color-card);
+    border: 2px solid var(--color-border);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 1.5rem;
@@ -551,7 +552,7 @@
 
 .paso-contenido h3 {
     margin-top: 0;
-    color: #1e40af;
+    color: var(--color-primary);
 }
 
 .paso-contenido ul,
@@ -587,11 +588,11 @@
 
 /* Contenedor para cada ejemplo completo */
 .ejemplo-completo {
-    background: white;
+    background: var(--color-card);
     padding: 2.5rem;
     border-radius: 12px;
     margin-bottom: 3rem;
-    border: 2px solid #3b82f6;
+    border: 2px solid var(--color-primary);
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
 }
 
@@ -600,24 +601,24 @@
 }
 
 .ejemplo-completo > h3 {
-    color: #1e40af;
+    color: var(--color-primary);
     font-size: 1.75rem;
     margin-top: 0;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid #93c5fd;
+    border-bottom: 2px solid var(--color-primary-light);
 }
 
 .ejemplo-circuito {
-    background: #f8fafc;
+    background: var(--color-background);
     padding: 2rem;
     border-radius: 12px;
     margin: 2rem 0;
-    border: 2px solid #bfdbfe;
+    border: 2px solid var(--color-border);
 }
 
 .ejemplo-circuito > h4 {
-    color: #2563eb;
+    color: var(--color-primary);
     margin-top: 0;
 }
 
@@ -636,6 +637,7 @@
     content: '>';
     position: absolute;
     left: 0;
+    color: var(--color-primary);
 }
 
 .ejemplo-solucion {
@@ -643,15 +645,15 @@
 }
 
 .solucion-paso {
-    background: white;
+    background: var(--color-card);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid var(--color-primary);
 }
 
 .solucion-paso > h5 {
-    color: #1e40af;
+    color: var(--color-primary);
     font-size: 1.125rem;
     font-weight: 600;
     margin-top: 0;
@@ -659,14 +661,14 @@
 }
 
 .ejemplo-solucion > h4 {
-    color: #1e40af;
+    color: var(--color-primary);
     font-size: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 1.25rem;
 }
 
 .calculo-detallado {
-    background: #f8fafc;
+    background: var(--color-background);
     padding: 1.5rem;
     border-radius: 8px;
     margin-top: 1rem;
@@ -681,14 +683,15 @@
 .matriz-resultado,
 .sistema-ecuaciones,
 .matriz-ensamblaje {
-    background: white;
+    background: var(--color-card);
     padding: 1.5rem;
     border-radius: 6px;
     margin: 1rem 0;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--color-border);
     font-family: 'Courier New', monospace;
     font-size: 1.1rem;
     line-height: 2;
+    color: var(--color-text);
 }
 
 .solucion-final {
@@ -717,10 +720,10 @@
 }
 
 .caracteristica-card {
-    background: white;
+    background: var(--color-card);
     padding: 2rem;
     border-radius: 12px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--color-border);
     text-align: center;
     transition: all 0.3s ease;
 }
@@ -738,11 +741,11 @@
 
 .caracteristica-card h3 {
     margin: 1rem 0;
-    color: #1e40af;
+    color: var(--color-primary);
 }
 
 .caracteristica-card p {
-    color: #64748b;
+    color: var(--color-text-light);
     line-height: 1.6;
 }
 
@@ -855,7 +858,7 @@
     font-style: italic;
     font-family: 'Times New Roman', serif;
     font-weight: 500;
-    color: #1e40af;
+    color: var(--color-primary);
 }
 
 .formula-box p,
@@ -920,6 +923,10 @@ body.dark-mode .calculo-detallado {
     background: #0f172a;
 }
 
+body.dark-mode .calculo-detallado p {
+    color: #cbd5e1;
+}
+
 body.dark-mode .solucion-final {
     background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
     border-color: #059669;
@@ -935,8 +942,13 @@ body.dark-mode .circuito-descripcion {
     color: #e2e8f0;
 }
 
+body.dark-mode .circuito-descripcion li {
+    color: #e2e8f0;
+}
+
 body.dark-mode .circuito-descripcion li::before {
-    opacity: 0.8;
+    color: #60a5fa;
+    opacity: 1;
 }
 
 body.dark-mode h1,
@@ -950,13 +962,15 @@ body.dark-mode h6 {
 
 body.dark-mode .content-section h2 {
     color: #60a5fa !important;
+    border-bottom-color: #334155;
 }
 
 body.dark-mode .ejemplo-completo > h3,
 body.dark-mode .bloque-titulo,
 body.dark-mode .ejemplo-solucion > h4,
 body.dark-mode .solucion-paso > h5,
-body.dark-mode .ejemplo-circuito > h4 {
+body.dark-mode .ejemplo-circuito > h4,
+body.dark-mode .ecuacion-fundamental h3 {
     color: #60a5fa !important;
 }
 
@@ -975,4 +989,27 @@ body.dark-mode .vector-label {
 
 body.dark-mode .resultado-destacado {
     color: #34d399;
+}
+
+body.dark-mode .bloque-info p,
+body.dark-mode .bloque-info li,
+body.dark-mode .formula-box p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .ecuacion-display .operador {
+    color: #e2e8f0;
+}
+
+body.dark-mode .paso-contenido p,
+body.dark-mode .paso-contenido li {
+    color: #cbd5e1;
+}
+
+body.dark-mode .caracteristica-card p {
+    color: #94a3b8;
+}
+
+body.dark-mode .ejemplo-intro p {
+    color: #cbd5e1;
 }
