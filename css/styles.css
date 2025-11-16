@@ -619,3 +619,61 @@ input.input-success:focus {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================
+   RESPONSIVIDAD MEJORADA PARA MÓVILES
+   ============================================ */
+@media (max-width: 768px) {
+    .resultado-table {
+        font-size: 0.8rem;
+    }
+
+    .resultado-table th,
+    .resultado-table td {
+        padding: 0.5rem 0.375rem;
+    }
+
+    .valor-numerico {
+        font-size: 0.95rem;
+    }
+
+    /* Hacer que las tablas sean scrolleables horizontalmente */
+    .resultado-card {
+        overflow-x: auto;
+    }
+
+    /* Formularios de elementos más compactos */
+    .element-form .form-row {
+        flex-direction: column;
+    }
+
+    .element-form .form-row .form-group {
+        width: 100%;
+        min-width: auto;
+    }
+
+    /* Botones más pequeños en móvil */
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button,
+    .button-group .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .resultado-table {
+        font-size: 0.75rem;
+    }
+
+    .resultado-table th,
+    .resultado-table td {
+        padding: 0.4rem 0.25rem;
+    }
+
+    .valor-numerico {
+        font-size: 0.875rem;
+    }
+}
