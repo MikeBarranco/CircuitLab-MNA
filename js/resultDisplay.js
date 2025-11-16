@@ -399,8 +399,18 @@ const ResultDisplay = {
                 tablaHTML += '</table>';
             }
 
-            // Insertar solo la tabla, sin cajas adicionales ni espacios
-            container.innerHTML = tablaHTML;
+            // Agregar explicación educativa simple según el tipo de matriz
+            let explicacion = '';
+            if (contenedorId === 'matrixA') {
+                explicacion = `<p class="matriz-descripcion">La matriz <em>A</em> del sistema contiene los coeficientes que relacionan voltajes y corrientes. Está formada por cuatro submatrices: <em>G</em> (conductancias de elementos pasivos), <em>B</em> (conexiones de fuentes de voltaje), <em>C</em> (transpuesta de <em>B</em>), y <em>D</em> (fuentes dependientes, ceros en circuitos simples).</p>`;
+            } else if (contenedorId === 'vectorX') {
+                explicacion = `<p class="matriz-descripcion">El vector <em>x</em> contiene las incógnitas del sistema: voltajes nodales (<em>v</em><sub>i</sub>) y corrientes a través de fuentes de voltaje (<em>i</em><sub>Vj</sub>). Estos son los valores que buscamos resolver.</p>`;
+            } else if (contenedorId === 'vectorZ') {
+                explicacion = `<p class="matriz-descripcion">El vector <em>z</em> representa las fuentes conocidas del circuito: corrientes inyectadas por fuentes de corriente en cada nodo, y valores de voltaje de las fuentes independientes. Son los datos de entrada del problema.</p>`;
+            }
+
+            // Insertar explicación + tabla
+            container.innerHTML = explicacion + tablaHTML;
 
         } catch (error) {
             container.innerHTML = `

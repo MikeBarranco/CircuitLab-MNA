@@ -629,6 +629,28 @@ button:disabled:hover,
     margin-left: var(--spacing-xs);
 }
 
+/* Descripción educativa de matrices */
+.matriz-descripcion {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(59, 130, 246, 0.03);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+}
+
+.matriz-descripcion em {
+    font-style: italic;
+    font-family: 'Times New Roman', serif;
+    font-weight: 500;
+}
+
+.matriz-descripcion sub {
+    font-size: 0.75em;
+}
+
 /* Matriz - eliminado .matriz-container innecesario */
 .matriz {
     font-family: 'Courier New', monospace;
