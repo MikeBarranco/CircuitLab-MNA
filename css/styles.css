@@ -639,6 +639,10 @@ button:disabled:hover,
     background: rgba(59, 130, 246, 0.03);
     border-left: 3px solid var(--color-primary);
     border-radius: var(--radius-sm);
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .matriz-descripcion em {
@@ -649,6 +653,23 @@ button:disabled:hover,
 
 .matriz-descripcion sub {
     font-size: 0.75em;
+}
+
+/* Responsividad para descripciones de matrices */
+@media (max-width: 768px) {
+    .matriz-descripcion {
+        font-size: 0.875rem;
+        padding: 0.625rem 0.875rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .matriz-descripcion {
+        font-size: 0.8125rem;
+        padding: 0.5rem 0.75rem;
+        line-height: 1.5;
+    }
 }
 
 /* Matriz - eliminado .matriz-container innecesario */
