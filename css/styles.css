@@ -143,7 +143,7 @@ select.success {
     font-weight: 500;
 }
 
-/* Layout de formularios con grid */
+/* Formulario de elementos - Layout limpio */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -154,23 +154,35 @@ select.success {
 .form-group {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
-/* Fila específica para valor y prefijo */
-.valor-prefijo-row {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
-    gap: 0.75rem !important;
+.form-group label {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 /* Responsive: apilar en móviles */
 @media (max-width: 768px) {
     .form-row {
         grid-template-columns: 1fr;
-    }
-
-    .valor-prefijo-row {
-        grid-template-columns: 1fr !important;
     }
 }
 
@@ -601,15 +613,6 @@ button:disabled:hover,
 /* ============================================
    ESTILOS PARA PREFIJOS DE UNIDADES
    ============================================ */
-.element-form .form-row {
-    display: flex;
-    flex-wrap: wrap; /* Permite que se apile en móviles */
-    gap: 1rem;
-}
-.element-form .form-row .form-group {
-    flex: 1 1 0; /* Permite que los campos crezcan */
-    min-width: 150px; /* Ancho mínimo antes de apilarse */
-}
 .unidad-text {
     font-size: 0.9rem;
     color: var(--color-text-light);
@@ -672,15 +675,6 @@ input.input-success:focus {
         overflow-x: auto;
     }
 
-    /* Formularios de elementos más compactos */
-    .element-form .form-row {
-        flex-direction: column;
-    }
-
-    .element-form .form-row .form-group {
-        width: 100%;
-        min-width: auto;
-    }
 
     /* Botones más pequeños en móvil */
     .button-group {
@@ -754,30 +748,6 @@ input.input-success:focus {
     border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
-/* Arreglar layout de Valor y Prefijo para que estén en la misma fila */
-.form-row-inline {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
-    gap: 1rem !important;
-    align-items: start !important;
-}
-
-.form-group-valor,
-.form-group-prefijo {
-    margin-bottom: 0 !important;
-}
-
-.form-row-inline .form-group {
-    width: 100% !important;
-    min-width: auto !important;
-}
-
-/* Asegurar que en móviles se apilen correctamente */
-@media (max-width: 768px) {
-    .form-row-inline {
-        grid-template-columns: 1fr !important;
-    }
-}
 
 /* ============================================
    NOTACIÓN MATEMÁTICA PROFESIONAL

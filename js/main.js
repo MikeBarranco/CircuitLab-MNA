@@ -192,28 +192,29 @@ const App = {
                     <select id="tipo_${indice}" required>
                         <option value="">Seleccionar...</option>
                         <option value="R">Resistor (R)</option>
-                        <option value="V">Fuente de Voltaje (V)</option>
-                        <option value="I">Fuente de Corriente (I)</option>
                         <option value="C">Capacitor (C)</option>
                         <option value="L">Inductor (L)</option>
+                        <option value="V">Fuente de Voltaje (V)</option>
+                        <option value="I">Fuente de Corriente (I)</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="nombre_${indice}">Nombre:</label>
                     <input type="text" id="nombre_${indice}" placeholder="Ej: R1, V1" required>
+                    <small class="text-muted">Debe ser único</small>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="nodoPos_${indice}">Nodo Positivo:</label>
-                    <input type="number" id="nodoPos_${indice}" min="0" max="${this.numNodes - 1}" required>
+                    <input type="number" id="nodoPos_${indice}" min="0" required>
                 </div>
                 <div class="form-group">
                     <label for="nodoNeg_${indice}">Nodo Negativo:</label>
-                    <input type="number" id="nodoNeg_${indice}" min="0" max="${this.numNodes - 1}" required>
+                    <input type="number" id="nodoNeg_${indice}" min="0" required>
                 </div>
             </div>
-            <div class="form-row valor-prefijo-row">
+            <div class="form-row">
                 <div class="form-group">
                     <label id="label_valor_${indice}" for="valor_${indice}">Valor:</label>
                     <input type="number" id="valor_${indice}" step="any" required>
@@ -223,14 +224,13 @@ const App = {
                     <label for="prefijo_${indice}">Prefijo:</label>
                     <select id="prefijo_${indice}">
                         <option value="1">--- (ninguno)</option>
-                        <option value="1e12">Tera (T)</option>
-                        <option value="1e9">Giga (G)</option>
-                        <option value="1e6">Mega (M)</option>
-                        <option value="1e3">kilo (k)</option>
-                        <option value="1e-3">mili (m)</option>
-                        <option value="1e-6">micro (µ)</option>
-                        <option value="1e-9">nano (n)</option>
-                        <option value="1e-12">pico (p)</option>
+                        <option value="1000000000">giga (G)</option>
+                        <option value="1000000">mega (M)</option>
+                        <option value="1000">kilo (k)</option>
+                        <option value="0.001">mili (m)</option>
+                        <option value="0.000001">micro (µ)</option>
+                        <option value="0.000000001">nano (n)</option>
+                        <option value="0.000000000001">pico (p)</option>
                     </select>
                 </div>
             </div>
@@ -370,10 +370,14 @@ const App = {
             });
 
             if (!validacionCompleta.valido) {
-                // Mostrar TODOS los errores encontrados
-                const mensajeError = validacionCompleta.errores.join('\n');
-                ResultDisplay.mostrarError(mensajeError);
+                // Mostrar errores en un cuadro más visible
+                const mensajeError = '⚠️ NO SE PUEDE ANALIZAR EL CIRCUITO\n\n' +
+                                    validacionCompleta.errores.join('\n\n');
+                alert(mensajeError);
+
+                // También mostrar en consola para debugging
                 console.error('Errores de validación:', validacionCompleta.errores);
+
                 return;
             }
 

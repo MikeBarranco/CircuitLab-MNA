@@ -468,21 +468,29 @@ const Validator = {
             errores.push('Los elementos deben ser un array.');
             return { valido: false, errores: errores };
         }
-        const nombresVistos = new Set();
+
+        // Validar nombres únicos (CRÍTICO)
+        const nombres = new Set();
+        const nombresDuplicados = new Set();
 
         for (const elem of elementos) {
             if (!elem || typeof elem.nombre !== 'string' || elem.nombre.trim() === '') {
                 // Este error ya se reporta en validarElemento, pero lo chequeamos por si acaso.
                 continue;
             }
-            const nombreNormalizado = elem.nombre.trim().toUpperCase();
 
-            if (nombresVistos.has(nombreNormalizado)) {
-                errores.push(`El nombre "${elem.nombre}" está duplicado. Todos los nombres de elementos deben ser únicos.`);
-            } else {
-                nombresVistos.add(nombreNormalizado);
+            const nombreLimpio = elem.nombre.trim().toUpperCase();
+            if (nombres.has(nombreLimpio)) {
+                nombresDuplicados.add(elem.nombre);
             }
+            nombres.add(nombreLimpio);
         }
+
+        if (nombresDuplicados.size > 0) {
+            const listaNombres = Array.from(nombresDuplicados).join(', ');
+            errores.push(`❌ NOMBRES DUPLICADOS: ${listaNombres}. Cada elemento debe tener un nombre único.`);
+        }
+
         return {
             valido: errores.length === 0,
             errores: errores
