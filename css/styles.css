@@ -586,3 +586,36 @@ button:disabled:hover,
     margin-top: 0.25rem;
     display: inline-block;
 }
+
+/* ============================================
+   ESTILOS PARA VALIDACIÓN DE CAMPOS
+   ============================================ */
+input.input-error,
+select.input-error {
+    border-color: var(--color-danger) !important;
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+input.input-success,
+select.input-success {
+    border-color: var(--color-secondary) !important;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+input.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+input.input-success:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.error-mensaje-campo {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
