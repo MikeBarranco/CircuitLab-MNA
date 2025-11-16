@@ -585,12 +585,40 @@
     margin-bottom: 2rem;
 }
 
-.ejemplo-circuito {
+/* Contenedor para cada ejemplo completo */
+.ejemplo-completo {
     background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    border: 2px solid #3b82f6;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+}
+
+.ejemplo-completo:last-child {
+    margin-bottom: 0;
+}
+
+.ejemplo-completo > h3 {
+    color: #1e40af;
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #93c5fd;
+}
+
+.ejemplo-circuito {
+    background: #f8fafc;
     padding: 2rem;
     border-radius: 12px;
     margin: 2rem 0;
-    border: 2px solid #3b82f6;
+    border: 2px solid #bfdbfe;
+}
+
+.ejemplo-circuito > h4 {
+    color: #2563eb;
+    margin-top: 0;
 }
 
 .circuito-descripcion ul {
@@ -620,6 +648,21 @@
     border-radius: 8px;
     margin-bottom: 1.5rem;
     border-left: 4px solid #3b82f6;
+}
+
+.solucion-paso > h5 {
+    color: #1e40af;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.ejemplo-solucion > h4 {
+    color: #1e40af;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .calculo-detallado {
@@ -782,6 +825,26 @@
     .vectores-lado-a-lado,
     .caracteristicas-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ejemplo-completo {
+        padding: 1.5rem;
+    }
+
+    .ejemplo-completo > h3 {
+        font-size: 1.5rem;
+    }
+
+    .ejemplo-circuito {
+        padding: 1.25rem;
+    }
+
+    .solucion-paso {
+        padding: 1.25rem;
+    }
+
+    .resultado-destacado {
+        font-size: 1.25rem;
     }
 }
 

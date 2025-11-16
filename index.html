@@ -341,95 +341,308 @@
         </div>
     </section>
 
-    <!-- Sección: Ejemplo Resuelto -->
+    <!-- Sección: Ejemplos Resueltos -->
     <section class="content-section ejemplo-section">
-        <h2>Ejemplo Práctico: Circuito Simple</h2>
+        <h2>Ejemplos Prácticos Resueltos</h2>
 
         <div class="ejemplo-intro">
             <p>
-                Analicemos un circuito sencillo para ver el MNA en acción. Este ejemplo muestra todos
-                los pasos del algoritmo aplicados a un circuito real.
+                A continuación presentamos <strong>tres ejemplos completos</strong> que ilustran diferentes
+                aspectos del MNA: circuitos con fuentes de corriente, circuitos con fuentes de voltaje,
+                y análisis AC con elementos reactivos.
             </p>
         </div>
 
-        <div class="ejemplo-circuito">
-            <h3>Circuito de Ejemplo</h3>
-            <div class="circuito-descripcion">
-                <p><strong>Elementos del circuito:</strong></p>
-                <ul>
-                    <li>Fuente de corriente I_s = 2A (del nodo 0 al nodo 1)</li>
-                    <li>Resistor R₁ = 2Ω (del nodo 1 al nodo 0)</li>
-                    <li>Resistor R₂ = 4Ω (del nodo 1 al nodo 2)</li>
-                    <li>Resistor R₃ = 1Ω (del nodo 2 al nodo 0)</li>
-                    <li>Fuente de corriente I_s2 = 4A (del nodo 0 al nodo 2)</li>
-                </ul>
-                <p><strong>Nodo de referencia:</strong> Nodo 0 (tierra)</p>
-                <p><strong>Incógnitas:</strong> v₁ y v₂ (voltajes de los nodos 1 y 2)</p>
+        <!-- EJEMPLO 1: Solo fuentes de corriente -->
+        <div class="ejemplo-completo">
+            <h3>Ejemplo 1: Circuito con Fuentes de Corriente</h3>
+
+            <div class="ejemplo-circuito">
+                <h4>Descripción del Circuito</h4>
+                <div class="circuito-descripcion">
+                    <p><strong>Elementos del circuito:</strong></p>
+                    <ul>
+                        <li>Fuente de corriente <em>I</em><sub>s</sub> = 2 A (del nodo 0 al nodo 1)</li>
+                        <li>Resistor <em>R</em><sub>1</sub> = 2 Ω (del nodo 1 al nodo 0)</li>
+                        <li>Resistor <em>R</em><sub>2</sub> = 4 Ω (del nodo 1 al nodo 2)</li>
+                        <li>Resistor <em>R</em><sub>3</sub> = 1 Ω (del nodo 2 al nodo 0)</li>
+                        <li>Fuente de corriente <em>I</em><sub>s2</sub> = 4 A (del nodo 0 al nodo 2)</li>
+                    </ul>
+                    <p><strong>Nodo de referencia:</strong> Nodo 0 (tierra)</p>
+                    <p><strong>Incógnitas:</strong> <em>v</em><sub>1</sub> y <em>v</em><sub>2</sub> (voltajes de los nodos 1 y 2)</p>
+                </div>
+            </div>
+
+            <div class="ejemplo-solucion">
+                <h4>Solución Paso a Paso</h4>
+
+                <div class="solucion-paso">
+                    <h5>Paso 1: Identificación</h5>
+                    <p><em>n</em> = 2 nodos (sin contar tierra: nodos 1 y 2)</p>
+                    <p><em>m</em> = 0 fuentes de voltaje</p>
+                    <p>Sistema resultante: 2 ecuaciones con 2 incógnitas</p>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 2: Matriz G (2×2)</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Conductancias:</strong></p>
+                        <p><em>g</em><sub>1</sub> = 1/<em>R</em><sub>1</sub> = 1/2 = 0.5 S</p>
+                        <p><em>g</em><sub>2</sub> = 1/<em>R</em><sub>2</sub> = 1/4 = 0.25 S</p>
+                        <p><em>g</em><sub>3</sub> = 1/<em>R</em><sub>3</sub> = 1/1 = 1.0 S</p>
+
+                        <p><strong>Construcción de <em>G</em>:</strong></p>
+                        <p><em>G</em>[1][1] = <em>g</em><sub>1</sub> + <em>g</em><sub>2</sub> = 0.5 + 0.25 = 0.75</p>
+                        <p><em>G</em>[2][2] = <em>g</em><sub>2</sub> + <em>g</em><sub>3</sub> = 0.25 + 1.0 = 1.25</p>
+                        <p><em>G</em>[1][2] = <em>G</em>[2][1] = -<em>g</em><sub>2</sub> = -0.25</p>
+
+                        <div class="matriz-resultado">
+                            <em>G</em> = [0.75  -0.25]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[-0.25  1.25]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 3: No hay fuentes de voltaje</h5>
+                    <p>Como <em>m</em> = 0, no hay matrices <em>B</em>, <em>C</em> ni <em>D</em></p>
+                    <p>El sistema se simplifica a: <strong><em>G</em>·<em>v</em> = <em>i</em></strong></p>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 4: Vector <em>i</em> (2×1)</h5>
+                    <div class="calculo-detallado">
+                        <p><em>i</em>[1] = corriente inyectada en nodo 1 = 2 A</p>
+                        <p><em>i</em>[2] = corriente inyectada en nodo 2 = 4 A</p>
+
+                        <div class="matriz-resultado">
+                            <em>i</em> = [2]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[4]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 5: Resolver el Sistema</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Sistema de ecuaciones:</strong></p>
+                        <div class="sistema-ecuaciones">
+                            0.75·<em>v</em><sub>1</sub> - 0.25·<em>v</em><sub>2</sub> = 2<br>
+                            -0.25·<em>v</em><sub>1</sub> + 1.25·<em>v</em><sub>2</sub> = 4
+                        </div>
+
+                        <p><strong>Solución:</strong></p>
+                        <div class="solucion-final">
+                            <p class="resultado-destacado"><em>v</em><sub>1</sub> = 4.0 V</p>
+                            <p class="resultado-destacado"><em>v</em><sub>2</sub> = 4.0 V</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="ejemplo-solucion">
-            <h3>Solución Paso a Paso</h3>
+        <!-- EJEMPLO 2: Circuito con fuente de voltaje -->
+        <div class="ejemplo-completo">
+            <h3>Ejemplo 2: Circuito con Fuente de Voltaje</h3>
 
-            <div class="solucion-paso">
-                <h4>Paso 1: Identificación</h4>
-                <p>n = 2 nodos (sin contar tierra: nodos 1 y 2)</p>
-                <p>m = 0 fuentes de voltaje</p>
-                <p>Sistema resultante: 2 ecuaciones con 2 incógnitas</p>
-            </div>
-
-            <div class="solucion-paso">
-                <h4>Paso 2: Matriz G (2×2)</h4>
-                <div class="calculo-detallado">
-                    <p><strong>Conductancias:</strong></p>
-                    <p>g₁ = 1/R₁ = 1/2 = 0.5 S</p>
-                    <p>g₂ = 1/R₂ = 1/4 = 0.25 S</p>
-                    <p>g₃ = 1/R₃ = 1/1 = 1.0 S</p>
-
-                    <p><strong>Construcción de G:</strong></p>
-                    <p>G[1][1] = g₁ + g₂ = 0.5 + 0.25 = 0.75</p>
-                    <p>G[2][2] = g₂ + g₃ = 0.25 + 1.0 = 1.25</p>
-                    <p>G[1][2] = G[2][1] = -g₂ = -0.25</p>
-
-                    <div class="matriz-resultado">
-                        G = [0.75  -0.25]<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;[-0.25  1.25]
-                    </div>
+            <div class="ejemplo-circuito">
+                <h4>Descripción del Circuito</h4>
+                <div class="circuito-descripcion">
+                    <p><strong>Elementos del circuito:</strong></p>
+                    <ul>
+                        <li>Fuente de voltaje <em>V</em><sub>s</sub> = 10 V (del nodo 1 al nodo 0)</li>
+                        <li>Resistor <em>R</em><sub>1</sub> = 2 Ω (del nodo 1 al nodo 2)</li>
+                        <li>Resistor <em>R</em><sub>2</sub> = 3 Ω (del nodo 2 al nodo 0)</li>
+                    </ul>
+                    <p><strong>Nodo de referencia:</strong> Nodo 0 (tierra)</p>
+                    <p><strong>Incógnitas:</strong> <em>v</em><sub>1</sub>, <em>v</em><sub>2</sub>, y <em>i</em><sub>Vs</sub></p>
                 </div>
             </div>
 
-            <div class="solucion-paso">
-                <h4>Paso 3: No hay fuentes de voltaje</h4>
-                <p>Como m = 0, no hay matrices B, C ni D</p>
-                <p>El sistema se simplifica a: <strong>G·v = i</strong></p>
-            </div>
+            <div class="ejemplo-solucion">
+                <h4>Solución Paso a Paso</h4>
 
-            <div class="solucion-paso">
-                <h4>Paso 4: Vector i (2×1)</h4>
-                <div class="calculo-detallado">
-                    <p>i[1] = corriente inyectada en nodo 1 = 2A</p>
-                    <p>i[2] = corriente inyectada en nodo 2 = 4A</p>
+                <div class="solucion-paso">
+                    <h5>Paso 1: Identificación</h5>
+                    <p><em>n</em> = 2 nodos (nodos 1 y 2)</p>
+                    <p><em>m</em> = 1 fuente de voltaje</p>
+                    <p>Sistema resultante: 3 ecuaciones con 3 incógnitas (2 voltajes + 1 corriente)</p>
+                </div>
 
-                    <div class="matriz-resultado">
-                        i = [2]<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;[4]
+                <div class="solucion-paso">
+                    <h5>Paso 2: Matriz G (2×2)</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Conductancias:</strong></p>
+                        <p><em>g</em><sub>1</sub> = 1/<em>R</em><sub>1</sub> = 1/2 = 0.5 S</p>
+                        <p><em>g</em><sub>2</sub> = 1/<em>R</em><sub>2</sub> = 1/3 ≈ 0.333 S</p>
+
+                        <p><strong>Construcción de <em>G</em>:</strong></p>
+                        <p><em>G</em>[1][1] = <em>g</em><sub>1</sub> = 0.5</p>
+                        <p><em>G</em>[2][2] = <em>g</em><sub>1</sub> + <em>g</em><sub>2</sub> = 0.5 + 0.333 = 0.833</p>
+                        <p><em>G</em>[1][2] = <em>G</em>[2][1] = -<em>g</em><sub>1</sub> = -0.5</p>
+
+                        <div class="matriz-resultado">
+                            <em>G</em> = [0.5    -0.5  ]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[-0.5   0.833]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 3: Matrices B, C, D</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Matriz <em>B</em> (2×1):</strong></p>
+                        <p>La fuente <em>V</em><sub>s</sub> tiene su terminal + en nodo 1 y terminal - en nodo 0</p>
+                        <p><em>B</em>[1][1] = +1 (nodo positivo)</p>
+                        <p><em>B</em>[2][1] = 0 (no conectada)</p>
+
+                        <div class="matriz-resultado">
+                            <em>B</em> = [1]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[0]
+                        </div>
+
+                        <p><strong>Matriz <em>C</em> (1×2):</strong> <em>C</em> = <em>B</em><sup>T</sup></p>
+                        <div class="matriz-resultado">
+                            <em>C</em> = [1  0]
+                        </div>
+
+                        <p><strong>Matriz <em>D</em> (1×1):</strong></p>
+                        <div class="matriz-resultado">
+                            <em>D</em> = [0]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 4: Vector <em>z</em> (3×1)</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Vector <em>i</em>:</strong> No hay fuentes de corriente</p>
+                        <p><em>i</em>[1] = 0</p>
+                        <p><em>i</em>[2] = 0</p>
+
+                        <p><strong>Vector <em>e</em>:</strong></p>
+                        <p><em>e</em>[1] = 10 V</p>
+
+                        <div class="matriz-resultado">
+                            <em>z</em> = [0 ]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[0 ]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[10]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 5: Ensamblar y Resolver A·x = z</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Matriz <em>A</em> (3×3):</strong></p>
+                        <div class="matriz-resultado">
+                            <em>A</em> = [0.5    -0.5    1]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[-0.5   0.833  0]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[1      0      0]
+                        </div>
+
+                        <p><strong>Solución del sistema:</strong></p>
+                        <div class="solucion-final">
+                            <p class="resultado-destacado"><em>v</em><sub>1</sub> = 10.0 V</p>
+                            <p class="resultado-destacado"><em>v</em><sub>2</sub> = 6.0 V</p>
+                            <p class="resultado-destacado"><em>i</em><sub>Vs</sub> = -2.0 A (la fuente suministra 2 A)</p>
+                        </div>
+
+                        <p><strong>Verificación:</strong></p>
+                        <p>Corriente en <em>R</em><sub>1</sub>: <em>i</em><sub>R1</sub> = (<em>v</em><sub>1</sub> - <em>v</em><sub>2</sub>)/<em>R</em><sub>1</sub> = (10 - 6)/2 = 2 A ✓</p>
+                        <p>Corriente en <em>R</em><sub>2</sub>: <em>i</em><sub>R2</sub> = <em>v</em><sub>2</sub>/<em>R</em><sub>2</sub> = 6/3 = 2 A ✓</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="solucion-paso">
-                <h4>Paso 5: Resolver el Sistema</h4>
-                <div class="calculo-detallado">
-                    <p><strong>Sistema de ecuaciones:</strong></p>
-                    <div class="sistema-ecuaciones">
-                        0.75·v₁ - 0.25·v₂ = 2<br>
-                        -0.25·v₁ + 1.25·v₂ = 4
+        <!-- EJEMPLO 3: Circuito AC con capacitor -->
+        <div class="ejemplo-completo">
+            <h3>Ejemplo 3: Circuito AC con Capacitor</h3>
+
+            <div class="ejemplo-circuito">
+                <h4>Descripción del Circuito</h4>
+                <div class="circuito-descripcion">
+                    <p><strong>Elementos del circuito:</strong></p>
+                    <ul>
+                        <li>Fuente de voltaje AC <em>V</em><sub>s</sub> = 120 V @ 60 Hz (del nodo 1 al nodo 0)</li>
+                        <li>Resistor <em>R</em> = 100 Ω (del nodo 1 al nodo 0)</li>
+                        <li>Capacitor <em>C</em> = 26.5 µF (del nodo 1 al nodo 0)</li>
+                    </ul>
+                    <p><strong>Frecuencia:</strong> <em>f</em> = 60 Hz</p>
+                    <p><strong>Nodo de referencia:</strong> Nodo 0 (tierra)</p>
+                    <p><strong>Incógnitas:</strong> <em>v</em><sub>1</sub> (complejo) y <em>i</em><sub>Vs</sub> (complejo)</p>
+                </div>
+            </div>
+
+            <div class="ejemplo-solucion">
+                <h4>Solución Paso a Paso</h4>
+
+                <div class="solucion-paso">
+                    <h5>Paso 1: Identificación</h5>
+                    <p><em>n</em> = 1 nodo (nodo 1)</p>
+                    <p><em>m</em> = 1 fuente de voltaje</p>
+                    <p>ω = 2π<em>f</em> = 2π(60) = 376.99 rad/s</p>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 2: Matriz G (1×1) con impedancias complejas</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Conductancia del resistor:</strong></p>
+                        <p><em>g</em><sub>R</sub> = 1/<em>R</em> = 1/100 = 0.01 S</p>
+
+                        <p><strong>Conductancia del capacitor (compleja):</strong></p>
+                        <p><em>g</em><sub>C</sub> = <em>j</em>ω<em>C</em> = <em>j</em>(376.99)(26.5×10<sup>-6</sup>)</p>
+                        <p><em>g</em><sub>C</sub> = <em>j</em>(0.00999) ≈ <em>j</em>0.01 S</p>
+
+                        <p><strong>Matriz <em>G</em> total:</strong></p>
+                        <p><em>G</em>[1][1] = <em>g</em><sub>R</sub> + <em>g</em><sub>C</sub> = 0.01 + <em>j</em>0.01</p>
+
+                        <div class="matriz-resultado">
+                            <em>G</em> = [0.01 + <em>j</em>0.01]
+                        </div>
                     </div>
+                </div>
 
-                    <p><strong>Solución:</strong></p>
-                    <div class="solucion-final">
-                        <p class="resultado-destacado">v₁ = 4.0 V</p>
-                        <p class="resultado-destacado">v₂ = 4.0 V</p>
+                <div class="solucion-paso">
+                    <h5>Paso 3: Matrices B, C, D</h5>
+                    <div class="calculo-detallado">
+                        <p><em>B</em> = [1], <em>C</em> = [1], <em>D</em> = [0]</p>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 4: Vector <em>z</em></h5>
+                    <div class="calculo-detallado">
+                        <div class="matriz-resultado">
+                            <em>z</em> = [0  ]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[120]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solucion-paso">
+                    <h5>Paso 5: Resolver el Sistema</h5>
+                    <div class="calculo-detallado">
+                        <p><strong>Matriz <em>A</em> (2×2):</strong></p>
+                        <div class="matriz-resultado">
+                            <em>A</em> = [0.01+<em>j</em>0.01  1]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;[1             0]
+                        </div>
+
+                        <p><strong>Solución:</strong></p>
+                        <div class="solucion-final">
+                            <p class="resultado-destacado"><em>v</em><sub>1</sub> = 120 + <em>j</em>0 V (por definición de la fuente)</p>
+                            <p class="resultado-destacado"><em>i</em><sub>Vs</sub> = -(0.01 + <em>j</em>0.01)(120) = -1.2 - <em>j</em>1.2 A</p>
+                        </div>
+
+                        <p><strong>En forma polar:</strong></p>
+                        <p>|<em>i</em><sub>Vs</sub>| = √(1.2² + 1.2²) = 1.697 A</p>
+                        <p>∠<em>i</em><sub>Vs</sub> = arctan(1.2/1.2) = -135° (la fuente suministra corriente con desfase)</p>
+
+                        <p><strong>Interpretación física:</strong></p>
+                        <p>El capacitor introduce un desfase de 90° adelantado, y junto con el resistor
+                        resulta en una impedancia total de magnitud |<em>Z</em>| = 120/1.697 = 70.7 Ω con ángulo de -45°.</p>
                     </div>
                 </div>
             </div>
